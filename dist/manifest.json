@@ -7,10 +7,9 @@
 
   "content_scripts": [
     {
-      "matches": [
-        "https://*.github.com/*/*/projects/*"
-      ],
-      "js": ["bundle.js"]
+      "matches": [ "https://*.github.com/*/*/projects/*"],
+      "css":     ["bundle.css"],
+      "js":      ["bundle.js"]
     }
   ]
 }

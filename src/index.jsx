@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { show, hide } from './utils'
 
 class Filter extends React.Component {
-
   constructor(props) {
     super(props)
 
@@ -26,13 +26,13 @@ class Filter extends React.Component {
       return assignees.length > 0 && !assignees.includes(this.user)
     })
 
-    this.backlog().classList.add('d-none')
-    notMyCards.forEach(card => card.classList.add('d-none'))
+    hide(this.backlog())
+    notMyCards.forEach(card => hide(card))
   }
 
   resetFilters() {
-    this.backlog().classList.remove('d-none')
-    this.cards().forEach(card => card.classList.remove('d-none'))
+    show(this.backlog())
+    this.cards().forEach(card => show(card))
   }
 
   backlog() {
