@@ -1,0 +1,4 @@
+/node_modules
+
+# Ignore files compiled by webpacker.
+dist/bundle.js
