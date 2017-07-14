@@ -5,7 +5,7 @@ import { show, hide } from '../utils'
 const currentUser = document.getElementsByName('octolytics-actor-login')[0].content
 const project     = document.querySelector('.project-columns-container')
 
-export default class FilteredProjectBoard extends React.Component {
+export default class ProjectBoardFilters extends React.Component {
   static toggleVisibility(itemSelector, itemFilters) {
     const items = Array.from(project.querySelectorAll(itemSelector))
 
@@ -64,11 +64,11 @@ export default class FilteredProjectBoard extends React.Component {
   }
 
   renderCards() {
-    FilteredProjectBoard.toggleVisibility('.issue-card', this.state.cardFilters)
+    ProjectBoardFilters.toggleVisibility('.issue-card', this.state.cardFilters)
   }
 
   renderColumns() {
-    FilteredProjectBoard.toggleVisibility('.project-column', this.state.columnFilters)
+    ProjectBoardFilters.toggleVisibility('.project-column', this.state.columnFilters)
   }
 
   render() {

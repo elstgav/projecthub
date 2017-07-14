@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import FilteredProjectBoard from './components/FilteredProjectBoard'
+import ProjectBoardFilters from './components/ProjectBoardFilters'
 import { stringToDOM } from './utils'
 
 class Application {
@@ -11,7 +11,7 @@ class Application {
 
   render() {
     this.setupSandbox()
-    ReactDOM.render(<FilteredProjectBoard />, this.sandbox)
+    ReactDOM.render(<ProjectBoardFilters />, this.sandbox)
   }
 }
 
