@@ -1,5 +1,5 @@
 import React from 'react'
-import MyWork from './MyWork'
+import Focus from './Focus'
 import { show, hide } from '../utils'
 
 const currentUser = document.getElementsByName('octolytics-actor-login')[0].content
@@ -53,7 +53,7 @@ export default class FilteredProjectBoard extends React.Component {
 
   render() {
     return (
-      <MyWork currentUser={currentUser} registerFilter={this.onFilterRegistered} onChange={this.onFiltersChanged} />
+      <Focus currentUser={currentUser} registerFilter={this.onFilterRegistered} onChange={this.onFiltersChanged} />
     )
   }
 }

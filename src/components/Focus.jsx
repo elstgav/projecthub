@@ -1,8 +1,8 @@
 import React from 'react'
 
-const sessionKey = 'gpf-state-MyWork'
+const sessionKey = 'gpf-state-Focus'
 
-export default class MyWork extends React.Component {
+export default class Focus extends React.Component {
   static propTypes = {
     currentUser:    React.PropTypes.string.isRequired,
     onChange:       React.PropTypes.func.isRequired,
@@ -15,7 +15,7 @@ export default class MyWork extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = JSON.parse(sessionStorage.getItem(sessionKey)) || MyWork.defaultState
+    this.state = JSON.parse(sessionStorage.getItem(sessionKey)) || Focus.defaultState
   }
 
   componentDidMount() {
@@ -46,7 +46,7 @@ export default class MyWork extends React.Component {
         className={`btn btn-default ${this.state.toggled ? 'selected' : ''}`}
         onClick={this.onClick}
       >
-        My Work
+        Focus
       </button>
     )
   }
