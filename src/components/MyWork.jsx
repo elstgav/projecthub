@@ -1,35 +1,61 @@
 import React from 'react'
 import { show, hide } from '../utils'
 
+const sessionKey = 'gpf-state'
+
 export default class MyWork extends React.Component {
+  static initialState = {
+    toggled: false,
+  }
+
   constructor(props) {
     super(props)
 
-    this.user = document.getElementsByName('octolytics-actor-login')[0].content
-    this.project = document.querySelector('.project-columns-container')
+    this.currentUser = document.getElementsByName('octolytics-actor-login')[0].content
+    this.project     = document.querySelector('.project-columns-container')
 
-    this.state = {
-      toggled: false,
-    }
+    this.state = JSON.parse(sessionStorage.getItem(sessionKey)) || MyWork.initialState
+
+    this.onCardsLoaded(this.renderCards)
+  }
+
+
+  onCardsLoaded = (callback) => {
+    const observer = new MutationObserver(() => {
+      const loadingIndicator = this.project.querySelector('include-fragment')
+
+      if (!loadingIndicator) {
+        callback.call(this)
+        observer.disconnect()
+      }
+    })
+
+    observer.observe(this.project, { childList: true, subtree: true })
   }
 
   onToggle = () => {
-    this.setState({ toggled: !this.state.toggled }, () => {
-      this.state.toggled ? this.setFilter() : this.resetFilters()
-    })
+    this.setState({
+      toggled: !this.state.toggled,
+    }, this.renderCards)
   }
 
-  setFilter() {
+
+  setState(stateObject, callback) {
+    super.setState(stateObject, callback)
+    sessionStorage.setItem(sessionKey, JSON.stringify(stateObject))
+  }
+
+  filterCards() {
     const notMyCards = this.cards().filter((card) => {
       const assignees = JSON.parse(card.dataset.cardAssignee || '[]')
-      return assignees.length > 0 && !assignees.includes(this.user)
+      return assignees.length > 0 && !assignees.includes(this.currentUser)
     })
 
     hide(this.backlog())
     notMyCards.forEach(card => hide(card))
   }
 
-  resetFilters() {
+  resetCards() {
     show(this.backlog())
     this.cards().forEach(card => show(card))
   }
@@ -40,6 +66,10 @@ export default class MyWork extends React.Component {
 
   cards() {
     return Array.from(this.project.querySelectorAll('.issue-card'))
+  }
+
+  renderCards() {
+    this.state.toggled ? this.filterCards() : this.resetCards()
   }
 
   render() {
