@@ -50,7 +50,7 @@ export default class Focus extends React.Component {
   render() {
     return (
       <button
-        className={`btn btn-default ${this.state.toggled ? 'selected' : ''}`}
+        className={`btn btn-default ${this.state.toggled ? 'selected' : ''} mr-2`}
         onClick={this.onClick}
       >
         Focus

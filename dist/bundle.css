@@ -1,3 +1,13 @@
 .gpf-is-hidden.gpf-is-hidden {
   display: none !important;
 }
+
+/* Hide link text for header links */
+.project-header-link {
+  font-size: 0 !important;
+}
+
+/* Remove margin from filter input */
+.subnav-search {
+  margin-left: 0 !important;
+}

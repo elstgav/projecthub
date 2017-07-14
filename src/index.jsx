@@ -5,7 +5,7 @@ import { stringToDOM } from './utils'
 
 class Application {
   setupSandbox() {
-    this.sandbox = stringToDOM('<div id="gpf-sandbox" class="mr-2"></div>')
+    this.sandbox = stringToDOM('<div id="gpf-sandbox" class="ml-2"></div>')
     document.querySelector('.project-header').lastElementChild.prepend(this.sandbox)
   }
 
