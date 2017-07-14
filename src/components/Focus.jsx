@@ -16,12 +16,11 @@ export default class Focus extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = JSON.parse(sessionStorage.getItem(sessionKey)) || Focus.defaultState
-  }
 
-  componentDidMount() {
-    this.props.addCardsFilter(this.shouldDisplayCard.bind(this))
-    this.props.addColumnsFilter(this.shouldDisplayColumn.bind(this))
+    props.addCardsFilter(this.shouldDisplayCard.bind(this))
+    props.addColumnsFilter(this.shouldDisplayColumn.bind(this))
+
+    this.state = JSON.parse(sessionStorage.getItem(sessionKey)) || Focus.defaultState
   }
 
   onClick = () => {
