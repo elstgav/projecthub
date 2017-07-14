@@ -6,18 +6,30 @@ const currentUser = document.getElementsByName('octolytics-actor-login')[0].cont
 const project     = document.querySelector('.project-columns-container')
 
 export default class FilteredProjectBoard extends React.Component {
+  static toggleVisibility(itemSelector, itemFilters) {
+    const items = Array.from(project.querySelectorAll(itemSelector))
+
+    items.forEach((item) => {
+      const filteredItems  = itemFilters.filter(itemFilter => itemFilter(item))
+      const shouldShowItem = filteredItems.length > 0
+
+      shouldShowItem ? show(item) : hide(item)
+    })
+  }
+
   constructor(props) {
     super(props)
 
     this.state = {
-      cardFilters: [],
+      cardFilters:   [],
+      columnFilters: [],
     }
 
-    this.onCardsLoaded(this.renderCards)
+    this.onBoardLoaded(this.renderBoard)
   }
 
 
-  onCardsLoaded = (callback) => {
+  onBoardLoaded = (callback) => {
     const observer = new MutationObserver(() => {
       const finishedLoading = project.querySelector('include-fragment') === null
 
@@ -30,30 +42,43 @@ export default class FilteredProjectBoard extends React.Component {
     observer.observe(project, { childList: true, subtree: true })
   }
 
-  onFiltersChanged = () => {
-    this.renderCards()
-  }
-
-  onFilterRegistered = (cardFilter) => {
+  onCardsFilterAdded = (cardFilter) => {
     this.setState({
       cardFilters: [...this.state.cardFilters, cardFilter],
     })
   }
 
-  renderCards() {
-    const cards = Array.from(project.querySelectorAll('.issue-card'))
-
-    cards.forEach((card) => {
-      const filteredCards  = this.state.cardFilters.filter(cardFilter => cardFilter(card))
-      const shouldShowCard = filteredCards.length > 0
-
-      shouldShowCard ? show(card) : hide(card)
+  onColumnsFilterAdded = (columnFilter) => {
+    this.setState({
+      columnFilters: [...this.state.columnFilters, columnFilter],
     })
+  }
+
+  onFiltersChanged = () => {
+    this.renderBoard()
+  }
+
+  renderBoard() {
+    this.renderCards()
+    this.renderColumns()
+  }
+
+  renderCards() {
+    FilteredProjectBoard.toggleVisibility('.issue-card', this.state.cardFilters)
+  }
+
+  renderColumns() {
+    FilteredProjectBoard.toggleVisibility('.project-column', this.state.columnFilters)
   }
 
   render() {
     return (
-      <Focus currentUser={currentUser} registerFilter={this.onFilterRegistered} onChange={this.onFiltersChanged} />
+      <Focus
+        currentUser={currentUser}
+        addCardsFilter={this.onCardsFilterAdded}
+        addColumnsFilter={this.onColumnsFilterAdded}
+        onChange={this.onFiltersChanged}
+      />
     )
   }
 }

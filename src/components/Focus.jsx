@@ -4,9 +4,10 @@ const sessionKey = 'gpf-state-Focus'
 
 export default class Focus extends React.Component {
   static propTypes = {
-    currentUser:    React.PropTypes.string.isRequired,
-    onChange:       React.PropTypes.func.isRequired,
-    registerFilter: React.PropTypes.func.isRequired,
+    currentUser:      React.PropTypes.string.isRequired,
+    onChange:         React.PropTypes.func.isRequired,
+    addCardsFilter:   React.PropTypes.func.isRequired,
+    addColumnsFilter: React.PropTypes.func.isRequired,
   }
 
   static defaultState = {
@@ -19,7 +20,8 @@ export default class Focus extends React.Component {
   }
 
   componentDidMount() {
-    this.props.registerFilter(this.shouldDisplayCard.bind(this))
+    this.props.addCardsFilter(this.shouldDisplayCard.bind(this))
+    this.props.addColumnsFilter(this.shouldDisplayColumn.bind(this))
   }
 
   onClick = () => {
@@ -38,6 +40,11 @@ export default class Focus extends React.Component {
 
     const assignees = JSON.parse(card.dataset.cardAssignee || '[]')
     return assignees.length === 0 || assignees.includes(this.props.currentUser)
+  }
+
+  shouldDisplayColumn(column) {
+    if (!this.state.toggled) return true
+    return column.dataset.id !== '1239586' // Backlog column
   }
 
   render() {
