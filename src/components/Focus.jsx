@@ -1,13 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const sessionKey = 'gpf-state-Focus'
 
 export default class Focus extends React.Component {
   static propTypes = {
-    currentUser:      React.PropTypes.string.isRequired,
-    onChange:         React.PropTypes.func.isRequired,
-    addCardsFilter:   React.PropTypes.func.isRequired,
-    addColumnsFilter: React.PropTypes.func.isRequired,
+    currentUser:      PropTypes.string.isRequired,
+    onChange:         PropTypes.func.isRequired,
+    addCardsFilter:   PropTypes.func.isRequired,
+    addColumnsFilter: PropTypes.func.isRequired,
   }
 
   static defaultState = {

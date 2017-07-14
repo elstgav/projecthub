@@ -5,6 +5,7 @@
   "author": "Gavin Elster <gavin.elster@me.com>",
   "license": "MIT",
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
