@@ -1,5 +1,5 @@
 import React from 'react'
-import { show, hide } from './utils'
+import { show, hide } from '../utils'
 
 export default class MyWork extends React.Component {
   constructor(props) {
