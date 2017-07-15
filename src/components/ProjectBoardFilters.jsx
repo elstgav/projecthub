@@ -8,7 +8,7 @@ import {
 
 
 export default class ProjectBoardFilters extends React.Component {
-  static toggleVisibility(itemSelector, itemFilters) {
+  static filterItems(itemSelector, itemFilters) {
     const items = Array.from(App.projectBoard.querySelectorAll(itemSelector))
 
     items.forEach((item) => {
@@ -60,11 +60,11 @@ export default class ProjectBoardFilters extends React.Component {
   }
 
   renderCards() {
-    ProjectBoardFilters.toggleVisibility('.issue-card', this.state.cardFilters)
+    ProjectBoardFilters.filterItems('.issue-card', this.state.cardFilters)
   }
 
   renderColumns() {
-    ProjectBoardFilters.toggleVisibility('.project-column', this.state.columnFilters)
+    ProjectBoardFilters.filterItems('.project-column', this.state.columnFilters)
   }
 
   renderBoard() {
