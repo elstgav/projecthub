@@ -20,7 +20,7 @@ export default class Filter extends React.Component {
       this.constructor.defaultState
   }
 
-  setState(stateObject, callback) {
+  setState(stateObject, callback = () => {}) {
     super.setState(stateObject, () => {
       sessionStorage.setItem(this.sessionKey(), JSON.stringify(this.state))
       callback()
