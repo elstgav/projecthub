@@ -8,7 +8,6 @@ import {
 
 
 export default class ProjectBoardFilters extends React.Component {
-  static currentUser = document.getElementsByName('octolytics-actor-login')[0].content
   static project     = document.querySelector('.project-columns-container')
 
   static filters = {
@@ -74,7 +73,6 @@ export default class ProjectBoardFilters extends React.Component {
   render() {
     return (
       <FocusFilter
-        currentUser={ProjectBoardFilters.currentUser}
         addCardsFilter={ProjectBoardFilters.onCardsFilterAdded}
         addColumnsFilter={ProjectBoardFilters.onColumnsFilterAdded}
         onChange={ProjectBoardFilters.onFiltersChanged}

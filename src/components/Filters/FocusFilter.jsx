@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { App } from 'src/utils'
+
 import Button from 'components/Button'
 import BaseFilter from 'components/Filters/BaseFilter'
 
@@ -8,7 +10,6 @@ export default class FocusFilter extends BaseFilter {
   static propTypes = {
     ...BaseFilter.propTypes,
 
-    currentUser: PropTypes.string.isRequired,
     onChange:    PropTypes.func.isRequired,
   }
 
@@ -26,7 +27,7 @@ export default class FocusFilter extends BaseFilter {
     if (!this.state.toggled) return true
 
     const assignees = JSON.parse(card.dataset.cardAssignee || '[]')
-    return assignees.length === 0 || assignees.includes(this.props.currentUser)
+    return assignees.length === 0 || assignees.includes(App.currentUser)
   }
 
   shouldDisplayColumn(column) {

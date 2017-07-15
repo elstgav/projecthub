@@ -1,5 +1,9 @@
 const hiddenClass = 'gpf-is-hidden'
 
+export const App = {
+  currentUser:  document.getElementsByName('octolytics-actor-login')[0].content,
+}
+
 export function hide(el) {
   el.classList.add(hiddenClass)
 }
