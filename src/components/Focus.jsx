@@ -1,38 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const sessionKey = 'gpf-state-Focus'
+import Filter from './Filter'
 
-export default class Focus extends React.Component {
+export default class Focus extends Filter {
   static propTypes = {
+    ...Filter.propTypes,
+
     currentUser:      PropTypes.string.isRequired,
     onChange:         PropTypes.func.isRequired,
-    addCardsFilter:   PropTypes.func.isRequired,
-    addColumnsFilter: PropTypes.func.isRequired,
   }
 
   static defaultState = {
     toggled: false,
   }
 
-  constructor(props) {
-    super(props)
-
-    props.addCardsFilter(this.shouldDisplayCard.bind(this))
-    props.addColumnsFilter(this.shouldDisplayColumn.bind(this))
-
-    this.state = JSON.parse(sessionStorage.getItem(sessionKey)) || Focus.defaultState
-  }
-
   onClick = () => {
     this.setState({
       toggled: !this.state.toggled,
     }, this.props.onChange)
-  }
-
-  setState(stateObject, callback) {
-    super.setState(stateObject, callback)
-    sessionStorage.setItem(sessionKey, JSON.stringify(stateObject))
   }
 
   shouldDisplayCard(card) {
