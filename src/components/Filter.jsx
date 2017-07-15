@@ -21,8 +21,10 @@ export default class Filter extends React.Component {
   }
 
   setState(stateObject, callback) {
-    super.setState(stateObject, callback)
-    sessionStorage.setItem(this.sessionKey(), JSON.stringify(stateObject))
+    super.setState(stateObject, () => {
+      sessionStorage.setItem(this.sessionKey(), JSON.stringify(this.state))
+      callback()
+    })
   }
 
   sessionKey = () => `gpf-state-${this.constructor.name}`
