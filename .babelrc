@@ -6,6 +6,12 @@
   ],
 
   "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "src":        "./src",
+        "components": "./src/components"
+      }
+    }],
     "transform-class-properties",
     "transform-object-rest-spread"
   ]

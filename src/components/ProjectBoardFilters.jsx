@@ -1,13 +1,10 @@
 import React from 'react'
 
-import {
-  show,
-  hide,
-} from '../utils'
+import { show, hide } from 'src/utils'
 
 import {
   FocusFilter,
-} from './Filters'
+} from 'components/Filters'
 
 
 export default class ProjectBoardFilters extends React.Component {

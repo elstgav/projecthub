@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ProjectBoardFilters from './components/ProjectBoardFilters'
-import { stringToDOM } from './utils'
+
+import { stringToDOM } from 'src/utils'
+
+import ProjectBoardFilters from 'components/ProjectBoardFilters'
 
 class Application {
   setupSandbox() {

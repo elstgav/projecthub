@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Button from './../Button'
-import BaseFilter from './BaseFilter'
+import Button from 'components/Button'
+import BaseFilter from 'components/Filters/BaseFilter'
 
 export default class FocusFilter extends BaseFilter {
   static propTypes = {
