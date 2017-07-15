@@ -12,12 +12,14 @@ export default class Filter extends React.Component {
   constructor(props) {
     super(props)
 
-    props.addCardsFilter(this.shouldDisplayCard.bind(this))
-    props.addColumnsFilter(this.shouldDisplayColumn.bind(this))
-
     this.state =
       JSON.parse(sessionStorage.getItem(this.sessionKey())) ||
       this.constructor.defaultState
+  }
+
+  componentWillMount() {
+    this.props.addCardsFilter(this.shouldDisplayCard.bind(this))
+    this.props.addColumnsFilter(this.shouldDisplayColumn.bind(this))
   }
 
   setState(stateObject, callback = () => {}) {

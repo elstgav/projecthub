@@ -2,6 +2,7 @@ const hiddenClass = 'gpf-is-hidden'
 
 export const App = {
   currentUser:  document.getElementsByName('octolytics-actor-login')[0].content,
+  projectBoard: document.querySelector('.project-columns-container'),
 }
 
 export function hide(el) {
