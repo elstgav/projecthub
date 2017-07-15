@@ -1,7 +1,7 @@
 {
   "name": "github-project-filters",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "src/Application.js",
   "author": "Gavin Elster <gavin.elster@me.com>",
   "license": "MIT",
   "dependencies": {
