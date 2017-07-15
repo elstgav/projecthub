@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const Button = ({ active, children, ...props }) => (
   <button
     {...props}
-    className={`btn btn-default ${active ? 'selected' : ''} mr-2 ${props.className}`}
+    className={`btn btn-default ${active ? 'selected' : ''} ${props.className}`}
   >
     {children}
   </button>

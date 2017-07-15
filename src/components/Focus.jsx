@@ -8,8 +8,8 @@ export default class Focus extends Filter {
   static propTypes = {
     ...Filter.propTypes,
 
-    currentUser:      PropTypes.string.isRequired,
-    onChange:         PropTypes.func.isRequired,
+    currentUser: PropTypes.string.isRequired,
+    onChange:    PropTypes.func.isRequired,
   }
 
   static defaultState = {
@@ -36,7 +36,9 @@ export default class Focus extends Filter {
 
   render() {
     return (
-      <Button active={this.state.toggled} onClick={this.onClick}>Focus</Button>
+      <Button active={this.state.toggled} onClick={this.onClick} className="mr-2">
+        Focus
+      </Button>
     )
   }
 }
