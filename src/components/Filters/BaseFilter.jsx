@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { App } from 'src/utils'
+
 export default class Filter extends React.Component {
   static propTypes = {
     addCardsFilter:   PropTypes.func.isRequired,
@@ -29,7 +31,7 @@ export default class Filter extends React.Component {
     })
   }
 
-  sessionKey = () => `gpf-state-${this.constructor.name}`
+  sessionKey = () => `${App.namespace}-state-${this.constructor.name}`
 
   /* eslint-disable class-methods-use-this */
   shouldDisplayCard(_card)     { return true }

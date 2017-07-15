@@ -1,8 +1,12 @@
 const App = {
-  hiddenClass: 'gpf-is-hidden',
+  namespace:   'gpf',
 
   currentUser:  document.getElementsByName('octolytics-actor-login')[0].content,
   projectBoard: document.querySelector('.project-columns-container'),
+
+  get hiddenClass() {
+    return `${this.namespace}-is-hidden`
+  },
 
   show(el) {
     el.classList.remove(this.hiddenClass)
