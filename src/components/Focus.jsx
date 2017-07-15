@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Button from './Button'
 import Filter from './Filter'
 
 export default class Focus extends Filter {
@@ -35,12 +36,7 @@ export default class Focus extends Filter {
 
   render() {
     return (
-      <button
-        className={`btn btn-default ${this.state.toggled ? 'selected' : ''} mr-2`}
-        onClick={this.onClick}
-      >
-        Focus
-      </button>
+      <Button active={this.state.toggled} onClick={this.onClick}>Focus</Button>
     )
   }
 }
