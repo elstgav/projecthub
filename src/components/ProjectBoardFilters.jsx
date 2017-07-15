@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { App, show, hide } from 'src/utils'
+import { App } from 'src/utils'
 
 import {
   FocusFilter,
@@ -15,7 +15,7 @@ export default class ProjectBoardFilters extends React.Component {
       const itemsToHide    = itemFilters.filter(showItem => !showItem(item))
       const shouldHideItem = itemsToHide.length > 0
 
-      shouldHideItem ? hide(item) : show(item)
+      shouldHideItem ? App.hide(item) : App.show(item)
     })
   }
 
@@ -27,20 +27,9 @@ export default class ProjectBoardFilters extends React.Component {
       columnFilters: [],
     }
 
-    this.onBoardLoaded(this.renderBoard)
-  }
-
-  onBoardLoaded = (callback) => {
-    const observer = new MutationObserver(() => {
-      const finishedLoading = App.projectBoard.querySelector('include-fragment') === null
-
-      if (finishedLoading) {
-        callback.call(this)
-        observer.disconnect()
-      }
+    App.onBoardLoaded(() => {
+      this.renderBoard()
     })
-
-    observer.observe(App.projectBoard, { childList: true, subtree: true })
   }
 
   onCardsFilterAdded = (cardFilter) => {
