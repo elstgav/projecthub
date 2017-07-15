@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Button from './Button'
-import Filter from './Filter'
+import Button from './../Button'
+import BaseFilter from './BaseFilter'
 
-export default class Focus extends Filter {
+export default class FocusFilter extends BaseFilter {
   static propTypes = {
-    ...Filter.propTypes,
+    ...BaseFilter.propTypes,
 
     currentUser: PropTypes.string.isRequired,
     onChange:    PropTypes.func.isRequired,

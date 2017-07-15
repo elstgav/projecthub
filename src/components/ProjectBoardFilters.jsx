@@ -1,6 +1,13 @@
 import React from 'react'
-import Focus from './Focus'
-import { show, hide } from '../utils'
+
+import {
+  show,
+  hide,
+} from '../utils'
+
+import {
+  FocusFilter,
+} from './Filters'
 
 
 export default class ProjectBoardFilters extends React.Component {
@@ -69,12 +76,12 @@ export default class ProjectBoardFilters extends React.Component {
 
   render() {
     return (
-      <Focus
+      <FocusFilter
         currentUser={ProjectBoardFilters.currentUser}
         addCardsFilter={ProjectBoardFilters.onCardsFilterAdded}
         addColumnsFilter={ProjectBoardFilters.onColumnsFilterAdded}
         onChange={ProjectBoardFilters.onFiltersChanged}
-        />
+      />
     )
   }
 }
