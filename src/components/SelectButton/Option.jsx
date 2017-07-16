@@ -3,18 +3,19 @@ import PropTypes from 'prop-types'
 
 import Icon   from 'components/Icon'
 
+import OptionVal from './OptionVal'
+
+
 export default class Option extends React.Component {
   static defaultProps = {
     id:       null,
     selected: false,
-    onClick: () => {},
   }
 
   static propTypes = {
-    id:       PropTypes.string,
-    val:      PropTypes.string.isRequired,
-    onClick:  PropTypes.func,
     selected: PropTypes.bool,
+    onClick:  PropTypes.func.isRequired,
+    option:   PropTypes.shape(OptionVal.propTypes.option).isRequired,
   }
 
   constructor(props) {
@@ -26,7 +27,7 @@ export default class Option extends React.Component {
   onMouseLeave = () => this.setState({ isHovered: false })
 
   onClick = () => {
-    this.props.onClick(this.props.id)
+    this.props.onClick(this.props.option.id)
   }
 
   render() {
@@ -40,7 +41,7 @@ export default class Option extends React.Component {
         role="option"
       >
         <Icon icon="check" className="select-menu-item-icon" />
-        <span className="select-menu-item-text">{this.props.val}</span>
+        <OptionVal option={this.props.option} />
       </li>
     )
   }

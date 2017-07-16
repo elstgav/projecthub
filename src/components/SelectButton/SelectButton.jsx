@@ -75,7 +75,7 @@ export default class SelectButton extends React.Component {
                   key={option.id}
                   onClick={this.onOptionClick}
                   selected={option.id === this.state.selection.id}
-                  {...option}
+                  option={option}
                 />
               ))}
             </ol>
