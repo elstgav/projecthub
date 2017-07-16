@@ -1,7 +1,7 @@
 import { isEmpty, uniqBy, sortBy } from 'lodash'
 
 import { Label, User } from 'src/models'
-import { stringToDOM } from 'src/utils'
+import { stringToDOM, Memoized } from 'src/utils'
 
 const App = {
   namespace:   'gpf',
@@ -9,27 +9,22 @@ const App = {
   currentUser:  document.getElementsByName('octolytics-actor-login')[0].content,
   projectBoard: document.querySelector('.project-columns-container'),
 
+  @Memoized
   get sandbox() {
     const sandboxElement = stringToDOM(`<div id="${this.namespace}-sandbox" class="ml-2"></div>`)
     document.querySelector('.project-header').lastElementChild.prepend(sandboxElement)
 
-    // Memoize
-    delete this.sandbox
-    this.sandbox = sandboxElement
     return sandboxElement
   },
 
+  @Memoized
   get hiddenClass() {
-    const hiddenClass = `${this.namespace}-is-hidden`
-
-    // Memoize
-    delete this.hiddenClass
-    this.hiddenClass = hiddenClass
-    return hiddenClass
+    return `${this.namespace}-is-hidden`
   },
 
+  @Memoized
   get afterBoardLoaded() {
-    const afterBoardLoaded = new Promise((resolve) => {
+    return new Promise((resolve) => {
       const observer = new MutationObserver(() => {
         const finishedLoading = this.projectBoard.querySelector('include-fragment') === null
 
@@ -41,11 +36,6 @@ const App = {
 
       observer.observe(this.projectBoard, { childList: true, subtree: true })
     })
-
-    // Memoize
-    delete this.afterBoardLoaded
-    this.afterBoardLoaded = afterBoardLoaded
-    return afterBoardLoaded
   },
 
   get cards() {
