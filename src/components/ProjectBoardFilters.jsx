@@ -12,10 +12,9 @@ import {
 export default class ProjectBoardFilters extends React.Component {
   static filterItems(items, itemFilters) {
     items.forEach((item) => {
-      const itemsToHide    = itemFilters.filter(showItem => !showItem(item))
-      const shouldHideItem = itemsToHide.length > 0
+      const shouldShowItem = itemFilters.every(showsItem => showsItem(item))
 
-      shouldHideItem ? hide(item) : show(item)
+      shouldShowItem ? show(item) : hide(item)
     })
   }
 
