@@ -1,12 +1,22 @@
 import { isEmpty, uniqBy, sortBy } from 'lodash'
 
 import { Label, User } from 'src/models'
+import { stringToDOM } from 'src/utils'
 
 const App = {
   namespace:   'gpf',
 
   currentUser:  document.getElementsByName('octolytics-actor-login')[0].content,
   projectBoard: document.querySelector('.project-columns-container'),
+
+  get sandbox() {
+    const sandboxElement = stringToDOM(`<div id="${this.namespace}-sandbox" class="ml-2"></div>`)
+    document.querySelector('.project-header').lastElementChild.prepend(sandboxElement)
+
+    delete this.sandbox
+    this.sandbox = sandboxElement
+    return sandboxElement
+  },
 
   get afterBoardLoaded() {
     const afterBoardLoaded = new Promise((resolve) => {
