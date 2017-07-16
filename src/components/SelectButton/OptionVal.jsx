@@ -1,5 +1,6 @@
-import React from 'react'
+import React     from 'react'
 import PropTypes from 'prop-types'
+import { pick }  from 'lodash'
 
 import { User } from 'src/models'
 
@@ -8,6 +9,17 @@ import Avatar from 'src/components/Avatar'
 
 const OptionVal = ({ option }) => {
   switch (option.constructor.name) {
+    case 'Label':
+      return (
+        <div className="label-select-menu select-menu-item-text css-truncate">
+          <div className="color-label-wrapper css-truncate-target">
+            <span className="color" style={pick(option.style, ['backgroundColor'])}>&nbsp;</span>
+            &nbsp;
+            <span className="name">{option.val}</span>
+          </div>
+        </div>
+      )
+
     case 'User':
       return (
         <div>
@@ -15,6 +27,7 @@ const OptionVal = ({ option }) => {
           <div className="select-menu-item-text">{option.login}</div>
         </div>
       )
+
     default:
       return (
         <div className="select-menu-item-text">{option.val}</div>

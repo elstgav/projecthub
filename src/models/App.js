@@ -1,6 +1,6 @@
 import { isEmpty, uniqBy, sortBy } from 'lodash'
 
-import { User } from 'src/models'
+import { Label, User } from 'src/models'
 
 const App = {
   namespace:   'gpf',
@@ -42,6 +42,17 @@ const App = {
     users = sortBy(users, [user => user.login.toLowerCase()])
 
     return users
+  },
+
+  get labels() {
+    let labels = Array.from(this.projectBoard.querySelectorAll('.issue-card-label'))
+    if (isEmpty(labels)) return []
+
+    labels = labels.map(label => Label.fromLabelElement(label))
+    labels = uniqBy(labels, label => label.id)
+    labels = sortBy(labels, [label => label.val.toLowerCase()])
+
+    return labels
   },
 
   get cards() {

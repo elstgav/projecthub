@@ -6,6 +6,7 @@ import { show, hide } from 'src/utils'
 
 import {
   AssigneeFilter,
+  LabelFilter,
   FocusFilter,
 } from 'components/Filters'
 
@@ -24,12 +25,17 @@ export default class ProjectBoardFilters extends React.Component {
 
     this.state = {
       assignees:     App.assignees,
+      labels:        App.labels,
       cardFilters:   [],
       columnFilters: [],
     }
 
     App.afterBoardLoaded.then(() => {
-      this.setState({ assignees: App.assignees })
+      this.setState({
+        assignees: App.assignees,
+        labels:    App.labels,
+      })
+
       this.renderBoard()
     })
   }
@@ -74,6 +80,12 @@ export default class ProjectBoardFilters extends React.Component {
         />
         <AssigneeFilter
           assignees={this.state.assignees}
+          addCardsFilter={this.onCardsFilterAdded}
+          addColumnsFilter={this.onColumnsFilterAdded}
+          onChange={this.onFiltersChanged}
+        />
+        <LabelFilter
+          labels={this.state.labels}
           addCardsFilter={this.onCardsFilterAdded}
           addColumnsFilter={this.onColumnsFilterAdded}
           onChange={this.onFiltersChanged}
