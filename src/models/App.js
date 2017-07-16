@@ -1,3 +1,7 @@
+import { isEmpty, uniqBy, sortBy } from 'lodash'
+
+import { User } from 'src/models'
+
 const App = {
   namespace:   'gpf',
 
@@ -27,6 +31,17 @@ const App = {
 
   get hiddenClass() {
     return `${this.namespace}-is-hidden`
+  },
+
+  get assignees() {
+    const avatars = Array.from(this.projectBoard.querySelectorAll('.avatar-stack .avatar'))
+    if (isEmpty(avatars)) return []
+
+    let users = avatars.map(avatar => User.fromAvatarElement(avatar))
+    users = uniqBy(users, user => user.id)
+    users = sortBy(users, [user => user.login.toLowerCase()])
+
+    return users
   },
 
   get cards() {

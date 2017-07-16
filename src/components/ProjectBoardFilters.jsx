@@ -5,6 +5,7 @@ import { App } from 'src/models'
 import { show, hide } from 'src/utils'
 
 import {
+  AssigneeFilter,
   FocusFilter,
 } from 'components/Filters'
 
@@ -22,11 +23,13 @@ export default class ProjectBoardFilters extends React.Component {
     super(props)
 
     this.state = {
+      assignees:     App.assignees,
       cardFilters:   [],
       columnFilters: [],
     }
 
     App.afterBoardLoaded.then(() => {
+      this.setState({ assignees: App.assignees })
       this.renderBoard()
     })
   }
@@ -63,11 +66,19 @@ export default class ProjectBoardFilters extends React.Component {
 
   render() {
     return (
-      <FocusFilter
-        addCardsFilter={this.onCardsFilterAdded}
-        addColumnsFilter={this.onColumnsFilterAdded}
-        onChange={this.onFiltersChanged}
-      />
+      <div>
+        <FocusFilter
+          addCardsFilter={this.onCardsFilterAdded}
+          addColumnsFilter={this.onColumnsFilterAdded}
+          onChange={this.onFiltersChanged}
+        />
+        <AssigneeFilter
+          assignees={this.state.assignees}
+          addCardsFilter={this.onCardsFilterAdded}
+          addColumnsFilter={this.onColumnsFilterAdded}
+          onChange={this.onFiltersChanged}
+        />
+      </div>
     )
   }
 }
