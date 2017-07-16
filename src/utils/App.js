@@ -8,6 +8,14 @@ const App = {
     return `${this.namespace}-is-hidden`
   },
 
+  get cards() {
+    return Array.from(this.projectBoard.querySelectorAll('.issue-card'))
+  },
+
+  get columns() {
+    return Array.from(this.projectBoard.querySelectorAll('.project-column'))
+  },
+
   show(el) {
     el.classList.remove(this.hiddenClass)
   },

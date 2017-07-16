@@ -8,9 +8,7 @@ import {
 
 
 export default class ProjectBoardFilters extends React.Component {
-  static filterItems(itemSelector, itemFilters) {
-    const items = Array.from(App.projectBoard.querySelectorAll(itemSelector))
-
+  static filterItems(items, itemFilters) {
     items.forEach((item) => {
       const itemsToHide    = itemFilters.filter(showItem => !showItem(item))
       const shouldHideItem = itemsToHide.length > 0
@@ -49,11 +47,11 @@ export default class ProjectBoardFilters extends React.Component {
   }
 
   renderCards() {
-    ProjectBoardFilters.filterItems('.issue-card', this.state.cardFilters)
+    ProjectBoardFilters.filterItems(App.cards, this.state.cardFilters)
   }
 
   renderColumns() {
-    ProjectBoardFilters.filterItems('.project-column', this.state.columnFilters)
+    ProjectBoardFilters.filterItems(App.columns, this.state.columnFilters)
   }
 
   renderBoard() {
