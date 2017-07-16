@@ -12,6 +12,7 @@
         "components": "./src/components"
       }
     }],
+    "lodash",
     "transform-class-properties",
     "transform-object-rest-spread"
   ]

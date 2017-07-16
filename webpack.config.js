@@ -1,4 +1,5 @@
 const path = require('path')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 module.exports = {
   context: __dirname,
@@ -21,4 +22,8 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [
+    new LodashModuleReplacementPlugin(),
+  ],
 }
