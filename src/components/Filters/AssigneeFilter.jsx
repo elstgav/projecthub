@@ -18,8 +18,8 @@ export default class AssigneeFilter extends BaseFilter {
     selectedAssignee: { login: null },
   }
 
-  onChange = (login) => {
-    let selection = this.props.assignees.find(assignee => assignee.login === login)
+  onChange = (id) => {
+    let selection = this.props.assignees.find(assignee => assignee.id === id)
     if (!selection) selection = AssigneeFilter.defaultState.selectedAssignee
 
     this.setState({
@@ -34,23 +34,21 @@ export default class AssigneeFilter extends BaseFilter {
     return assignees.includes(this.state.selectedAssignee.login.toLowerCase())
   }
 
+
   render() {
-    const assignees = [
+    const assigneeOptions = [
       { id: null, val: 'All' },
 
-      ...this.props.assignees.map(assignee => ({
-        id:  assignee.login,
-        val: assignee.login,
-      })),
+      ...this.props.assignees,
     ]
 
-    const selected = assignees.find(assignee => assignee === this.state.selectedAssignee)
+    const selected = assigneeOptions.find(assignee => assignee === this.state.selectedAssignee)
 
     return (
       <SelectButton
         className="mr-2"
         type="Assignee"
-        options={assignees}
+        options={assigneeOptions}
         onChange={this.onChange}
         selected={selected}
       />

@@ -1,12 +1,14 @@
 /* eslint-disable react/no-multi-comp */
 
-import React from 'react'
+import React     from 'react'
 import PropTypes from 'prop-types'
 
 import Button from 'components/Button'
 import Icon   from 'components/Icon'
 
-import Option from './Option'
+import Option            from './Option'
+import SelectedOptionVal from './SelectedOptionVal'
+
 
 export default class SelectButton extends React.Component {
   static defaultProps = {
@@ -55,7 +57,8 @@ export default class SelectButton extends React.Component {
           type="button"
         >
           {this.props.type && <i>{this.props.type}: </i>}
-          {`${this.state.selection.val} `}
+          <SelectedOptionVal option={this.state.selection} />
+          {' '}
         </Button>
 
         <div className="select-menu-modal-holder" aria-expanded={this.state.dropDownOpen}>
