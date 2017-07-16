@@ -25,7 +25,7 @@ export default class AssigneeFilter extends BaseFilter {
   }
 
   shouldDisplayCard(card) {
-    if (this.state.selectedAssignee === AssigneeFilter.defaultState.selectedAssignee) return true
+    if (!this.state.selectedAssignee.id) return true
 
     const assignees = JSON.parse(card.dataset.cardAssignee || '[]')
     return assignees.includes(this.state.selectedAssignee.login.toLowerCase())
