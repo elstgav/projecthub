@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { App, stringToDOM } from 'src/utils'
+import { App } from 'src/models'
+import { stringToDOM } from 'src/utils'
 
 import ProjectBoardFilters from 'components/ProjectBoardFilters'
 

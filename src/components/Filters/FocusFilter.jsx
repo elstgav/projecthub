@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { App } from 'src/utils'
+import { App } from 'src/models'
 
 import Button from 'components/Button'
 import BaseFilter from 'components/Filters/BaseFilter'

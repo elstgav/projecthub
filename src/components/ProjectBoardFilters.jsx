@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { App } from 'src/utils'
+import { App } from 'src/models'
+
+import { show, hide } from 'src/utils'
 
 import {
   FocusFilter,
@@ -13,7 +15,7 @@ export default class ProjectBoardFilters extends React.Component {
       const itemsToHide    = itemFilters.filter(showItem => !showItem(item))
       const shouldHideItem = itemsToHide.length > 0
 
-      shouldHideItem ? App.hide(item) : App.show(item)
+      shouldHideItem ? hide(item) : show(item)
     })
   }
 
