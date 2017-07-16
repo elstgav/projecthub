@@ -27,7 +27,7 @@ export default class ProjectBoardFilters extends React.Component {
       columnFilters: [],
     }
 
-    App.onBoardLoaded(() => {
+    App.afterBoardLoaded.then(() => {
       this.renderBoard()
     })
   }
