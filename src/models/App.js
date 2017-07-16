@@ -13,9 +13,19 @@ const App = {
     const sandboxElement = stringToDOM(`<div id="${this.namespace}-sandbox" class="ml-2"></div>`)
     document.querySelector('.project-header').lastElementChild.prepend(sandboxElement)
 
+    // Memoize
     delete this.sandbox
     this.sandbox = sandboxElement
     return sandboxElement
+  },
+
+  get hiddenClass() {
+    const hiddenClass = `${this.namespace}-is-hidden`
+
+    // Memoize
+    delete this.hiddenClass
+    this.hiddenClass = hiddenClass
+    return hiddenClass
   },
 
   get afterBoardLoaded() {
@@ -35,12 +45,15 @@ const App = {
     // Memoize
     delete this.afterBoardLoaded
     this.afterBoardLoaded = afterBoardLoaded
-
     return afterBoardLoaded
   },
 
-  get hiddenClass() {
-    return `${this.namespace}-is-hidden`
+  get cards() {
+    return Array.from(this.projectBoard.querySelectorAll('.issue-card'))
+  },
+
+  get columns() {
+    return Array.from(this.projectBoard.querySelectorAll('.project-column'))
   },
 
   get assignees() {
@@ -63,14 +76,6 @@ const App = {
     labels = sortBy(labels, [label => label.val.toLowerCase()])
 
     return labels
-  },
-
-  get cards() {
-    return Array.from(this.projectBoard.querySelectorAll('.issue-card'))
-  },
-
-  get columns() {
-    return Array.from(this.projectBoard.querySelectorAll('.project-column'))
   },
 }
 
