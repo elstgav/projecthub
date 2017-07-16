@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { isEmpty } from 'lodash'
 
 import { App } from 'src/models'
 
@@ -27,7 +28,7 @@ export default class FocusFilter extends BaseFilter {
     if (!this.state.toggled) return true
 
     const assignees = JSON.parse(card.dataset.cardAssignee || '[]')
-    return assignees.length === 0 || assignees.includes(App.currentUser)
+    return isEmpty(assignees) || assignees.includes(App.currentUser)
   }
 
   shouldDisplayColumn(column) {
