@@ -15,20 +15,17 @@ export default class AssigneeFilter extends BaseFilter {
   }
 
   static defaultState = {
-    selectedAssignee: { login: null },
+    selectedAssignee: { id: null, val: 'All' },
   }
 
-  onChange = (id) => {
-    let selection = this.props.assignees.find(assignee => assignee.id === id)
-    if (!selection) selection = AssigneeFilter.defaultState.selectedAssignee
-
+  onChange = (assignee) => {
     this.setState({
-      selectedAssignee: selection,
+      selectedAssignee: assignee,
     }, this.props.onChange)
   }
 
   shouldDisplayCard(card) {
-    if (!this.state.selectedAssignee.login) return true
+    if (this.state.selectedAssignee === AssigneeFilter.defaultState.selectedAssignee) return true
 
     const assignees = JSON.parse(card.dataset.cardAssignee || '[]')
     return assignees.includes(this.state.selectedAssignee.login.toLowerCase())
@@ -37,12 +34,10 @@ export default class AssigneeFilter extends BaseFilter {
 
   render() {
     const assigneeOptions = [
-      { id: null, val: 'All' },
+      AssigneeFilter.defaultState.selectedAssignee,
 
       ...this.props.assignees,
     ]
-
-    const selected = assigneeOptions.find(assignee => assignee === this.state.selectedAssignee)
 
     return (
       <SelectButton
@@ -50,7 +45,7 @@ export default class AssigneeFilter extends BaseFilter {
         type="Assignee"
         options={assigneeOptions}
         onChange={this.onChange}
-        selected={selected}
+        selected={this.state.selectedAssignee}
       />
     )
   }

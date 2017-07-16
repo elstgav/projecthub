@@ -35,13 +35,13 @@ export default class SelectButton extends React.Component {
   onButtonClick = () => this.setState({ dropDownOpen: !this.state.dropDownOpen })
   onCloseClick  = () => this.setState({ dropDownOpen: false                    })
 
-  onOptionClick = (id) => {
+  onOptionClick = (option) => {
     this.setState({
-      selection:    this.props.options.find(option => option.id === id),
+      selection:    option,
       dropDownOpen: false,
     })
 
-    this.props.onChange(id)
+    this.props.onChange(option)
   }
 
   render() {

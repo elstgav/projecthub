@@ -27,7 +27,7 @@ export default class Option extends React.Component {
   onMouseLeave = () => this.setState({ isHovered: false })
 
   onClick = () => {
-    this.props.onClick(this.props.option.id)
+    this.props.onClick(this.props.option)
   }
 
   render() {
