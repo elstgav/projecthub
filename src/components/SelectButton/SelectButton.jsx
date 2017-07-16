@@ -52,7 +52,7 @@ export default class SelectButton extends React.Component {
           active={this.state.dropDownOpen}
           aria-expanded={this.state.dropDownOpen}
           aria-haspopup
-          className="select-menu-button"
+          className="select-menu-button css-truncate"
           onClick={this.onButtonClick}
           type="button"
         >

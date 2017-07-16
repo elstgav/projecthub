@@ -3,12 +3,18 @@ import React from 'react'
 import OptionVal from './OptionVal'
 
 const SelectedOptionVal = ({ option }) => {
+  let value
+
   switch (option.constructor.name) {
     case 'User':
-      return <span>{option.login}</span>
+      value = option.login
+      break
+
     default:
-      return <span>{option.val}</span>
+      value = option.val
   }
+
+  return <span className="css-truncate-target">{value}</span>
 }
 
 SelectedOptionVal.propTypes = OptionVal.propTypes
