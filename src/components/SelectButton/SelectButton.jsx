@@ -19,7 +19,7 @@ export default class SelectButton extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     type:      PropTypes.string,
-    options:   PropTypes.arrayOf(PropTypes.shape(Option.propTypes)).isRequired,
+    options:   PropTypes.arrayOf(PropTypes.shape(Option.propTypes.option)).isRequired,
     onChange:  PropTypes.func.isRequired,
   }
 
