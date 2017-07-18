@@ -32,8 +32,18 @@ export default class SelectButton extends React.Component {
     }
   }
 
-  onButtonClick = () => this.setState({ isDropDownOpen: !this.state.isDropDownOpen })
-  onCloseClick  = () => this.setState({ isDropDownOpen: false                      })
+  onButtonClick = (event) => {
+    if (event.altKey && !this.state.isDropDownOpen) {
+      const nextOption = this.nextOption()
+
+      this.setState({ selection: nextOption })
+      this.props.onChange(nextOption)
+    } else {
+      this.setState({ isDropDownOpen: !this.state.isDropDownOpen })
+    }
+  }
+
+  onCloseClick = () => this.setState({ isDropDownOpen: false })
 
   onOptionClick = (option) => {
     this.setState({
@@ -42,6 +52,13 @@ export default class SelectButton extends React.Component {
     })
 
     this.props.onChange(option)
+  }
+
+  nextOption() {
+    let nextIndex = this.props.options.findIndex(option => option === this.state.selection) + 1
+    if (nextIndex >= this.props.options.length) nextIndex = 0
+
+    return this.props.options[nextIndex]
   }
 
   render() {

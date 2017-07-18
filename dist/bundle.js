@@ -25455,8 +25455,15 @@ var SelectButton = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (SelectButton.__proto__ || Object.getPrototypeOf(SelectButton)).call(this, props));
 
-    _this.onButtonClick = function () {
-      return _this.setState({ isDropDownOpen: !_this.state.isDropDownOpen });
+    _this.onButtonClick = function (event) {
+      if (event.altKey && !_this.state.isDropDownOpen) {
+        var nextOption = _this.nextOption();
+
+        _this.setState({ selection: nextOption });
+        _this.props.onChange(nextOption);
+      } else {
+        _this.setState({ isDropDownOpen: !_this.state.isDropDownOpen });
+      }
     };
 
     _this.onCloseClick = function () {
@@ -25480,9 +25487,21 @@ var SelectButton = function (_React$Component) {
   }
 
   _createClass(SelectButton, [{
+    key: 'nextOption',
+    value: function nextOption() {
+      var _this2 = this;
+
+      var nextIndex = this.props.options.findIndex(function (option) {
+        return option === _this2.state.selection;
+      }) + 1;
+      if (nextIndex >= this.props.options.length) nextIndex = 0;
+
+      return this.props.options[nextIndex];
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'div',
@@ -25534,8 +25553,8 @@ var SelectButton = function (_React$Component) {
               this.props.options.map(function (option) {
                 return _react2.default.createElement(_Option2.default, {
                   key: option.id,
-                  onClick: _this2.onOptionClick,
-                  isSelected: option.id === _this2.state.selection.id,
+                  onClick: _this3.onOptionClick,
+                  isSelected: option.id === _this3.state.selection.id,
                   option: option
                 });
               })
