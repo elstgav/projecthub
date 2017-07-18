@@ -11048,8 +11048,8 @@ var Icon = function Icon(props) {
       'aria-hidden': !props.ariaLabel,
       'aria-label': props.ariaLabel,
       className: 'octicon octicon-' + props.icon + ' ' + props.className,
-      height: '16',
-      width: '12',
+      height: props.height,
+      width: props.width,
       role: 'img',
       version: '1.1',
       viewBox: '0 0 12 16'
@@ -11061,12 +11061,16 @@ var Icon = function Icon(props) {
 Icon.propTypes = {
   ariaLabel: _propTypes2.default.string,
   className: _propTypes2.default.string,
-  icon: _propTypes2.default.string.isRequired
+  icon: _propTypes2.default.string.isRequired,
+  height: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
 };
 
 Icon.defaultProps = {
   ariaLabel: '',
-  className: ''
+  className: '',
+  height: 16,
+  width: 16
 };
 
 exports.default = Icon;
@@ -25549,7 +25553,7 @@ var SelectButton = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { onClick: this.onCloseClick, role: 'button', tabIndex: '0' },
-                _react2.default.createElement(_Icon2.default, { icon: 'x', ariaLabel: 'Close' })
+                _react2.default.createElement(_Icon2.default, { icon: 'x', ariaLabel: 'Close', width: '12' })
               ),
               _react2.default.createElement(
                 'span',
@@ -25667,7 +25671,7 @@ var Option = function (_React$Component) {
           onMouseLeave: this.onMouseLeave,
           role: 'option'
         },
-        _react2.default.createElement(_Icon2.default, { icon: 'check', className: 'select-menu-item-icon' }),
+        _react2.default.createElement(_Icon2.default, { icon: 'check', className: 'select-menu-item-icon', width: '12' }),
         _react2.default.createElement(_OptionVal2.default, { option: this.props.option })
       );
     }

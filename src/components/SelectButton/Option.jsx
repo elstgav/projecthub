@@ -40,7 +40,7 @@ export default class Option extends React.Component {
         onMouseLeave={this.onMouseLeave}
         role="option"
       >
-        <Icon icon="check" className="select-menu-item-icon" />
+        <Icon icon="check" className="select-menu-item-icon" width="12" />
         <OptionVal option={this.props.option} />
       </li>
     )

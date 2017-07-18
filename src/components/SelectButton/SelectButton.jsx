@@ -82,7 +82,7 @@ export default class SelectButton extends React.Component {
           <div className="select-menu-modal">
             <div className="select-menu-header text-left">
               <div onClick={this.onCloseClick} role="button" tabIndex="0">
-                <Icon icon="x" ariaLabel="Close" />
+                <Icon icon="x" ariaLabel="Close" width="12" />
               </div>
               <span className="select-menu-title">
                 Select {this.props.type.toLowerCase() || 'option'}:

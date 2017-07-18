@@ -11,8 +11,8 @@ const Icon = props => (
     aria-hidden={!props.ariaLabel}
     aria-label={props.ariaLabel}
     className={`octicon octicon-${props.icon} ${props.className}`}
-    height="16"
-    width="12"
+    height={props.height}
+    width={props.width}
     role="img"
     version="1.1"
     viewBox="0 0 12 16"
@@ -25,11 +25,15 @@ Icon.propTypes = {
   ariaLabel: PropTypes.string,
   className: PropTypes.string,
   icon:      PropTypes.string.isRequired,
+  height:    PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width:     PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 Icon.defaultProps = {
   ariaLabel: '',
   className: '',
+  height:    16,
+  width:     16,
 }
 
 export default Icon
