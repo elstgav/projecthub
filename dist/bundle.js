@@ -23428,20 +23428,23 @@ var App = (_obj = {
   },
 
   init: function init() {
-    this.prepareHeaderLinks();
+    this.addTooltipsToHeaderLinks();
+    this.fixFullScreenButtonAlignment();
   },
-  prepareHeaderLinks: function prepareHeaderLinks() {
+  addTooltipsToHeaderLinks: function addTooltipsToHeaderLinks() {
     document.querySelectorAll('.project-header-link').forEach(function (link) {
       if (!link.hasAttribute('aria-label')) {
         link.setAttribute('aria-label', link.textContent.trim());
       }
 
-      if (!link.classList.contains('btn-link')) {
-        link.classList.add('btn-link'); // Fix full-screen button alignment (See #11)
-      }
-
       link.classList.add('tooltipped', 'tooltipped-w');
     });
+  },
+
+
+  // Fix full-screen button alignment (See #11)
+  fixFullScreenButtonAlignment: function fixFullScreenButtonAlignment() {
+    document.querySelector('.project-header-link:not(.btn-link)').classList.add('btn-link');
   }
 }, (_applyDecoratedDescriptor(_obj, 'sandbox', [_utils.Memoized], Object.getOwnPropertyDescriptor(_obj, 'sandbox'), _obj), _applyDecoratedDescriptor(_obj, 'hiddenClass', [_utils.Memoized], Object.getOwnPropertyDescriptor(_obj, 'hiddenClass'), _obj), _applyDecoratedDescriptor(_obj, 'afterBoardLoaded', [_utils.Memoized], Object.getOwnPropertyDescriptor(_obj, 'afterBoardLoaded'), _obj)), _obj);
 
