@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { App } from 'src/models'
+import { Session } from 'src/models'
 
 export default class Filter extends React.Component {
   static propTypes = {
@@ -14,9 +14,7 @@ export default class Filter extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state =
-      JSON.parse(sessionStorage.getItem(this.sessionKey())) ||
-      this.constructor.defaultState
+    this.state = Session.get(this.sessionKey()) || this.constructor.defaultState
   }
 
   componentWillMount() {
@@ -26,12 +24,12 @@ export default class Filter extends React.Component {
 
   setState(stateObject, callback = () => {}) {
     super.setState(stateObject, () => {
-      sessionStorage.setItem(this.sessionKey(), JSON.stringify(this.state))
+      Session.set(this.sessionKey(), this.state)
       callback()
     })
   }
 
-  sessionKey = () => `${App.namespace}-state-${this.constructor.name}`
+  sessionKey = () => `state-${this.constructor.name}`
 
   /* eslint-disable class-methods-use-this */
   shouldDisplayCard(_card)     { return true }

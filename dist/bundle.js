@@ -1560,6 +1560,15 @@ Object.defineProperty(exports, 'Label', {
   }
 });
 
+var _Session = __webpack_require__(292);
+
+Object.defineProperty(exports, 'Session', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Session).default;
+  }
+});
+
 var _User = __webpack_require__(255);
 
 Object.defineProperty(exports, 'User', {
@@ -6791,10 +6800,10 @@ var Filter = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).call(this, props));
 
     _this.sessionKey = function () {
-      return _models.App.namespace + '-state-' + _this.constructor.name;
+      return 'state-' + _this.constructor.name;
     };
 
-    _this.state = JSON.parse(sessionStorage.getItem(_this.sessionKey())) || _this.constructor.defaultState;
+    _this.state = _models.Session.get(_this.sessionKey()) || _this.constructor.defaultState;
     return _this;
   }
 
@@ -6812,7 +6821,7 @@ var Filter = function (_React$Component) {
       var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
 
       _get(Filter.prototype.__proto__ || Object.getPrototypeOf(Filter.prototype), 'setState', this).call(this, stateObject, function () {
-        sessionStorage.setItem(_this2.sessionKey(), JSON.stringify(_this2.state));
+        _models.Session.set(_this2.sessionKey(), _this2.state);
         callback();
       });
     }
@@ -25971,6 +25980,56 @@ LabelFilter.defaultState = {
   selectedLabel: { id: null, val: 'All' }
 };
 exports.default = LabelFilter;
+
+/***/ }),
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ = __webpack_require__(13);
+
+var Session = {
+  get: function get(key) {
+    return JSON.parse(sessionStorage.getItem(_.App.namespace + '-' + key));
+  },
+  set: function set(key, val) {
+    return sessionStorage.setItem(_.App.namespace + '-' + key, JSON.stringify(val));
+  }
+};
+
+exports.default = Session;
 
 /***/ })
 /******/ ]);
