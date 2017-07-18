@@ -10980,27 +10980,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var Button = function Button(_ref) {
-  var active = _ref.active,
+  var isActive = _ref.isActive,
       children = _ref.children,
-      props = _objectWithoutProperties(_ref, ['active', 'children']);
+      props = _objectWithoutProperties(_ref, ['isActive', 'children']);
 
   return _react2.default.createElement(
     'button',
     _extends({}, props, {
-      className: 'btn btn-default ' + (active ? 'selected' : '') + ' ' + props.className
+      className: 'btn btn-default ' + (isActive ? 'selected' : '') + ' ' + props.className
     }),
     children
   );
 };
 
 Button.propTypes = {
-  active: _propTypes2.default.bool,
+  isActive: _propTypes2.default.bool,
   children: _propTypes2.default.node.isRequired,
   className: _propTypes2.default.string
 };
 
 Button.defaultProps = {
-  active: false,
+  isActive: false,
   className: ''
 };
 
@@ -25129,8 +25129,8 @@ var ProjectBoardFilters = function (_React$Component) {
     };
 
     _this.state = {
-      assignees: _models.App.assignees,
-      labels: _models.App.labels,
+      assignees: [],
+      labels: [],
       cardFilters: [],
       columnFilters: []
     };
@@ -25456,24 +25456,24 @@ var SelectButton = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SelectButton.__proto__ || Object.getPrototypeOf(SelectButton)).call(this, props));
 
     _this.onButtonClick = function () {
-      return _this.setState({ dropDownOpen: !_this.state.dropDownOpen });
+      return _this.setState({ isDropDownOpen: !_this.state.isDropDownOpen });
     };
 
     _this.onCloseClick = function () {
-      return _this.setState({ dropDownOpen: false });
+      return _this.setState({ isDropDownOpen: false });
     };
 
     _this.onOptionClick = function (option) {
       _this.setState({
-        selection: option,
-        dropDownOpen: false
+        isDropDownOpen: false,
+        selection: option
       });
 
       _this.props.onChange(option);
     };
 
     _this.state = {
-      dropDownOpen: false,
+      isDropDownOpen: false,
       selection: _this.props.options[0]
     };
     return _this;
@@ -25486,12 +25486,12 @@ var SelectButton = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'select-menu select-menu-modal-right ' + (this.state.dropDownOpen && 'active') + ' d-inline-block ' + this.props.className },
+        { className: 'select-menu select-menu-modal-right ' + (this.state.isDropDownOpen && 'active') + ' d-inline-block ' + this.props.className },
         _react2.default.createElement(
           _Button2.default,
           {
-            active: this.state.dropDownOpen,
-            'aria-expanded': this.state.dropDownOpen,
+            isActive: this.state.isDropDownOpen,
+            'aria-expanded': this.state.isDropDownOpen,
             'aria-haspopup': true,
             className: 'select-menu-button css-truncate',
             onClick: this.onButtonClick,
@@ -25508,7 +25508,7 @@ var SelectButton = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'select-menu-modal-holder', 'aria-expanded': this.state.dropDownOpen },
+          { className: 'select-menu-modal-holder', 'aria-expanded': this.state.isDropDownOpen },
           _react2.default.createElement(
             'div',
             { className: 'select-menu-modal' },
@@ -25535,7 +25535,7 @@ var SelectButton = function (_React$Component) {
                 return _react2.default.createElement(_Option2.default, {
                   key: option.id,
                   onClick: _this2.onOptionClick,
-                  selected: option.id === _this2.state.selection.id,
+                  isSelected: option.id === _this2.state.selection.id,
                   option: option
                 });
               })
@@ -25629,8 +25629,8 @@ var Option = function (_React$Component) {
       return _react2.default.createElement(
         'li',
         {
-          'aria-selected': this.props.selected,
-          className: 'select-menu-item ' + (this.props.selected && 'selected') + ' ' + (this.state.isHovered && 'navigation-focus'),
+          'aria-selected': this.props.isSelected,
+          className: 'select-menu-item ' + (this.props.isSelected && 'selected') + ' ' + (this.state.isHovered && 'navigation-focus'),
           onClick: this.onClick,
           onMouseEnter: this.onMouseEnter,
           onMouseLeave: this.onMouseLeave,
@@ -25647,10 +25647,10 @@ var Option = function (_React$Component) {
 
 Option.defaultProps = {
   id: null,
-  selected: false
+  isSelected: false
 };
 Option.propTypes = {
-  selected: _propTypes2.default.bool,
+  isSelected: _propTypes2.default.bool,
   onClick: _propTypes2.default.func.isRequired,
   option: _propTypes2.default.shape(_OptionVal2.default.propTypes.option).isRequired
 };
@@ -25810,7 +25810,7 @@ var FocusFilter = function (_BaseFilter) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FocusFilter.__proto__ || Object.getPrototypeOf(FocusFilter)).call.apply(_ref, [this].concat(args))), _this), _this.onClick = function () {
       _this.setState({
-        toggled: !_this.state.toggled
+        isToggled: !_this.state.isToggled
       }, _this.props.onChange);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -25818,7 +25818,7 @@ var FocusFilter = function (_BaseFilter) {
   _createClass(FocusFilter, [{
     key: 'shouldDisplayCard',
     value: function shouldDisplayCard(card) {
-      if (!this.state.toggled) return true;
+      if (!this.state.isToggled) return true;
 
       var assignees = JSON.parse(card.dataset.cardAssignee || '[]');
       return (0, _isEmpty3.default)(assignees) || assignees.includes(_models.App.currentUser);
@@ -25826,7 +25826,7 @@ var FocusFilter = function (_BaseFilter) {
   }, {
     key: 'shouldDisplayColumn',
     value: function shouldDisplayColumn(column) {
-      if (!this.state.toggled) return true;
+      if (!this.state.isToggled) return true;
       return column.dataset.id !== '1239586'; // Backlog column
     }
   }, {
@@ -25834,7 +25834,7 @@ var FocusFilter = function (_BaseFilter) {
     value: function render() {
       return _react2.default.createElement(
         _Button2.default,
-        { active: this.state.toggled, onClick: this.onClick, className: 'mr-2' },
+        { isActive: this.state.isToggled, onClick: this.onClick, className: 'mr-2' },
         'Focus'
       );
     }
@@ -25848,7 +25848,7 @@ FocusFilter.propTypes = _extends({}, _BaseFilter3.default.propTypes, {
   onChange: _propTypes2.default.func.isRequired
 });
 FocusFilter.defaultState = {
-  toggled: false
+  isToggled: false
 };
 exports.default = FocusFilter;
 

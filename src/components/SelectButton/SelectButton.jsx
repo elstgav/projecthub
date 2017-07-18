@@ -27,18 +27,18 @@ export default class SelectButton extends React.Component {
     super(props)
 
     this.state = {
-      dropDownOpen: false,
-      selection:    this.props.options[0],
+      isDropDownOpen: false,
+      selection:      this.props.options[0],
     }
   }
 
-  onButtonClick = () => this.setState({ dropDownOpen: !this.state.dropDownOpen })
-  onCloseClick  = () => this.setState({ dropDownOpen: false                    })
+  onButtonClick = () => this.setState({ isDropDownOpen: !this.state.isDropDownOpen })
+  onCloseClick  = () => this.setState({ isDropDownOpen: false                      })
 
   onOptionClick = (option) => {
     this.setState({
-      selection:    option,
-      dropDownOpen: false,
+      isDropDownOpen: false,
+      selection:      option,
     })
 
     this.props.onChange(option)
@@ -46,11 +46,11 @@ export default class SelectButton extends React.Component {
 
   render() {
     return (
-      <div className={`select-menu select-menu-modal-right ${this.state.dropDownOpen && 'active'} d-inline-block ${this.props.className}`}>
+      <div className={`select-menu select-menu-modal-right ${this.state.isDropDownOpen && 'active'} d-inline-block ${this.props.className}`}>
 
         <Button
-          active={this.state.dropDownOpen}
-          aria-expanded={this.state.dropDownOpen}
+          isActive={this.state.isDropDownOpen}
+          aria-expanded={this.state.isDropDownOpen}
           aria-haspopup
           className="select-menu-button css-truncate"
           onClick={this.onButtonClick}
@@ -61,7 +61,7 @@ export default class SelectButton extends React.Component {
           {' '}
         </Button>
 
-        <div className="select-menu-modal-holder" aria-expanded={this.state.dropDownOpen}>
+        <div className="select-menu-modal-holder" aria-expanded={this.state.isDropDownOpen}>
           <div className="select-menu-modal">
             <div className="select-menu-header text-left">
               <div onClick={this.onCloseClick} role="button" tabIndex="0">
@@ -77,7 +77,7 @@ export default class SelectButton extends React.Component {
                 <Option
                   key={option.id}
                   onClick={this.onOptionClick}
-                  selected={option.id === this.state.selection.id}
+                  isSelected={option.id === this.state.selection.id}
                   option={option}
                 />
               ))}

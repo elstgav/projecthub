@@ -8,14 +8,14 @@ import OptionVal from './OptionVal'
 
 export default class Option extends React.Component {
   static defaultProps = {
-    id:       null,
-    selected: false,
+    id:         null,
+    isSelected: false,
   }
 
   static propTypes = {
-    selected: PropTypes.bool,
-    onClick:  PropTypes.func.isRequired,
-    option:   PropTypes.shape(OptionVal.propTypes.option).isRequired,
+    isSelected: PropTypes.bool,
+    onClick:    PropTypes.func.isRequired,
+    option:     PropTypes.shape(OptionVal.propTypes.option).isRequired,
   }
 
   constructor(props) {
@@ -33,8 +33,8 @@ export default class Option extends React.Component {
   render() {
     return (
       <li
-        aria-selected={this.props.selected}
-        className={`select-menu-item ${this.props.selected && 'selected'} ${this.state.isHovered && 'navigation-focus'}`}
+        aria-selected={this.props.isSelected}
+        className={`select-menu-item ${this.props.isSelected && 'selected'} ${this.state.isHovered && 'navigation-focus'}`}
         onClick={this.onClick}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
