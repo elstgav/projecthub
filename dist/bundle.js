@@ -23427,6 +23427,10 @@ var App = (_obj = {
         link.setAttribute('aria-label', link.textContent.trim());
       }
 
+      if (!link.classList.contains('btn-link')) {
+        link.classList.add('btn-link'); // Fix full-screen button alignment (See #11)
+      }
+
       link.classList.add('tooltipped', 'tooltipped-w');
     });
   }
