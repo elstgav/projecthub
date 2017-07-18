@@ -11172,6 +11172,8 @@ var _ProjectBoardFilters2 = _interopRequireDefault(_ProjectBoardFilters);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+_models.App.init();
+
 _reactDom2.default.render(_react2.default.createElement(_ProjectBoardFilters2.default, null), _models.App.sandbox);
 
 /***/ }),
@@ -23414,6 +23416,19 @@ var App = (_obj = {
     }]);
 
     return labels;
+  },
+
+  init: function init() {
+    this.prepareHeaderLinks();
+  },
+  prepareHeaderLinks: function prepareHeaderLinks() {
+    document.querySelectorAll('.project-header-link').forEach(function (link) {
+      if (!link.hasAttribute('aria-label')) {
+        link.setAttribute('aria-label', link.textContent.trim());
+      }
+
+      link.classList.add('tooltipped', 'tooltipped-w');
+    });
   }
 }, (_applyDecoratedDescriptor(_obj, 'sandbox', [_utils.Memoized], Object.getOwnPropertyDescriptor(_obj, 'sandbox'), _obj), _applyDecoratedDescriptor(_obj, 'hiddenClass', [_utils.Memoized], Object.getOwnPropertyDescriptor(_obj, 'hiddenClass'), _obj), _applyDecoratedDescriptor(_obj, 'afterBoardLoaded', [_utils.Memoized], Object.getOwnPropertyDescriptor(_obj, 'afterBoardLoaded'), _obj)), _obj);
 

@@ -67,6 +67,20 @@ const App = {
 
     return labels
   },
+
+  init() {
+    this.prepareHeaderLinks()
+  },
+
+  prepareHeaderLinks() {
+    document.querySelectorAll('.project-header-link').forEach((link) => {
+      if (!link.hasAttribute('aria-label')) {
+        link.setAttribute('aria-label', link.textContent.trim())
+      }
+
+      link.classList.add('tooltipped', 'tooltipped-w')
+    })
+  },
 }
 
 export default App
