@@ -24,8 +24,8 @@ export default class ProjectBoardFilters extends React.Component {
     super(props)
 
     this.state = {
-      assignees:     App.assignees,
-      labels:        App.labels,
+      assignees:     [],
+      labels:        [],
       cardFilters:   [],
       columnFilters: [],
     }
