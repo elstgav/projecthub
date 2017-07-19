@@ -7,7 +7,8 @@ import { User } from 'src/models'
 import SelectButton from 'components/SelectButton'
 import BaseFilter from 'components/Filters/BaseFilter'
 
-const UNASSIGNED_ID = '@unassigned'
+const ALL_ASSIGNEES    = { id: '@all',        val: 'All'        }
+const UNASSIGNED       = { id: '@unassigned', val: 'Unassigned' }
 
 export default class AssigneeFilter extends BaseFilter {
   static propTypes = {
@@ -18,7 +19,7 @@ export default class AssigneeFilter extends BaseFilter {
   }
 
   static defaultState = {
-    selectedAssignee: { id: null, val: 'All' },
+    selectedAssignee: ALL_ASSIGNEES,
   }
 
   onChange = (assignee) => {
@@ -28,19 +29,19 @@ export default class AssigneeFilter extends BaseFilter {
   }
 
   shouldDisplayCard(card) {
-    if (!this.state.selectedAssignee.id) return true
-
     const assignees = JSON.parse(card.dataset.cardAssignee || '[]')
 
-    if (this.state.selectedAssignee.id === UNASSIGNED_ID) return isEmpty(assignees)
+    if (this.state.selectedAssignee.id === ALL_ASSIGNEES.id) return true
+    if (this.state.selectedAssignee.id === UNASSIGNED.id)    return isEmpty(assignees)
+
     return assignees.includes(this.state.selectedAssignee.login.toLowerCase())
   }
 
 
   render() {
     const assigneeOptions = [
-      AssigneeFilter.defaultState.selectedAssignee,
-      { id: UNASSIGNED_ID, val: 'Unassigned' },
+      ALL_ASSIGNEES,
+      UNASSIGNED,
       ...this.props.assignees,
     ]
 

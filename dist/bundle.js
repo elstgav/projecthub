@@ -25298,7 +25298,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UNASSIGNED_ID = '@unassigned';
+var ALL_ASSIGNEES = { id: '@all', val: 'All' };
+var UNASSIGNED = { id: '@unassigned', val: 'Unassigned' };
 
 var AssigneeFilter = function (_BaseFilter) {
   _inherits(AssigneeFilter, _BaseFilter);
@@ -25324,17 +25325,17 @@ var AssigneeFilter = function (_BaseFilter) {
   _createClass(AssigneeFilter, [{
     key: 'shouldDisplayCard',
     value: function shouldDisplayCard(card) {
-      if (!this.state.selectedAssignee.id) return true;
-
       var assignees = JSON.parse(card.dataset.cardAssignee || '[]');
 
-      if (this.state.selectedAssignee.id === UNASSIGNED_ID) return (0, _isEmpty3.default)(assignees);
+      if (this.state.selectedAssignee.id === ALL_ASSIGNEES.id) return true;
+      if (this.state.selectedAssignee.id === UNASSIGNED.id) return (0, _isEmpty3.default)(assignees);
+
       return assignees.includes(this.state.selectedAssignee.login.toLowerCase());
     }
   }, {
     key: 'render',
     value: function render() {
-      var assigneeOptions = [AssigneeFilter.defaultState.selectedAssignee, { id: UNASSIGNED_ID, val: 'Unassigned' }].concat(_toConsumableArray(this.props.assignees));
+      var assigneeOptions = [ALL_ASSIGNEES, UNASSIGNED].concat(_toConsumableArray(this.props.assignees));
 
       return _react2.default.createElement(_SelectButton2.default, {
         className: 'mr-2',
@@ -25355,7 +25356,7 @@ AssigneeFilter.propTypes = _extends({}, _BaseFilter3.default.propTypes, {
   onChange: _propTypes2.default.func.isRequired
 });
 AssigneeFilter.defaultState = {
-  selectedAssignee: { id: null, val: 'All' }
+  selectedAssignee: ALL_ASSIGNEES
 };
 exports.default = AssigneeFilter;
 
@@ -25943,7 +25944,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NO_LABEL_ID = '@no_label';
+var ALL_LABELS = { id: '@all', val: 'All' };
+var UNLABELED = { id: '@unlabeled', val: 'Unlabeled' };
 
 var LabelFilter = function (_BaseFilter) {
   _inherits(LabelFilter, _BaseFilter);
@@ -25969,17 +25971,17 @@ var LabelFilter = function (_BaseFilter) {
   _createClass(LabelFilter, [{
     key: 'shouldDisplayCard',
     value: function shouldDisplayCard(card) {
-      if (!this.state.selectedLabel.id) return true;
-
       var labels = JSON.parse(card.dataset.cardLabel || '[]');
-      if (this.state.selectedLabel.id === NO_LABEL_ID) return (0, _isEmpty3.default)(labels);
+
+      if (this.state.selectedLabel.id === ALL_LABELS.id) return true;
+      if (this.state.selectedLabel.id === UNLABELED.id) return (0, _isEmpty3.default)(labels);
 
       return labels.includes(this.state.selectedLabel.val.toLowerCase());
     }
   }, {
     key: 'render',
     value: function render() {
-      var labelOptions = [LabelFilter.defaultState.selectedLabel, { id: NO_LABEL_ID, val: 'None' }].concat(_toConsumableArray(this.props.labels));
+      var labelOptions = [ALL_LABELS, UNLABELED].concat(_toConsumableArray(this.props.labels));
 
       return _react2.default.createElement(_SelectButton2.default, {
         className: 'mr-2',
@@ -26000,7 +26002,7 @@ LabelFilter.propTypes = _extends({}, _BaseFilter3.default.propTypes, {
   onChange: _propTypes2.default.func.isRequired
 });
 LabelFilter.defaultState = {
-  selectedLabel: { id: null, val: 'All' }
+  selectedLabel: ALL_LABELS
 };
 exports.default = LabelFilter;
 
