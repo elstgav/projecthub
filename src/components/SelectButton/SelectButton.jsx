@@ -55,7 +55,7 @@ export default class SelectButton extends React.Component {
   }
 
   nextOption() {
-    let nextIndex = this.props.options.findIndex(option => option === this.state.selection) + 1
+    let nextIndex = this.props.options.findIndex(option => option.id === this.state.selection.id) + 1
     if (nextIndex >= this.props.options.length) nextIndex = 0
 
     return this.props.options[nextIndex]

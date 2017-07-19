@@ -25262,6 +25262,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+var _isEmpty2 = __webpack_require__(93);
+
+var _isEmpty3 = _interopRequireDefault(_isEmpty2);
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -25294,6 +25298,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var UNASSIGNED_ID = '@unassigned';
+
 var AssigneeFilter = function (_BaseFilter) {
   _inherits(AssigneeFilter, _BaseFilter);
 
@@ -25321,12 +25327,14 @@ var AssigneeFilter = function (_BaseFilter) {
       if (!this.state.selectedAssignee.id) return true;
 
       var assignees = JSON.parse(card.dataset.cardAssignee || '[]');
+
+      if (this.state.selectedAssignee.id === UNASSIGNED_ID) return (0, _isEmpty3.default)(assignees);
       return assignees.includes(this.state.selectedAssignee.login.toLowerCase());
     }
   }, {
     key: 'render',
     value: function render() {
-      var assigneeOptions = [AssigneeFilter.defaultState.selectedAssignee].concat(_toConsumableArray(this.props.assignees));
+      var assigneeOptions = [AssigneeFilter.defaultState.selectedAssignee, { id: UNASSIGNED_ID, val: 'Unassigned' }].concat(_toConsumableArray(this.props.assignees));
 
       return _react2.default.createElement(_SelectButton2.default, {
         className: 'mr-2',
@@ -25508,7 +25516,7 @@ var SelectButton = function (_React$Component) {
       var _this2 = this;
 
       var nextIndex = this.props.options.findIndex(function (option) {
-        return option === _this2.state.selection;
+        return option.id === _this2.state.selection.id;
       }) + 1;
       if (nextIndex >= this.props.options.length) nextIndex = 0;
 
@@ -25899,6 +25907,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+var _isEmpty2 = __webpack_require__(93);
+
+var _isEmpty3 = _interopRequireDefault(_isEmpty2);
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -25931,6 +25943,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var NO_LABEL_ID = '@no_label';
+
 var LabelFilter = function (_BaseFilter) {
   _inherits(LabelFilter, _BaseFilter);
 
@@ -25958,12 +25972,14 @@ var LabelFilter = function (_BaseFilter) {
       if (!this.state.selectedLabel.id) return true;
 
       var labels = JSON.parse(card.dataset.cardLabel || '[]');
+      if (this.state.selectedLabel.id === NO_LABEL_ID) return (0, _isEmpty3.default)(labels);
+
       return labels.includes(this.state.selectedLabel.val.toLowerCase());
     }
   }, {
     key: 'render',
     value: function render() {
-      var labelOptions = [LabelFilter.defaultState.selectedLabel].concat(_toConsumableArray(this.props.labels));
+      var labelOptions = [LabelFilter.defaultState.selectedLabel, { id: NO_LABEL_ID, val: 'None' }].concat(_toConsumableArray(this.props.labels));
 
       return _react2.default.createElement(_SelectButton2.default, {
         className: 'mr-2',
