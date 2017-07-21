@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { App } from 'src/models'
+import { ProjectBoard } from 'src/models'
 
 import { show, hide } from 'src/utils'
 
@@ -30,10 +30,10 @@ export default class ProjectBoardFilters extends React.Component {
       columnFilters: [],
     }
 
-    App.afterBoardLoaded.then(() => {
+    ProjectBoard.afterLoaded.then(() => {
       this.setState({
-        assignees: App.assignees,
-        labels:    App.labels,
+        assignees: ProjectBoard.assignees,
+        labels:    ProjectBoard.labels,
       })
 
       this.renderBoard()
@@ -57,11 +57,11 @@ export default class ProjectBoardFilters extends React.Component {
   }
 
   renderCards() {
-    ProjectBoardFilters.filterItems(App.cards, this.state.cardFilters)
+    ProjectBoardFilters.filterItems(ProjectBoard.cards, this.state.cardFilters)
   }
 
   renderColumns() {
-    ProjectBoardFilters.filterItems(App.columns, this.state.columnFilters)
+    ProjectBoardFilters.filterItems(ProjectBoard.columns, this.state.columnFilters)
   }
 
   renderBoard() {
