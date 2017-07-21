@@ -1,4 +1,7 @@
 rules:
+  jsx-a11y/interactive-supports-focus:
+    - 0
+
   # object keys must have at least one space after the colon
   key-spacing:
     - 2

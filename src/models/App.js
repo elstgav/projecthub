@@ -6,11 +6,17 @@ const App = {
   currentUser:  document.getElementsByName('octolytics-actor-login')[0].content,
 
   @Memoized
-  get sandbox() {
+  get controlsSandbox() {
     const sandboxElement = stringToDOM(`<div id="${this.namespace}-sandbox" class="ml-2"></div>`)
+
     document.querySelector('.project-header').lastElementChild.prepend(sandboxElement)
 
     return sandboxElement
+  },
+
+  @Memoized
+  get settingsSandbox() {
+    return document.querySelector('.project-header-link[aria-label="Settings"]').parentElement
   },
 
   @Memoized
