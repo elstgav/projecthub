@@ -4,7 +4,13 @@
   "main": "src/Application.js",
   "author": "Gavin Elster <gavin.elster@me.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "build:watch": "webpack -w",
+    "lint": "eslint ."
+  },
   "dependencies": {
+    "axios": "^0.16.2",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
