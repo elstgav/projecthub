@@ -4,7 +4,7 @@ import { Label, User } from 'src/models'
 import { stringToDOM, Memoized } from 'src/utils'
 
 const App = {
-  namespace:   'gpf',
+  namespace:   'projecthub',
 
   currentUser:  document.getElementsByName('octolytics-actor-login')[0].content,
   projectBoard: document.querySelector('.project-columns-container'),
