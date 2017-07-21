@@ -32,6 +32,12 @@ export default class SelectButton extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.state.isDropDownOpen) {
+      document.addEventListener('click', this.onDocumentClick, { once: true })
+    }
+  }
+
   onButtonClick = (event) => {
     if (event.altKey && !this.state.isDropDownOpen) {
       const nextOption = this.nextOption()
@@ -45,6 +51,11 @@ export default class SelectButton extends React.Component {
 
   onCloseClick = () => this.setState({ isDropDownOpen: false })
 
+  onDocumentClick = (event) => {
+    const isOutsideClick = !this.ref.contains(event.target)
+    if (isOutsideClick) this.onCloseClick()
+  }
+
   onOptionClick = (option) => {
     this.setState({
       isDropDownOpen: false,
@@ -53,6 +64,8 @@ export default class SelectButton extends React.Component {
 
     this.props.onChange(option)
   }
+
+  saveRef = (ref) => { this.ref = ref }
 
   nextOption() {
     let nextIndex = this.props.options.findIndex(option => option.id === this.state.selection.id) + 1
@@ -63,7 +76,10 @@ export default class SelectButton extends React.Component {
 
   render() {
     return (
-      <div className={`select-menu select-menu-modal-right ${this.state.isDropDownOpen && 'active'} d-inline-block ${this.props.className}`}>
+      <div
+        className={`select-menu select-menu-modal-right ${this.state.isDropDownOpen && 'active'} d-inline-block ${this.props.className}`}
+        ref={this.saveRef}
+      >
 
         <Button
           isActive={this.state.isDropDownOpen}
