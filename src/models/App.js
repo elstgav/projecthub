@@ -35,7 +35,7 @@ const App = {
 
   // Fix full-screen button alignment (See #11)
   fixFullScreenButtonAlignment() {
-    document.querySelector('.project-header-link:not(.btn-link)').classList.add('btn-link')
+    document.querySelector('.js-project-fullscreen-link:not(.btn-link)').classList.add('btn-link')
   },
 }
 
