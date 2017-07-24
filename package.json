@@ -5,7 +5,9 @@
   "author": "Gavin Elster <gavin.elster@me.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
+    "build": "if-env NODE_ENV=production && npm run build:prod || npm run build:dev",
+    "build:dev": "NODE_ENV=development webpack",
+    "build:prod": "NODE_ENV=production webpack --env=prod --progress --profile --colors --display-error-details",
     "build:watch": "webpack -w",
     "lint": "eslint ."
   },
@@ -34,6 +36,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
+    "if-env": "^1.0.0",
     "lodash-webpack-plugin": "^0.11.4",
     "node-sass": "^4.5.3",
     "webpack": "^3.2.0"
