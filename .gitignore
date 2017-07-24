@@ -2,4 +2,4 @@
 /npm-debug.log
 
 # Ignore files compiled by webpacker.
-dist/bundle.js
+dist/*.bundle.js*

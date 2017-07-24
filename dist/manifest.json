@@ -8,8 +8,8 @@
   "content_scripts": [
     {
       "matches": [ "https://*.github.com/*/*/projects/*"],
-      "css":     ["bundle.css"],
-      "js":      ["bundle.js"]
+      "css":     ["app.bundle.css"],
+      "js":      ["app.bundle.js"]
     }
   ]
 }

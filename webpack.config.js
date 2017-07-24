@@ -10,9 +10,13 @@ module.exports = {
   devtool: isProdEnvironment ? 'source-map' : 'cheap-module-source-map',
 
   context: __dirname,
-  entry: './src/Application.jsx',
+
+  entry: {
+    app:     './src/Application.jsx',
+  },
+
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
 
