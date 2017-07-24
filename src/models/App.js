@@ -1,9 +1,12 @@
 import { stringToDOM, Memoized } from 'src/utils'
 
 const App = {
-  namespace:   'projecthub',
+  namespace: 'projecthub',
 
-  currentUser:  document.getElementsByName('octolytics-actor-login')[0].content,
+  @Memoized
+  get currentUser() {
+    return document.getElementsByName('octolytics-actor-login')[0].content
+  },
 
   @Memoized
   get controlsSandbox() {
