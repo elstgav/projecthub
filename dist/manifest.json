@@ -5,11 +5,17 @@
   "description": "Adds useful filters to your GitHub project board",
   "version": "0.1",
 
+  "options_page": "options.html",
+
   "content_scripts": [
     {
       "matches": [ "https://*.github.com/*/*/projects/*"],
       "css":     ["app.bundle.css"],
       "js":      ["app.bundle.js"]
     }
+  ],
+
+  "permissions": [
+    "storage"
   ]
 }
