@@ -3,7 +3,7 @@
 
   "name":        "ProjectHub",
   "description": "Adds useful filters to your GitHub project board",
-  "version":     "0.0.0.1",
+  "version":     "0.0.0.2",
 
   "content_scripts": [
     {
