@@ -3,3 +3,6 @@
 
 # Ignore files compiled by webpacker.
 dist/bundle.js
+
+# Ignore packaged extension
+*.zip
