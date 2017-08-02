@@ -35,4 +35,6 @@ settings:
 
 env:
   browser: true
-  chrome:  true
+
+globals:
+  chrome: false
