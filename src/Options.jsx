@@ -29,7 +29,7 @@ class OptionsPage extends React.Component {
         if (!chrome.runtime.lastError) return
         console.error('Something went wrong while trying to save your settings: %o', chrome.runtime.lastError)
       })
-    })
+    }, callback)
   }
 
   render() {
