@@ -5,7 +5,10 @@
   "description": "Adds useful filters to your GitHub project board",
   "version":     "0.0.0.2",
 
-  "options_page": "options.html",
+  "options_ui": {
+    "page":         "options.html",
+    "chrome_style": true
+  },
 
   "content_scripts": [
     {
