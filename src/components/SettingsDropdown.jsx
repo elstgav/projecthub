@@ -16,13 +16,17 @@ export default class SettingsDropdown extends React.Component {
     }
   }
 
-  onButtonClick = () => {
+  onDropdownClick = () => {
     this.setState({ isDropDownOpen: !this.state.isDropDownOpen })
   }
 
   onDocumentClick = (event) => {
     const isOutsideClick = !this.ref.contains(event.target)
     if (isOutsideClick) this.setState({ isDropDownOpen: false })
+  }
+
+  onSettingsClick = () => {
+    chrome.runtime.sendMessage({ openOptionsPage: true })
   }
 
   saveRef = (ref) => { this.ref = ref }
@@ -38,7 +42,7 @@ export default class SettingsDropdown extends React.Component {
           aria-haspopup
           aria-label="Settings"
           className={`project-header-link v-align-middle no-underline btn-link ${this.state.isDropDownOpen ? '' : 'tooltipped tooltipped-w'}`}
-          onClick={this.onButtonClick}
+          onClick={this.onDropdownClick}
           role="button"
         >
           <Icon icon="gear" width="14" />
@@ -46,8 +50,12 @@ export default class SettingsDropdown extends React.Component {
 
         <div className="dropdown-menu-content f5" aria-expanded={this.state.isDropDownOpen}>
           <div className="dropdown-menu dropdown-menu-sw">
-            <a className="dropdown-item" href={`${location.pathname}/edit`}>Edit Project</a>
-            <a className="dropdown-item" href="#!">ProjectHub Settings</a>
+            <a className="dropdown-item" href={`${location.pathname}/edit`}>
+              Edit Project
+            </a>
+            <button className="dropdown-item btn-link" onClick={this.onSettingsClick} role="link">
+              ProjectHub Settings
+            </button>
           </div>
         </div>
       </div>
