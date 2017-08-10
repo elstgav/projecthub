@@ -2,6 +2,7 @@
   "manifest_version": 2,
 
   "name":        "ProjectHub",
+  "author":         "Gavin Elster",
   "description": "Adds useful filters to your GitHub project board",
   "version":     "0.0.0.2",
 
@@ -14,9 +15,12 @@
     {
       "matches": [ "https://*.github.com/*/*/projects/*"],
       "css":     ["app.bundle.css"],
-      "js":      ["app.bundle.js"]
+      "js":      ["app.bundle.js"],
+      "run_at":  "document_end"
     }
   ],
+
+  "minimum_chrome_version": "42",
 
   "permissions": [
     "storage"
