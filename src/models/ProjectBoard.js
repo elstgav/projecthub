@@ -5,6 +5,11 @@ import { Memoized } from 'src/utils'
 
 const ProjectBoard = {
   @Memoized
+  get readOnly() {
+    return !document.querySelector('.project-header-link[aria-label="Add cards"]')
+  },
+
+  @Memoized
   get ref() {
     return document.querySelector('.project-columns-container')
   },

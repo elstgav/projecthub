@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { App } from 'src/models'
+import { App, ProjectBoard } from 'src/models'
 
 import Icon   from 'components/Icon'
 
@@ -50,9 +50,11 @@ export default class SettingsDropdown extends React.Component {
 
         <div className="dropdown-menu-content f5" aria-expanded={this.state.isDropDownOpen}>
           <div className="dropdown-menu dropdown-menu-sw">
-            <a className="dropdown-item" href={`${location.pathname}/edit`}>
-              Edit Project
-            </a>
+            {!ProjectBoard.readOnly && (
+              <a className="dropdown-item" href={`${location.pathname}/edit`}>
+                Edit Project
+              </a>
+            )}
             <button className="dropdown-item btn-link" onClick={this.onSettingsClick} role="link">
               ProjectHub Settings
             </button>
