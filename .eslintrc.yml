@@ -1,4 +1,7 @@
 rules:
+  jsx-a11y/interactive-supports-focus:
+    - 0
+
   # object keys must have at least one space after the colon
   key-spacing:
     - 2
@@ -8,6 +11,10 @@ rules:
   semi:
     - 2
     - never
+
+  # allow console use
+  no-console:
+    - 0
 
   # though we don’t enforce, only use multi spaces for alignment
   no-multi-spaces:
@@ -32,3 +39,6 @@ settings:
 
 env:
   browser: true
+
+globals:
+  chrome: false

@@ -1,16 +1,31 @@
 import { stringToDOM, Memoized } from 'src/utils'
 
 const App = {
-  namespace:   'projecthub',
-
-  currentUser:  document.getElementsByName('octolytics-actor-login')[0].content,
+  namespace: 'projecthub',
 
   @Memoized
-  get sandbox() {
+  get currentUser() {
+    return document.getElementsByName('octolytics-actor-login')[0].content
+  },
+
+  @Memoized
+  get controlsSandbox() {
     const sandboxElement = stringToDOM(`<div id="${this.namespace}-sandbox" class="ml-2"></div>`)
+
     document.querySelector('.project-header').lastElementChild.prepend(sandboxElement)
 
     return sandboxElement
+  },
+
+  @Memoized
+  get settingsSandbox() {
+    const settingsLink = document.querySelector('.project-header-link[aria-label="Settings"]')
+    if (settingsLink) return settingsLink.parentElement
+
+    const newSettingsDropdown = stringToDOM('<div class="pl-4"><div className="projecthub-settings-dropdown dropdown"></div></div>')
+    document.querySelector('.project-header').lastElementChild.append(newSettingsDropdown)
+
+    return newSettingsDropdown.firstElementChild
   },
 
   @Memoized

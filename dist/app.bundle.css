@@ -11,3 +11,8 @@
 .subnav-search {
   margin-left: 0 !important;
 }
+
+.projecthub-settings-dropdown .dropdown-menu-sw {
+  top:   140%;
+  right: -85%;
+}
