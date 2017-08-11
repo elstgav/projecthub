@@ -12,6 +12,10 @@ rules:
     - 2
     - never
 
+  # allow console use
+  no-console:
+    - 0
+
   # though we don’t enforce, only use multi spaces for alignment
   no-multi-spaces:
     - 0
