@@ -1,9 +1,4 @@
 {
-  "name": "projecthub",
-  "version": "0.0.0.3",
-  "main": "src/Application.js",
-  "author": "Gavin Elster <gavin.elster@me.com>",
-  "license": "MIT",
   "private": "true",
   "browserslist": [
     "last 4 Chrome versions"
