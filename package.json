@@ -8,7 +8,8 @@
     "build:dev": "NODE_ENV=development webpack",
     "build:prod": "NODE_ENV=production webpack --env=prod --progress --profile --colors --display-error-details",
     "build:watch": "webpack -w",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release": "./bin/release"
   },
   "dependencies": {
     "babel-preset-env": "^1.6.0",

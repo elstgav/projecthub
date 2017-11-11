@@ -32,8 +32,8 @@ Dir.chdir APP_ROOT do
     end
   elsif versions_match?(latest_tag, version)
     abort(
-      "Your manifest version (#{version}) appears to be out of date.\n" \
-      "Please update the version number in dist/manifest.json."
+      "Your manifest version (#{version}) matches an earlier release.\n" \
+      "Please bump the version number in dist/manifest.json."
     )
   end
 
