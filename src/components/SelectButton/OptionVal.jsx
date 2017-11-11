@@ -24,7 +24,12 @@ const OptionVal = ({ option }) => {
       return (
         <div>
           <div className="select-menu-item-gravatar"><Avatar user={option} size={30} /></div>
-          <div className="select-menu-item-text">{option.login}</div>
+          <div className="select-menu-item-text">
+            {option.name}
+            {option.login !== option.name && (
+              <span className="description-inline"> {option.login}</span>
+            )}
+          </div>
         </div>
       )
 

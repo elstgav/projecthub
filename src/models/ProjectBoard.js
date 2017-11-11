@@ -44,7 +44,7 @@ const ProjectBoard = {
 
     let users = avatars.map(avatar => User.fromAvatarElement(avatar))
     users = uniqBy(users, user => user.id)
-    users = sortBy(users, [user => user.login.toLowerCase()])
+    users = sortBy(users, [user => user.name.toLowerCase()])
 
     return users
   },
