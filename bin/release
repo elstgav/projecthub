@@ -19,9 +19,9 @@ def versions_match?(v1, v2)
 end
 
 Dir.chdir APP_ROOT do
-  latest_tag     = `git describe --abbrev=0 --tags`.strip
-  manifest       = File.read('./dist/manifest.json')
-  version        = manifest.match(/^\s*"version":\s*"(.+)"/)[1]
+  latest_tag = `git describe --abbrev=0 --tags`.strip
+  manifest   = File.read('./dist/manifest.json')
+  version    = manifest.match(/^\s*"version":\s*"(.+)"/)[1]
 
   if tag_is_on_current_commit?(latest_tag)
     unless versions_match?(latest_tag, version)
