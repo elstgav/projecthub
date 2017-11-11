@@ -42,8 +42,8 @@ Dir.chdir APP_ROOT do
   system!('yarn run build:prod')
   system!("mkdir -p pkg")
   system!("zip -r -X pkg/projecthub-v#{version}.zip dist/")
-  # system!("git tag -f v#{version}")
-  # system!("git push origin v#{version}")
+  system!("git tag -f v#{version}")
+  system!("git push origin v#{version}")
 
   puts "✓ v#{version} built to pkg/projecthub-v#{version}.zip"
 end
