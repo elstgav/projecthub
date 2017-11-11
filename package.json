@@ -4,6 +4,9 @@
   "main": "src/Application.js",
   "author": "Gavin Elster <gavin.elster@me.com>",
   "license": "MIT",
+  "browserslist": [
+    "last 4 Chrome versions"
+  ],
   "scripts": {
     "build": "if-env NODE_ENV=production && npm run build:prod || npm run build:dev",
     "build:dev": "NODE_ENV=development webpack",
