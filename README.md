@@ -32,4 +32,11 @@ PRs welcome 👍🏻
 
 ## Changelog
 
-…will begin once the extension is hosted on the Chrome web store. Until then, [the commit log](https://github.com/elstgav/projecthub/commits/master) will have to suffice.
+### 0.0.0.3 (November 11, 2017)
+
+* Fixed bug with detecting assignees
+
+### 0.0.0.2 (July 25, 2017)
+
+* First release
+
