@@ -6,3 +6,4 @@ dist/*.bundle.js*
 
 # Ignore packaged extension
 *.zip
+pkg/

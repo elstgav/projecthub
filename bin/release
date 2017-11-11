@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+# path to your application root.
+APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+def tag_is_on_current_commit?(tag)
+  current_commit = `git rev-parse --verify HEAD`.strip
+  `git rev-list -n 1 #{tag}`.include? current_commit
+end
+
+def versions_match?(v1, v2)
+  v1.gsub(/^v/, '') == v2.gsub(/^v/, '')
+end
+
+Dir.chdir APP_ROOT do
+  latest_tag     = `git describe --abbrev=0 --tags`.strip
+  manifest       = File.read('./dist/manifest.json')
+  version        = manifest.match(/^\s*"version":\s*"(.+)"/)[1]
+
+  if tag_is_on_current_commit?(latest_tag)
+    unless versions_match?(latest_tag, version)
+      abort(
+        "Your manifest version (#{version}) does not match the current git tag: #{latest_tag}.\n" \
+        "Please update the version number in dist/manifest.json."
+      )
+    end
+  elsif versions_match?(latest_tag, version)
+    abort(
+      "Your manifest version (#{version}) appears to be out of date.\n" \
+      "Please update the version number in dist/manifest.json."
+    )
+  end
+
+  puts "Creating v#{version} release…"
+  system!('rm -f dist/*.bundle.js*')
+  system!('yarn run build:prod')
+  system!("mkdir -p pkg")
+  system!("zip -r -X pkg/projecthub-v#{version}.zip dist/")
+  # system!("git tag -f v#{version}")
+  # system!("git push origin v#{version}")
+
+  puts "✓ v#{version} built to pkg/projecthub-v#{version}.zip"
+end
