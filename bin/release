@@ -19,9 +19,18 @@ def versions_match?(v1, v2)
 end
 
 Dir.chdir APP_ROOT do
-  latest_tag = `git describe --abbrev=0 --tags`.strip
-  manifest   = File.read('./dist/manifest.json')
-  version    = manifest.match(/^\s*"version":\s*"(.+)"/)[1]
+  latest_tag  = `git describe --abbrev=0 --tags`.strip
+  manifest    = File.read('./dist/manifest.json')
+  package     = File.read('./package.json')
+  pkg_version = package.match( /^\s*"version":\s*"(.+)"/)[1]
+  version     = manifest.match(/^\s*"version":\s*"(.+)"/)[1]
+
+  unless versions_match?(version, pkg_version)
+    abort(
+      "Your package.json version (#{pkg_version}) does not match your manifest version: #{version}.\n" \
+      "Please update the version number in package.json."
+    )
+  end
 
   if tag_is_on_current_commit?(latest_tag)
     unless versions_match?(latest_tag, version)
@@ -36,6 +45,7 @@ Dir.chdir APP_ROOT do
       "Please update the version number in dist/manifest.json."
     )
   end
+
 
   puts "Creating v#{version} release…"
   system!('rm -f dist/*.bundle.js*')
