@@ -1,5 +1,5 @@
 # ProjectHub
-ProjectHub is a Chrome extension  that adds filters to GitHub project boards.
+ProjectHub is a Chrome extension that adds filters to GitHub project boards.
 
 
 ## Installation
