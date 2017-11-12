@@ -37,7 +37,7 @@ module.exports = {
 
   plugins: (function configurePlugins() {
     let plugins = [
-      new webpack.EnvironmentPlugin(['NODE_ENV']),
+      new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
       new LodashModuleReplacementPlugin(),
     ]
 
