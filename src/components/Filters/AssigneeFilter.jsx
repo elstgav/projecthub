@@ -51,7 +51,7 @@ export default class AssigneeFilter extends BaseFilter {
         type="Assignee"
         options={assigneeOptions}
         onChange={this.onChange}
-        selected={this.state.selectedAssignee}
+        initialSelection={this.state.selectedAssignee}
       />
     )
   }

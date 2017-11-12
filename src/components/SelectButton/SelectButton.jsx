@@ -17,10 +17,11 @@ export default class SelectButton extends React.Component {
   }
 
   static propTypes = {
-    className: PropTypes.string,
-    type:      PropTypes.string,
-    options:   PropTypes.arrayOf(PropTypes.shape(Option.propTypes.option)).isRequired,
-    onChange:  PropTypes.func.isRequired,
+    className:        PropTypes.string,
+    type:             PropTypes.string,
+    options:          PropTypes.arrayOf(PropTypes.shape(Option.propTypes.option)).isRequired,
+    onChange:         PropTypes.func.isRequired,
+    initialSelection: PropTypes.shape(Option.propTypes.option).isRequired,
   }
 
   constructor(props) {
@@ -28,7 +29,7 @@ export default class SelectButton extends React.Component {
 
     this.state = {
       isDropDownOpen: false,
-      selection:      this.props.options[0],
+      selection:      this.props.initialSelection,
     }
   }
 

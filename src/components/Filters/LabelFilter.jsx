@@ -51,7 +51,7 @@ export default class LabelFilter extends BaseFilter {
         type="Label"
         options={labelOptions}
         onChange={this.onChange}
-        selected={this.state.selectedLabel}
+        initialSelection={this.state.selectedLabel}
       />
     )
   }
