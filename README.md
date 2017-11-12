@@ -32,9 +32,10 @@ PRs welcome 👍🏻
 
 ## Changelog
 
-### Unreleased
+### 0.0.0.4 (November 11, 2017)
 
 * Displays user’s real names when possible #5
+* Fixed bug where dropdowns didn’t show the correct value on page refresh #1
 
 ### 0.0.0.3 (November 11, 2017)
 
