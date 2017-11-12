@@ -12,7 +12,9 @@
     "release": "./bin/release"
   },
   "dependencies": {
+    "axios": "^0.17.0",
     "babel-preset-env": "^1.6.0",
+    "common-tags": "^1.4.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",

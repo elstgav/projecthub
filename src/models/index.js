@@ -1,4 +1,5 @@
 export { default as App          } from './App'
+export { default as GitHubAPI    } from './GitHubAPI'
 export { default as Label        } from './Label'
 export { default as ProjectBoard } from './ProjectBoard'
 export { default as Session      } from './Session'
