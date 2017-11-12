@@ -18,7 +18,15 @@ def versions_match?(v1, v2)
   v1.gsub(/^v/, '') == v2.gsub(/^v/, '')
 end
 
+def uncommitted_changes?
+  !`git status -s`.strip.empty?
+end
+
 Dir.chdir APP_ROOT do
+  if uncommitted_changes?
+    abort('You have uncommited changes. Please commit or stash your changes before proceeding.')
+  end
+
   latest_tag = `git describe --abbrev=0 --tags`.strip
   manifest   = File.read('./dist/manifest.json')
   version    = manifest.match(/^\s*"version":\s*"(.+)"/)[1]
