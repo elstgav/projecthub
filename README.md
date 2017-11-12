@@ -32,6 +32,10 @@ PRs welcome 👍🏻
 
 ## Changelog
 
+### Unreleased
+
+* Displays user’s real names when possible #5
+
 ### 0.0.0.3 (November 11, 2017)
 
 * Fixed bug with detecting assignees
