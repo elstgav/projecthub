@@ -39,7 +39,7 @@ const ProjectBoard = {
   },
 
   get assignees() {
-    const avatars = Array.from(this.ref.querySelectorAll('.avatar-stack .avatar img'))
+    const avatars = Array.from(this.ref.querySelectorAll('.avatar img'))
     if (isEmpty(avatars)) return []
 
     let users = avatars.map(avatar => User.fromAvatarElement(avatar))
