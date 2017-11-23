@@ -32,6 +32,9 @@ PRs welcome 👍🏻
 
 ## Changelog
 
+### 0.0.0.7 (November 22, 2017)
+* Fix bug with label filter default state
+
 ### 0.0.0.6 (November 22, 2017)
 * Fix filter default states rendering incorrectly
 
