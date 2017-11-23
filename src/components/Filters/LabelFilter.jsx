@@ -7,10 +7,10 @@ import { Label } from 'src/models'
 import SelectButton from 'components/SelectButton'
 import BaseFilter from 'components/Filters/BaseFilter'
 
-const ALL_LABELS    = { id: '@all',       val: 'All'       }
-const UNLABELED     = { id: '@unlabeled', val: 'Unlabeled' }
-
 export default class LabelFilter extends BaseFilter {
+  static ALL_LABELS = { id: '@all',       val: 'All'       }
+  static UNLABELED  = { id: '@unlabeled', val: 'Unlabeled' }
+
   static propTypes = {
     ...BaseFilter.propTypes,
 
@@ -19,7 +19,7 @@ export default class LabelFilter extends BaseFilter {
   }
 
   static defaultState = {
-    selectedLabel: ALL_LABELS,
+    selectedLabel: LabelFilter.ALL_LABELS,
   }
 
   onChange = (label) => {
@@ -41,8 +41,8 @@ export default class LabelFilter extends BaseFilter {
   shouldDisplayCard(card) {
     const labels = JSON.parse(card.dataset.cardLabel || '[]')
 
-    if (this.state.selectedLabel.id === ALL_LABELS.id) return true
-    if (this.state.selectedLabel.id === UNLABELED.id)  return isEmpty(labels)
+    if (this.state.selectedLabel.id === LabelFilter.ALL_LABELS.id) return true
+    if (this.state.selectedLabel.id === LabelFilter.UNLABELED.id)  return isEmpty(labels)
 
     return labels.includes(this.state.selectedLabel.val.toLowerCase())
   }
@@ -50,8 +50,8 @@ export default class LabelFilter extends BaseFilter {
 
   render() {
     const labelOptions = [
-      ALL_LABELS,
-      UNLABELED,
+      LabelFilter.ALL_LABELS,
+      LabelFilter.UNLABELED,
       ...this.props.labels,
     ]
 
