@@ -32,6 +32,10 @@ PRs welcome 👍🏻
 
 ## Changelog
 
+### 0.0.0.5 (November 22, 2017)
+* Fix assignees not appearing in assignee filter
+* Fix filter labels not displaying correctly on page reload (#1)
+
 ### 0.0.0.4 (November 11, 2017)
 
 * Displays user’s real names when possible #5
