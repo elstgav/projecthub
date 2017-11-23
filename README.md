@@ -32,6 +32,9 @@ PRs welcome 👍🏻
 
 ## Changelog
 
+### 0.0.0.6 (November 22, 2017)
+* Fix filter default states rendering incorrectly
+
 ### 0.0.0.5 (November 22, 2017)
 * Fix assignees not appearing in assignee filter
 * Fix filter labels not displaying correctly on page reload (#1)
