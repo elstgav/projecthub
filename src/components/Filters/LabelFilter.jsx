@@ -41,10 +41,16 @@ export default class LabelFilter extends BaseFilter {
   shouldDisplayCard(card) {
     const labels = JSON.parse(card.dataset.cardLabel || '[]')
 
-    if (this.state.selectedLabel.id === LabelFilter.ALL_LABELS.id) return true
-    if (this.state.selectedLabel.id === LabelFilter.UNLABELED.id)  return isEmpty(labels)
+    switch (this.state.selectedLabel.id) {
+      case LabelFilter.ALL_LABELS.id:
+        return true
 
-    return labels.includes(this.state.selectedLabel.val.toLowerCase())
+      case LabelFilter.UNLABELED.id:
+        return isEmpty(labels)
+
+      default:
+        return labels.includes(this.state.selectedLabel.val.toLowerCase())
+    }
   }
 
   render() {
