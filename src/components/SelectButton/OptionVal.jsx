@@ -2,14 +2,14 @@ import React     from 'react'
 import PropTypes from 'prop-types'
 import { pick }  from 'lodash'
 
-import { User } from 'src/models'
+import { Label, User } from 'src/models'
 
 import Avatar from 'src/components/Avatar'
 
 
 const OptionVal = ({ option }) => {
-  switch (option.constructor.name) {
-    case 'Label':
+  switch (option.constructor) {
+    case Label:
       return (
         <div className="label-select-menu select-menu-item-text css-truncate">
           <div className="color-label-wrapper css-truncate-target">
@@ -20,7 +20,7 @@ const OptionVal = ({ option }) => {
         </div>
       )
 
-    case 'User':
+    case User:
       return (
         <div>
           <div className="select-menu-item-gravatar"><Avatar user={option} size={30} /></div>
@@ -43,6 +43,7 @@ const OptionVal = ({ option }) => {
 OptionVal.propTypes = {
   option: PropTypes.oneOfType([
     PropTypes.shape({ id: PropTypes.string, val: PropTypes.string }),
+    PropTypes.instanceOf(Label),
     PropTypes.instanceOf(User),
   ]).isRequired,
 }

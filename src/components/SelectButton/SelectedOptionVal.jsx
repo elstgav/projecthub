@@ -1,12 +1,14 @@
 import React from 'react'
 
+import { User } from 'src/models'
+
 import OptionVal from './OptionVal'
 
 const SelectedOptionVal = ({ option }) => {
   let value
 
-  switch (option.constructor.name) {
-    case 'User':
+  switch (option.constructor) {
+    case User:
       value = option.name.split(' ')[0]
       break
 

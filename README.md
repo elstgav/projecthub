@@ -33,6 +33,7 @@ PRs welcome 👍🏻
 ## Changelog
 
 ### 0.0.0.7 (November 22, 2017)
+* Fix filter options rendering incorrectly
 * Fix caching bug
 * Fix bug with label filter default state
 
