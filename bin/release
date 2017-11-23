@@ -53,6 +53,7 @@ Dir.chdir APP_ROOT do
   system!("git tag -f v#{version}")
   system!("git push origin v#{version}")
 
+  puts "\n\n----------------------------------------------------------------------"
   puts "✓ v#{version} built to pkg/projecthub-v#{version}.zip"
-  puts "Now upload that file to https://chrome.google.com/webstore/developer/dashboard"
+  puts "\nGo to https://chrome.google.com/webstore/developer/dashboard to upload"
 end
