@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { isEmpty } from 'lodash'
+import React        from 'react'
+import PropTypes    from 'prop-types'
+import { isEmpty }  from 'lodash'
 
-import { Label } from 'src/models'
+import { Label }    from 'src/models'
 
 import SelectButton from 'components/SelectButton'
-import BaseFilter from 'components/Filters/BaseFilter'
+import BaseFilter   from 'components/Filters/BaseFilter'
 
 export default class LabelFilter extends BaseFilter {
   static ALL_LABELS = { id: '@all',       val: 'All'       }
@@ -46,7 +46,6 @@ export default class LabelFilter extends BaseFilter {
 
     return labels.includes(this.state.selectedLabel.val.toLowerCase())
   }
-
 
   render() {
     const labelOptions = [

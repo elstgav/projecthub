@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { isEmpty } from 'lodash'
+import React        from 'react'
+import PropTypes    from 'prop-types'
+import { isEmpty }  from 'lodash'
 
-import { User } from 'src/models'
+import { User }     from 'src/models'
 
 import SelectButton from 'components/SelectButton'
-import BaseFilter from 'components/Filters/BaseFilter'
+import BaseFilter   from 'components/Filters/BaseFilter'
 
 export default class AssigneeFilter extends BaseFilter {
   static ALL_ASSIGNEES = { id: '@all',        val: 'All'        }
@@ -46,7 +46,6 @@ export default class AssigneeFilter extends BaseFilter {
 
     return assignees.includes(this.state.selectedAssignee.login.toLowerCase())
   }
-
 
   render() {
     const assigneeOptions = [
