@@ -28,6 +28,15 @@ export default class LabelFilter extends BaseFilter {
     }, this.props.onChange)
   }
 
+  hydrateCachedState(cachedState) {
+    const hydratedState = super.hydrateCachedState(cachedState)
+    if (isEmpty(hydratedState)) return hydratedState
+
+    hydratedState.selectedLabel = new Label(cachedState.selectedLabel)
+
+    return hydratedState
+  }
+
   shouldDisplayCard(card) {
     const labels = JSON.parse(card.dataset.cardLabel || '[]')
 
