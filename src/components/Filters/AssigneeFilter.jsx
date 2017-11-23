@@ -31,6 +31,7 @@ export default class AssigneeFilter extends BaseFilter {
   hydrateCachedState(cachedState) {
     const hydratedState = super.hydrateCachedState(cachedState)
     if (isEmpty(hydratedState)) return hydratedState
+    if (hydratedState.selectedAssignee.id.startsWith('@')) return hydratedState
 
     hydratedState.selectedAssignee = new User(cachedState.selectedAssignee)
 

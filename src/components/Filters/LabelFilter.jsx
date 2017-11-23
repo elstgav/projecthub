@@ -31,6 +31,7 @@ export default class LabelFilter extends BaseFilter {
   hydrateCachedState(cachedState) {
     const hydratedState = super.hydrateCachedState(cachedState)
     if (isEmpty(hydratedState)) return hydratedState
+    if (hydratedState.selectedAssignee.id.startsWith('@')) return hydratedState
 
     hydratedState.selectedLabel = new Label(cachedState.selectedLabel)
 
