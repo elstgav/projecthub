@@ -8,6 +8,8 @@ import SelectButton from 'components/SelectButton'
 import BaseFilter   from 'components/Filters/BaseFilter'
 
 export default class AssigneeFilter extends BaseFilter {
+  static CACHE_KEY = 'assignee-filter'
+
   static ALL_ASSIGNEES = { id: '@all',        val: 'All'        }
   static UNASSIGNED    = { id: '@unassigned', val: 'Unassigned' }
 

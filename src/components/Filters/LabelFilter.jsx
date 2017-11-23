@@ -8,6 +8,8 @@ import SelectButton from 'components/SelectButton'
 import BaseFilter   from 'components/Filters/BaseFilter'
 
 export default class LabelFilter extends BaseFilter {
+  static CACHE_KEY = 'label-filter'
+
   static ALL_LABELS = { id: '@all',       val: 'All'       }
   static UNLABELED  = { id: '@unlabeled', val: 'Unlabeled' }
 

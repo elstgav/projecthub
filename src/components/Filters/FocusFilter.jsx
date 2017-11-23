@@ -8,6 +8,8 @@ import Button from 'components/Button'
 import BaseFilter from 'components/Filters/BaseFilter'
 
 export default class FocusFilter extends BaseFilter {
+  static CACHE_KEY = 'focus-filter'
+
   static propTypes = {
     ...BaseFilter.propTypes,
 
