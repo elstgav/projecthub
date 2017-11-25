@@ -3,7 +3,6 @@ const webpack = require('webpack')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 const isProdEnvironment = (process.env.NODE_ENV === 'production')
-const isDevEnvironment  = (process.env.NODE_ENV === 'development')
 
 module.exports = {
   cache:   true,
