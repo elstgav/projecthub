@@ -9,4 +9,4 @@ import MenuDropdown from 'components/MenuDropdown'
 App.init()
 
 ReactDOM.render(<ProjectBoardFilters />, App.controlsSandbox)
-ReactDOM.render(<MenuDropdown />,        App.settingsSandbox)
+ReactDOM.render(<MenuDropdown />, App.menuSandbox)
