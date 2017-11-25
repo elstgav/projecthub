@@ -5,7 +5,7 @@ export default class User {
   static USER_NAMES_KEY = 'user-names'
 
   static names = Session.get(User.USER_NAMES_KEY) || {}
-  static fetchedNames = {}
+  static fetchedNames = new Set()
 
   static fromAvatarElement = avatar => new User({
     id:     avatar.src.match(User.ID_FROM_IMG_SRC)[1],
@@ -24,13 +24,13 @@ export default class User {
   }
 
   fallbackName() {
-    if (!User.fetchedNames[this.login]) this.fetchNameFromApi()
+    if (!User.fetchedNames.has(this.login)) this.fetchNameFromApi()
 
     return this.login
   }
 
   async fetchNameFromApi() {
-    User.fetchedNames[this.login] = true
+    User.fetchedNames.add(this.login)
 
     const user = await GitHubAPI.getUser(this.login)
     const name = user.name || this.login
