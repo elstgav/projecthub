@@ -2,7 +2,7 @@
   display: none !important;
 }
 
-/* Hide link text for header links */
+/* Hide link text for icon buttons */
 .project-header-link {
   font-size: 0 !important;
 }
@@ -12,6 +12,16 @@
   margin-left: 0 !important;
 }
 
+/* Even out spacing between filter input and icon buttons */
+#projecthub-sandbox ~ * {
+  padding-left:  0 !important;
+  padding-right: 0 !important;
+}
+#projecthub-sandbox ~ *:not(:last-child) {
+  margin-right: 24px;
+}
+
+/* Position dropdown relative to icon button */
 .projecthub-menu-dropdown .dropdown-menu-sw {
   top:   140%;
   right: -85%;
