@@ -8,12 +8,12 @@ export default function Memoized(target, propertyKey, descriptor) {
     }
 
     return this.__memoized__.has(propertyKey) ?
-        this.__memoized__.get(propertyKey) :
-        (() => {
-          const value = originalGet.call(this)
-          this.__memoized__.set(propertyKey, value)
-          return value
-        })()
+      this.__memoized__.get(propertyKey) :
+      (() => {
+        const value = originalGet.call(this)
+        this.__memoized__.set(propertyKey, value)
+        return value
+      })()
   }
 }
 /* eslint-enable */
