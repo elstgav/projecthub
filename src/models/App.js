@@ -22,7 +22,7 @@ const App = {
     const settingsLink = document.querySelector('.project-header-link[aria-label="Settings"]')
     if (settingsLink) return settingsLink.parentElement
 
-    const newSettingsDropdown = stringToDOM('<div class="pl-4"><div className="projecthub-settings-dropdown dropdown"></div></div>')
+    const newSettingsDropdown = stringToDOM(`<div class="pl-4"><div className="${App.namespace}-settings-dropdown dropdown"></div></div>`)
     document.querySelector('.project-header').lastElementChild.append(newSettingsDropdown)
 
     return newSettingsDropdown.firstElementChild
