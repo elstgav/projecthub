@@ -45,7 +45,7 @@ export default class MenuDropdown extends React.Component {
           onClick={this.onDropdownClick}
           role="button"
         >
-          <Icon icon="gear" width="14" />
+          <Icon icon="menu" width="14" />
         </a>
 
         <div className="dropdown-menu-content f5" aria-expanded={this.state.isDropDownOpen}>
