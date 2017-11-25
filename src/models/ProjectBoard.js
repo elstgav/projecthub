@@ -3,6 +3,7 @@ import { isEmpty, uniqBy, sortBy } from 'lodash'
 import { Label, User } from 'src/models'
 import { Memoized } from 'src/utils'
 
+
 const ProjectBoard = {
   @Memoized
   get readOnly() {

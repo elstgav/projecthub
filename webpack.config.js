@@ -44,10 +44,12 @@ module.exports = {
     if (isProdEnvironment) {
       plugins = plugins.concat([
         new webpack.optimize.OccurrenceOrderPlugin(),
+
         new webpack.LoaderOptionsPlugin({
           debug:    false,
           minimize: true,
         }),
+
         new MinifyPlugin({}, {
           test: /\.(js|jsx)$/,
         }),

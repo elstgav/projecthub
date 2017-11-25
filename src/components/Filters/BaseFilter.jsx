@@ -4,6 +4,7 @@ import { clone } from 'lodash'
 
 import { Session } from 'src/models'
 
+
 export default class Filter extends React.Component {
   static propTypes = {
     addCardsFilter:   PropTypes.func.isRequired,

@@ -7,6 +7,7 @@ import { Label }    from 'src/models'
 import SelectButton from 'components/SelectButton'
 import BaseFilter   from 'components/Filters/BaseFilter'
 
+
 export default class LabelFilter extends BaseFilter {
   static CACHE_KEY = 'label-filter'
 

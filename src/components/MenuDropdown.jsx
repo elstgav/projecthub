@@ -2,7 +2,8 @@ import React from 'react'
 
 import { App, ProjectBoard } from 'src/models'
 
-import Icon   from 'components/Icon'
+import Icon from 'components/Icon'
+
 
 export default class MenuDropdown extends React.Component {
   constructor(props) {

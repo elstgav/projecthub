@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { User } from 'src/models'
 
+
 const Avatar = ({ user, size }) => (
   <img
     alt={`@${user.login}`}

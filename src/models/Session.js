@@ -1,5 +1,6 @@
 import { App } from 'src/models'
 
+
 const Session = {
   get(key) {
     return JSON.parse(sessionStorage.getItem(`${App.namespace}-${key}`))

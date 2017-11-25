@@ -1,5 +1,6 @@
 import { GitHubAPI, Session } from 'src/models'
 
+
 export default class User {
   static ID_FROM_IMG_SRC = /\/u\/(\d+)\?/
   static USER_NAMES_KEY = 'user-names'

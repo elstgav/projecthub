@@ -5,6 +5,7 @@ import { oneLine } from 'common-tags'
 
 import { Storage } from 'src/models'
 
+
 class GitHubAPI {
   static url = 'https://api.github.com'
   static timeoutPeriod = 200
