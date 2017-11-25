@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const MinifyPlugin = require('babel-minify-webpack-plugin')
 
 const isProdEnvironment = (process.env.NODE_ENV === 'production')
 
@@ -47,11 +48,8 @@ module.exports = {
           debug:    false,
           minimize: true,
         }),
-        new webpack.optimize.UglifyJsPlugin({
-          beautify:  false,
-          sourceMap: false,
-          comments:  false,
-          compress:  { warnings: false },
+        new MinifyPlugin({}, {
+          test: /\.(js|jsx)$/,
         }),
       ])
     }
