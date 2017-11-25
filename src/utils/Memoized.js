@@ -1,21 +1,5 @@
-import { App } from 'src/models'
-
-export function show(el) {
-  el.classList.remove(App.hiddenClass)
-}
-
-export function hide(el) {
-  el.classList.add(App.hiddenClass)
-}
-
-export function stringToDOM(string) {
-  const template = document.createElement('template')
-  template.innerHTML = string
-  return template.content.firstElementChild
-}
-
 /* eslint-disable no-param-reassign, no-prototype-builtins, no-underscore-dangle */
-export function Memoized(target, propertyKey, descriptor) {
+export default function Memoized(target, propertyKey, descriptor) {
   const originalGet = descriptor.get
 
   descriptor.get = function memoizedGet() {
