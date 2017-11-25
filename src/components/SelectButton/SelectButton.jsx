@@ -1,5 +1,3 @@
-/* eslint-disable react/no-multi-comp */
-
 import React     from 'react'
 import PropTypes from 'prop-types'
 
@@ -69,7 +67,8 @@ export default class SelectButton extends React.Component {
   saveRef = (ref) => { this.ref = ref }
 
   nextOption() {
-    let nextIndex = this.props.options.findIndex(option => option.id === this.state.selection.id) + 1
+    const curIndex = this.props.options.findIndex(option => option.id === this.state.selection.id)
+    let nextIndex  = curIndex + 1
     if (nextIndex >= this.props.options.length) nextIndex = 0
 
     return this.props.options[nextIndex]
