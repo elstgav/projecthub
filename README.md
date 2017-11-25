@@ -20,6 +20,20 @@ ProjectHub isn’t hosted on the Chrome web store yet—until then you can manua
 PRs welcome 👍🏻
 
 
+## Debugging with React Dev Tools
+
+React’s dev tools Chrome Extension unfortunately can’t inspect other extensions. So you’ll need to use their remote debugger instead:
+
+1.  Install the debugger: `npm install -g react-devtools`
+2.  Add 'react-dev-tools.js' to `/dist/manifest.json`: 
+    
+    ```json
+    "content_scripts": [{
+      "js": ["react-dev-tools.js", "app.bundle.js"],
+     ```
+3.  Run the debugger: `$ react-devtools`
+
+
 ## Publishing
 
 1.  Bump the version number in `/dist/manifest.json`
@@ -42,7 +56,7 @@ PRs welcome 👍🏻
 
 ### 0.0.0.5 (November 22, 2017)
 * Fix assignees not appearing in assignee filter
-* Fix filter labels not displaying correctly on page reload (#1)
+* Fix filter labels not displaying correctly on page reload #1
 
 ### 0.0.0.4 (November 11, 2017)
 
