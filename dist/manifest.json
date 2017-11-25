@@ -25,7 +25,7 @@
     }
   ],
 
-  "minimum_chrome_version": "42",
+  "minimum_chrome_version": "55",
 
   "permissions": [
     "storage"

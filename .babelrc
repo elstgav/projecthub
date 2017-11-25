@@ -1,6 +1,11 @@
 {
   "presets": [
-    ["env", { "modules": false  }],
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["last 4 Chrome versions"]
+      }
+    }],
     "react"
   ],
 
