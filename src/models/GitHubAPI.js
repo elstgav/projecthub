@@ -13,28 +13,23 @@ class GitHubAPI {
     this.isTimedOut = false
   }
 
-  query(endpoint) {
-    return new Promise((resolve, reject) => {
-      if (this.isTimedOut) {
-        return reject(new Error('API calls are timed out because we encountered an error'))
-      }
+  async query(endpoint) {
+    if (this.isTimedOut) throw new Error('API calls are timed out because we encountered an error')
 
-      return Storage.get('githubToken', (settings) => {
-        const requestOptions = {}
+    const requestOptions = {}
+    let response
 
-        if (settings.githubToken) {
-          requestOptions.headers = { Authorization: `token ${settings.githubToken}` }
-        }
+    const authToken = await Storage.get('githubToken')
+    if (authToken) requestOptions.headers = { Authorization: `token ${authToken}` }
 
-        axios
-          .get(`${GitHubAPI.url}/${endpoint}`, requestOptions)
-          .then(response => resolve(response.data))
-          .catch((error) => {
-            this.handleError(error)
-            reject(error)
-          })
-      })
-    })
+    try {
+      response = await axios.get(`${GitHubAPI.url}/${endpoint}`, requestOptions)
+    } catch (error) {
+      this.handleError(error)
+      throw error
+    }
+
+    return response.data
   }
 
   getUser = user => this.query(`users/${user}`)

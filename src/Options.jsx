@@ -14,9 +14,9 @@ class OptionsPage extends React.Component {
 
     this.state = OptionsPage.DEFAULTS
 
-    Storage.get(OptionsPage.DEFAULTS, (settings) => {
-      this.setState(settings)
-    })
+    Storage
+      .get(OptionsPage.DEFAULTS)
+      .then(settings => this.setState(settings))
   }
 
   onTokenChange = (event) => {
@@ -25,7 +25,7 @@ class OptionsPage extends React.Component {
 
   setState(items, callback = () => {}) {
     super.setState(items, () => {
-      Storage.set(items, () => {
+      Storage.set(items).then(() => {
         if (!chrome.runtime.lastError) return
         console.error('Something went wrong while trying to save your settings: %o', chrome.runtime.lastError)
       })
