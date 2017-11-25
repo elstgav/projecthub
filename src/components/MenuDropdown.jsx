@@ -49,16 +49,21 @@ export default class MenuDropdown extends React.Component {
         </a>
 
         <div className="dropdown-menu-content f5" aria-expanded={this.state.isDropDownOpen}>
-          <div className="dropdown-menu dropdown-menu-sw">
+          <ul className="dropdown-menu dropdown-menu-sw">
             {!ProjectBoard.readOnly && (
-              <a className="dropdown-item" href={`${location.pathname}/edit`}>
-                Edit Project
-              </a>
+              <li>
+                <a className="dropdown-item" href={`${location.pathname}/edit`}>
+                  Edit Project
+                </a>
+              </li>
             )}
-            <button className="dropdown-item btn-link" onClick={this.onSettingsClick} role="link">
-              ProjectHub Settings
-            </button>
-          </div>
+
+            <li>
+              <button className="dropdown-item btn-link" onClick={this.onSettingsClick} role="link">
+                ProjectHub Settings
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     )
