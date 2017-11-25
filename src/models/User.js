@@ -34,11 +34,10 @@ export default class User {
     return name
   }
 
-  fetchNameFromApi() {
-    GitHubAPI.getUser(this.login).then((data) => {
-      const name = data.name || this.login
-      userNames[this.login] = name
-      Session.set(USER_NAMES_KEY, userNames)
-    })
+  async fetchNameFromApi() {
+    const user = await GitHubAPI.getUser(this.login)
+    const name = user.name || this.login
+    userNames[this.login] = name
+    Session.set(USER_NAMES_KEY, userNames)
   }
 }
