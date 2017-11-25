@@ -4,6 +4,7 @@ const ID_FROM_IMG_SRC = /\/u\/(\d+)\?/
 const USER_NAMES_KEY  = 'user-names'
 
 const userNames = Session.get(USER_NAMES_KEY) || {}
+const fetchedNames = {}
 
 export default class User {
   static fromAvatarElement = avatar => new User({
@@ -23,7 +24,11 @@ export default class User {
 
     if (!name) {
       name = this.login
-      this.fetchNameFromApi()
+
+      if (!fetchedNames[name]) {
+        this.fetchNameFromApi()
+        fetchedNames[name] = true
+      }
     }
 
     return name
