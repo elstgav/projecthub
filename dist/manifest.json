@@ -18,7 +18,7 @@
 
   "content_scripts": [
     {
-      "matches": [ "https://*.github.com/*/*/projects/*"],
+      "matches": ["https://*.github.com/*/*/projects/*"],
       "css":     ["app.bundle.css"],
       "js":      ["app.bundle.js"],
       "run_at":  "document_end"
