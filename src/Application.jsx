@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom'
 import { App } from 'src/models'
 
 import ProjectBoardFilters from 'components/ProjectBoardFilters'
-import SettingsDropdown from 'components/SettingsDropdown'
+import MenuDropdown from 'components/MenuDropdown'
 
 App.init()
 
 ReactDOM.render(<ProjectBoardFilters />, App.controlsSandbox)
-ReactDOM.render(<SettingsDropdown />,    App.settingsSandbox)
+ReactDOM.render(<MenuDropdown />,        App.settingsSandbox)

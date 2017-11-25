@@ -4,7 +4,7 @@ import { App, ProjectBoard } from 'src/models'
 
 import Icon   from 'components/Icon'
 
-export default class SettingsDropdown extends React.Component {
+export default class MenuDropdown extends React.Component {
   constructor(props) {
     super(props)
     this.state = { isDropdownOpen: false }
@@ -34,13 +34,13 @@ export default class SettingsDropdown extends React.Component {
   render() {
     return (
       <div
-        className={`${App.namespace}-settings-dropdown dropdown ${this.state.isDropDownOpen ? 'active' : ''}`}
+        className={`${App.namespace}-menu-dropdown dropdown ${this.state.isDropDownOpen ? 'active' : ''}`}
         ref={this.saveRef}
       >
         <a
           aria-expanded={this.state.isDropDownOpen}
           aria-haspopup
-          aria-label="Settings"
+          aria-label="Menu"
           className={`project-header-link v-align-middle no-underline btn-link ${this.state.isDropDownOpen ? '' : 'tooltipped tooltipped-w'}`}
           onClick={this.onDropdownClick}
           role="button"
