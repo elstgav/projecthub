@@ -3,7 +3,10 @@ function getOrSetStorage(getOrSet, requestedItems) {
 
   return new Promise((resolve, reject) => {
     chrome.storage.sync[getOrSet](requestedItems, (items) => {
-      if (chrome.runtime.lastError) return reject(chrome.runtime.lastError)
+      if (chrome.runtime.lastError) {
+        console.error(`chrome.storage.sync.${getOrSet} error: %o`, chrome.runtime.lastError)
+        return reject(chrome.runtime.lastError)
+      }
 
       return requestedSingleItem ? resolve(items[requestedItems]) : resolve(items)
     })

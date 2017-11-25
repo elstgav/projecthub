@@ -25,11 +25,8 @@ class OptionsPage extends React.Component {
 
   setState(items, callback = () => {}) {
     super.setState(items, () => {
-      Storage.set(items).then(() => {
-        if (!chrome.runtime.lastError) return
-        console.error('Something went wrong while trying to save your settings: %o', chrome.runtime.lastError)
-      })
-    }, callback)
+      Storage.set(items).then(callback)
+    })
   }
 
   render() {
