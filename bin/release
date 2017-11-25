@@ -2,6 +2,19 @@
 
 require 'pathname'
 
+class String
+  def colorize(color_code)
+    "\e[#{color_code}m#{self}\e[0m"
+  end
+
+  def red;   colorize(31); end
+  def green; colorize(32); end
+end
+
+def abort(msg)
+  Kernel.abort(msg.red)
+end
+
 # path to your application root.
 APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
 
@@ -53,7 +66,11 @@ Dir.chdir APP_ROOT do
   system!("git tag -f v#{version}")
   system!("git push origin v#{version}")
 
-  puts "\n\n----------------------------------------------------------------------"
-  puts "✓ v#{version} built to pkg/projecthub-v#{version}.zip"
-  puts "\nGo to https://chrome.google.com/webstore/developer/dashboard to upload"
+  puts <<-MSG.gsub(/^ */, '').green
+
+    ----------------------------------------------------------------------
+    ✓ v#{version} built to pkg/projecthub-v#{version}.zip
+
+    Go to https://chrome.google.com/webstore/developer/dashboard to upload
+  MSG
 end
