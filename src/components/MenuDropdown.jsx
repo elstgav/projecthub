@@ -25,6 +25,10 @@ export default class MenuDropdown extends React.Component {
     if (isOutsideClick) this.setState({ isDropdownOpen: false })
   }
 
+  onActivityClick = () => {
+    this.setState({ isDropdownOpen: false })
+  }
+
   onSettingsClick = () => {
     chrome.runtime.sendMessage({ openOptionsPage: true })
   }
@@ -50,6 +54,14 @@ export default class MenuDropdown extends React.Component {
 
         <div className="dropdown-menu-content f5" aria-expanded={this.state.isDropdownOpen}>
           <ul className="dropdown-menu dropdown-menu-sw">
+            <li>
+              <button className="dropdown-item btn-link js-show-project-menu" onClick={this.onActivityClick}>
+                Activity
+              </button>
+            </li>
+
+            <li className="dropdown-divider" />
+
             {!ProjectBoard.readOnly && (
               <li>
                 <a className="dropdown-item" href={`${location.pathname}/edit`}>
