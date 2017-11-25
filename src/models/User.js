@@ -20,24 +20,22 @@ export default class User {
   }
 
   get name() {
-    let name = User.names[this.login]
+    return User.names[this.login] || this.fallbackName()
+  }
 
-    if (!name) {
-      name = this.login
+  fallbackName() {
+    if (!User.fetchedNames[this.login]) this.fetchNameFromApi()
 
-      if (!User.fetchedNames[name]) {
-        this.fetchNameFromApi()
-        User.fetchedNames[name] = true
-      }
-    }
-
-    return name
+    return this.login
   }
 
   async fetchNameFromApi() {
+    User.fetchedNames[this.login] = true
+
     const user = await GitHubAPI.getUser(this.login)
     const name = user.name || this.login
     User.names[this.login] = name
+
     Session.set(User.USER_NAMES_KEY, User.names)
   }
 }
