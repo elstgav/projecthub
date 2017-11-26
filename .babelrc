@@ -9,11 +9,26 @@
     "react"
   ],
 
+  "env": {
+    "test": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "browsers": ["last 4 Chrome versions"]
+          }
+        }],
+        "react"
+      ],
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  },
+
   "plugins": [
     ["module-resolver", {
       "alias": {
+        "components": "./src/components",
         "src":        "./src",
-        "components": "./src/components"
+        "test":       "./test"
       }
     }],
     "lodash",

@@ -39,6 +39,7 @@ settings:
 
 env:
   browser: true
+  jest: true
 
 globals:
   chrome: false
