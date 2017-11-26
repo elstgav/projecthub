@@ -1,33 +1,33 @@
 rules:
   jsx-a11y/interactive-supports-focus:
-    - 0
+    - off
 
   # object keys must have at least one space after the colon
   key-spacing:
-    - 2
+    - error
     - mode: 'minimum'
 
   # never use semi-colons
   semi:
-    - 2
+    - error
     - never
 
   # allow console use
   no-console:
-    - 0
+    - off
 
   # though we don’t enforce, only use multi spaces for alignment
   no-multi-spaces:
-    - 0
+    - off
 
   # remove all unused variables
   no-unused-vars:
-    - 2
+    - error
     - argsIgnorePattern: '^_' # ignore vars with a _ prefix (e.g. _foo)
 
   # For our test files; disable this for sinon-chai’s `foo.should.have.been.calledOnce` signature
   no-unused-expressions:
-    - 0
+    - off
 
 extends: 'airbnb'
 
