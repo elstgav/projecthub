@@ -13,7 +13,7 @@ import Avatar from 'components/Avatar'
 export default class OptionVal extends React.PureComponent {
   static propTypes = {
     option: PropTypes.oneOfType([
-      PropTypes.shape({ id: PropTypes.string, val: PropTypes.string }),
+      PropTypes.shape({ val: PropTypes.string.isRequired }),
       PropTypes.instanceOf(Label),
       PropTypes.instanceOf(User),
     ]).isRequired,
