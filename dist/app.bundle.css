@@ -26,3 +26,13 @@
   top:   140%;
   right: -85%;
 }
+
+.projecthub-semantic-btn {
+  display: block;
+  color: inherit;
+  background: none;
+  border: 0;
+  line-height: normal;
+  padding: 0;
+  width: 100%;
+}

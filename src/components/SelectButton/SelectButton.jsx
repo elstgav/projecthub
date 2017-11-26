@@ -97,9 +97,9 @@ export default class SelectButton extends React.Component {
         <div className="select-menu-modal-holder" aria-expanded={this.state.isDropDownOpen}>
           <div className="select-menu-modal">
             <div className="select-menu-header text-left">
-              <div onClick={this.onCloseClick} role="button">
+              <button onClick={this.onCloseClick} className="projecthub-semantic-btn float-right">
                 <Icon icon="x" ariaLabel="Close" width="12" />
-              </div>
+              </button>
               <span className="select-menu-title">
                 Select {this.props.type.toLowerCase() || 'option'}:
               </span>

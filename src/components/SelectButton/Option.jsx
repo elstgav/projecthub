@@ -8,7 +8,6 @@ import OptionVal from './OptionVal'
 
 export default class Option extends React.Component {
   static defaultProps = {
-    id:         null,
     isSelected: false,
   }
 
@@ -35,13 +34,14 @@ export default class Option extends React.Component {
       <li
         aria-selected={this.props.isSelected}
         className={`select-menu-item ${this.props.isSelected && 'selected'} ${this.state.isHovered && 'navigation-focus'}`}
-        onClick={this.onClick}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         role="option"
       >
-        <Icon icon="check" className="select-menu-item-icon" width="12" />
-        <OptionVal option={this.props.option} />
+        <button className="projecthub-semantic-btn" onClick={this.onClick}>
+          <Icon icon="check" className="select-menu-item-icon" width="12" />
+          <OptionVal option={this.props.option} />
+        </button>
       </li>
     )
   }
