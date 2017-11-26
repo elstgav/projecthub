@@ -2,6 +2,11 @@ rules:
   jsx-a11y/interactive-supports-focus:
     - off
 
+  # ensure consistency when using newlines within a function’s parens
+  function-paren-newline:
+    - error
+    - consistent
+
   # object keys must have at least one space after the colon
   key-spacing:
     - error
