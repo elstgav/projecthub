@@ -34,5 +34,6 @@
   border: 0;
   line-height: normal;
   padding: 0;
+  text-align: inherit;
   width: 100%;
 }
