@@ -31,7 +31,7 @@ export default class Option extends React.Component {
   }
 
   render() {
-    const optionClassNames = classNames('select-menu-item', {
+    const optionClassNames = classNames('select-menu-item projecthub-option', {
       selected:           this.props.isSelected,
       'navigation-focus': this.state.isHovered,
     })
