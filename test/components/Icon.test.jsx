@@ -1,49 +1,40 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-
 import Icon from 'components/Icon'
+import ReactComponentTest from 'test/support/ReactComponentTest'
+
+const test = new ReactComponentTest(Icon)
 
 describe('Icon', () => {
-  let props
-  let describedComponent
-
-  const icon = () => {
-    describedComponent = describedComponent || shallow(<Icon {...props} />)
-    return describedComponent
-  }
-
   beforeEach(() => {
-    props = {
+    test.props = {
       icon: Object.keys(Icon.paths)[0],
     }
-    describedComponent = undefined
   })
 
   it('displays a <svg> element', () => {
-    expect(icon().find('svg')).toHaveLength(1)
-    expect(icon().find('path').prop('d')).toBe(Icon.paths[props.icon])
-    expect(icon().props().className).toBe(`octicon octicon-${props.icon} `)
-    expect(icon().html()).toMatchSnapshot()
+    expect(test.Icon.find('svg')).toHaveLength(1)
+    expect(test.Icon.find('path').prop('d')).toBe(Icon.paths[test.props.icon])
+    expect(test.Icon.props().className).toBe(`octicon octicon-${test.props.icon} `)
+    expect(test.Icon.html()).toMatchSnapshot()
   })
 
   it('has a configurable className', () => {
-    props.className = 'foo'
-    expect(icon().props().className).toBe(`octicon octicon-${props.icon} foo`)
+    test.props.className = 'foo'
+    expect(test.Icon.props().className).toBe(`octicon octicon-${test.props.icon} foo`)
   })
 
   it('sets [aria-hidden] to true unless there’s an [aria-label]', () => {
-    expect(icon().prop('aria-hidden')).toBe(true)
+    expect(test.Icon.prop('aria-hidden')).toBe(true)
 
-    icon().setProps({ ariaLabel: 'Foo' })
+    test.Icon.setProps({ ariaLabel: 'Foo' })
 
-    expect(icon().prop('aria-hidden')).toBe(false)
-    expect(icon().prop('aria-label')).toBe('Foo')
+    expect(test.Icon.prop('aria-hidden')).toBe(false)
+    expect(test.Icon.prop('aria-label')).toBe('Foo')
   })
 
   it('has configurable size', () => {
-    props.height = Icon.defaultProps.height * 2
-    props.width  = Icon.defaultProps.width  * 2
+    test.props.height = Icon.defaultProps.height * 2
+    test.props.width  = Icon.defaultProps.width  * 2
 
-    expect(icon().props()).toMatchObject({ height: props.height, width: props.width })
+    expect(test.Icon.props()).toMatchObject({ height: test.props.height, width: test.props.width })
   })
 })

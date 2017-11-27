@@ -1,43 +1,32 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-
 import Button from 'components/Button'
+import ReactComponentTest from 'test/support/ReactComponentTest'
+
+const test = new ReactComponentTest(Button)
 
 describe('Button', () => {
-  let props
-  let describedComponent
-
-  const button = () => {
-    describedComponent = describedComponent || shallow(<Button {...props} />)
-    return describedComponent
-  }
-
   beforeEach(() => {
-    props = {
-      children: 'Foo',
-    }
-    describedComponent = undefined
+    test.props = { children: 'Foo' }
   })
 
   it('displays a <button> element', () => {
-    expect(button().find('button')).toHaveLength(1)
-    expect(button().props().className).toBe('btn btn-default  ')
-    expect(button().text()).toBe('Foo')
-    expect(button().html()).toMatchSnapshot()
+    expect(test.Button.find('button')).toHaveLength(1)
+    expect(test.Button.props().className).toBe('btn btn-default  ')
+    expect(test.Button.text()).toBe('Foo')
+    expect(test.Button.html()).toMatchSnapshot()
   })
 
   it('has a configurable className', () => {
-    props.className = 'foo'
-    expect(button().props().className).toBe('btn btn-default  foo')
+    test.props.className = 'foo'
+    expect(test.Button.props().className).toBe('btn btn-default  foo')
   })
 
   describe('when isActive', () => {
     beforeEach(() => {
-      props.isActive = true
+      test.props.isActive = true
     })
 
     it('adds a selected class', () => {
-      expect(button().props().className).toBe('btn btn-default selected ')
+      expect(test.Button.props().className).toBe('btn btn-default selected ')
     })
   })
 })
