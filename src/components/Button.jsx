@@ -3,24 +3,28 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 
-const Button = ({ isActive, children, ...props }) => (
-  <button
-    {...props}
-    className={classNames('btn btn-default', { selected: isActive }, props.className)}
-  >
-    {children}
-  </button>
-)
+export default class Button extends React.PureComponent {
+  static propTypes = {
+    isActive:  PropTypes.bool,
+    children:  PropTypes.node.isRequired,
+    className: PropTypes.string,
+  }
 
-Button.propTypes = {
-  isActive:  PropTypes.bool,
-  children:  PropTypes.node.isRequired,
-  className: PropTypes.string,
+  static defaultProps = {
+    isActive:  false,
+    className: '',
+  }
+
+  render() {
+    const { isActive, children, ...props } = this.props
+
+    return (
+      <button
+        {...props}
+        className={classNames('btn btn-default', { selected: isActive }, props.className)}
+      >
+        {children}
+      </button>
+    )
+  }
 }
-
-Button.defaultProps = {
-  isActive:  false,
-  className: '',
-}
-
-export default Button
