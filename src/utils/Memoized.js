@@ -1,3 +1,7 @@
+// Memoized decorator to cache computed properties
+//
+// See http://www.couchcoder.com/using-memoized-decorator-cache-computed-properties/
+
 /* eslint-disable no-param-reassign, no-prototype-builtins, no-underscore-dangle */
 export default function Memoized(target, propertyKey, descriptor) {
   const originalGet = descriptor.get
