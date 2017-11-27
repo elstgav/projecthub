@@ -1,4 +1,4 @@
-import { App } from 'src/models'
+import { App } from 'src/lib'
 
 
 const Session = {

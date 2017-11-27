@@ -1,4 +1,4 @@
-import { GitHubAPI, Session } from 'src/models'
+import { GitHubAPI, Session } from 'src/lib'
 
 
 export default class User {

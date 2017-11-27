@@ -3,7 +3,7 @@
 import axios from 'axios'
 import { oneLine } from 'common-tags'
 
-import { Storage } from 'src/models'
+import { Storage } from 'src/lib'
 
 
 class GitHubAPI {

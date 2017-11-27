@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Storage from 'src/models/Storage' // FIXME: Can’t use index.js. See #20
+import Storage from 'src/lib/Storage' // FIXME: Can’t use index.js. See #20
 
 
 class OptionsPage extends React.Component {

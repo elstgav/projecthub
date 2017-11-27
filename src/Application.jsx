@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { App } from 'src/models'
+import { App } from 'src/lib'
 
 import ProjectBoardFilters from 'components/ProjectBoardFilters'
 import MenuDropdown from 'components/MenuDropdown'

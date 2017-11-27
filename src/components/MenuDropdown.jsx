@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { App, ProjectBoard } from 'src/models'
+import { App, ProjectBoard } from 'src/lib'
 
 import Icon from 'components/Icon'
 

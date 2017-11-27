@@ -1,4 +1,4 @@
-import { App } from 'src/models'
+import { App } from 'src/lib'
 
 export function show(el) {
   el.classList.remove(App.hiddenClass)

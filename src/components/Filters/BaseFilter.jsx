@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { clone } from 'lodash'
 
-import { Session } from 'src/models'
+import { Session } from 'src/lib'
 
 
 export default class Filter extends React.Component {

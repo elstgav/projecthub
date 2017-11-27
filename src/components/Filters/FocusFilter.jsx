@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'lodash'
 
-import { App } from 'src/models'
+import { App } from 'src/lib'
 
-import Button from 'components/Button'
 import BaseFilter from 'components/Filters/BaseFilter'
+import Button from 'components/Button'
 
 
 export default class FocusFilter extends BaseFilter {

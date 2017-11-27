@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProjectBoard } from 'src/models'
+import { ProjectBoard } from 'src/lib'
 
 import { show, hide } from 'src/utils'
 
