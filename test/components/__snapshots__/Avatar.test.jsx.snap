@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar displays a single <img> 1`] = `"<img alt=\\"@test\\" class=\\"avatar\\" height=\\"20\\" width=\\"20\\" src=\\"test.jpg\\"/>"`;
