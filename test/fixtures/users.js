@@ -1,5 +1,6 @@
 import User from 'src/models/User'
 
+delete User.names
 User.names = {
   test: 'Tester McGoo',
 }

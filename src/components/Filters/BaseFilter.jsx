@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { clone } from 'lodash'
 
 import { Session } from 'src/lib'
 
@@ -16,7 +15,7 @@ export default class Filter extends React.Component {
   constructor(props) {
     super(props)
 
-    const cachedState = this.hydrateCachedState(Session.get(this.cacheKey()))
+    const cachedState = Session.get(this.cacheKey())
     this.state = cachedState || this.constructor.defaultState
   }
 
@@ -41,10 +40,6 @@ export default class Filter extends React.Component {
   }
 
   /* eslint-disable class-methods-use-this */
-  hydrateCachedState(cachedState) {
-    return clone(cachedState)
-  }
-
   shouldDisplayCard(_card)     { return true }
   shouldDisplayColumn(_column) { return true }
   /* eslint-enable */

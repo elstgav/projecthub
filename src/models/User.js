@@ -1,12 +1,19 @@
 import { GitHubAPI, Session } from 'src/lib'
+import { Memoized } from 'src/utils'
 
+import BaseModel from './BaseModel'
 
-export default class User {
+export default class User extends BaseModel {
+  static CACHE_KEY = 'user'
   static ID_FROM_IMG_SRC = /\/u\/(\d+)\?/
   static USER_NAMES_KEY = 'user-names'
 
-  static names = Session.get(User.USER_NAMES_KEY) || {}
   static fetchedNames = new Set()
+
+  @Memoized
+  static get names() {
+    return Session.get(User.USER_NAMES_KEY) || {}
+  }
 
   static fromAvatarElement = avatar => new User({
     id:     avatar.src.match(User.ID_FROM_IMG_SRC)[1],
@@ -15,6 +22,8 @@ export default class User {
   })
 
   constructor({ id, login, avatar }) {
+    super()
+
     this.id     = id
     this.login  = login
     this.avatar = avatar
