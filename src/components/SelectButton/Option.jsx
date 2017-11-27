@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import Icon   from 'components/Icon'
 
@@ -30,10 +31,15 @@ export default class Option extends React.Component {
   }
 
   render() {
+    const optionClassNames = classNames('select-menu-item', {
+      selected:           this.props.isSelected,
+      'navigation-focus': this.state.isHovered,
+    })
+
     return (
       <li
         aria-selected={this.props.isSelected}
-        className={`select-menu-item ${this.props.isSelected && 'selected'} ${this.state.isHovered && 'navigation-focus'}`}
+        className={optionClassNames}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         role="option"

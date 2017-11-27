@@ -10,14 +10,14 @@ describe('Button', () => {
 
   it('displays a <button> element', () => {
     expect(test.Button.find('button')).toHaveLength(1)
-    expect(test.Button.props().className).toBe('btn btn-default  ')
+    expect(test.Button.props().className).toBe('btn btn-default')
     expect(test.Button.text()).toBe('Foo')
     expect(test.Button.html()).toMatchSnapshot()
   })
 
   it('has a configurable className', () => {
     test.props.className = 'foo'
-    expect(test.Button.props().className).toBe('btn btn-default  foo')
+    expect(test.Button.props().className).toBe('btn btn-default foo')
   })
 
   describe('when isActive', () => {
@@ -26,7 +26,7 @@ describe('Button', () => {
     })
 
     it('adds a selected class', () => {
-      expect(test.Button.props().className).toBe('btn btn-default selected ')
+      expect(test.Button.props().className).toBe('btn btn-default selected')
     })
   })
 })

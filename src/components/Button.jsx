@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 
 const Button = ({ isActive, children, ...props }) => (
   <button
     {...props}
-    className={`btn btn-default ${isActive ? 'selected' : ''} ${props.className}`}
+    className={classNames('btn btn-default', { selected: isActive }, props.className)}
   >
     {children}
   </button>

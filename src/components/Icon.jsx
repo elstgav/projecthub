@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 
 const Icon = props => (
   <svg
     aria-hidden={!props.ariaLabel}
     aria-label={props.ariaLabel}
-    className={`octicon octicon-${props.icon} ${props.className}`}
+    className={classNames(`octicon octicon-${props.icon}`, props.className)}
     height={props.height}
     width={props.width}
     role="img"

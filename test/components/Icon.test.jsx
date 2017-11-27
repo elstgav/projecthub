@@ -13,7 +13,7 @@ describe('Icon', () => {
   it('displays a <svg> element', () => {
     expect(test.Icon.find('svg')).toHaveLength(1)
     expect(test.Icon.find('path').prop('d')).toBe(Icon.paths[test.props.icon])
-    expect(test.Icon.props().className).toBe(`octicon octicon-${test.props.icon} `)
+    expect(test.Icon.props().className).toBe(`octicon octicon-${test.props.icon}`)
     expect(test.Icon.html()).toMatchSnapshot()
   })
 

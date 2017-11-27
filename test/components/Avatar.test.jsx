@@ -12,11 +12,17 @@ describe('Avatar', () => {
 
   it('displays a single <img>', () => {
     expect(test.Avatar.find('img')).toHaveLength(1)
+    expect(test.Avatar.props().className).toBe('avatar')
     expect(test.Avatar.html()).toMatchSnapshot()
   })
 
   it('has a default size', () => {
     expect(test.Avatar.props()).toMatchObject({ height: 20, width: 20 })
+  })
+
+  it('has a configurable className', () => {
+    test.props.className = 'foo'
+    expect(test.Avatar.props().className).toBe('avatar foo')
   })
 
   it('has configurable size', () => {
