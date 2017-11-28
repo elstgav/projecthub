@@ -1,3 +1,12 @@
+extends: 'airbnb'
+
+env:
+  browser: true
+  jest: true
+
+globals:
+  chrome: false
+
 rules:
   jsx-a11y/interactive-supports-focus:
     - off
@@ -12,11 +21,6 @@ rules:
     - error
     - mode: 'minimum'
 
-  # never use semi-colons
-  semi:
-    - error
-    - never
-
   # allow console use
   no-console:
     - off
@@ -30,21 +34,13 @@ rules:
     - error
     - argsIgnorePattern: '^_' # ignore vars with a _ prefix (e.g. _foo)
 
-  # For our test files; disable this for sinon-chai’s `foo.should.have.been.calledOnce` signature
-  no-unused-expressions:
-    - off
-
-extends: 'airbnb'
+  # never use semi-colons
+  semi:
+    - error
+    - never
 
 parser: 'babel-eslint'
 
 settings:
   import/resolver:
     babel-module: {}
-
-env:
-  browser: true
-  jest: true
-
-globals:
-  chrome: false
