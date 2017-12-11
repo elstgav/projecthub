@@ -1,9 +1,11 @@
 export {
-  testUser,
-  testUserWithNoName,
+  cachedUser,
+  cachedUserWithNoName,
+  uncachedUser,
+  uncachedUserWithNoName,
 } from './users'
 
 export {
-  testLabel,
-  testLabel2,
+  fooLabel,
+  barLabel2,
 } from './labels'

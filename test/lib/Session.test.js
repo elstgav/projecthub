@@ -1,6 +1,6 @@
 import Session from 'src/lib/Session'
 
-import { testLabel, testUser } from 'test/fixtures'
+import { fooLabel, cachedUser } from 'test/fixtures'
 
 describe('Session', () => {
   describe('.serialize()', () => {
@@ -10,10 +10,10 @@ describe('Session', () => {
 
     it('correctly serializes a model', () => {
       expect(
-        Session.serialize(testLabel),
+        Session.serialize(fooLabel),
       ).toBe(JSON.stringify({
         __constructor__: 'label',
-        ...testLabel,
+        ...fooLabel,
       }))
     })
   })
@@ -25,15 +25,15 @@ describe('Session', () => {
 
     it('returns a hydrated object', () => {
       const hydratedLabel = Session.deserialize(JSON.stringify({
-        __constructor__: testUser.CACHE_KEY,
-        ...testUser,
+        __constructor__: cachedUser.CACHE_KEY,
+        ...cachedUser,
       }))
 
-      expect(hydratedLabel).toBeInstanceOf(testUser.constructor)
+      expect(hydratedLabel).toBeInstanceOf(cachedUser.constructor)
       expect(
         Object.entries(hydratedLabel).toString(),
       ).toEqual(
-        Object.entries(testUser).toString(),
+        Object.entries(cachedUser).toString(),
       )
     })
   })

@@ -1,13 +1,13 @@
 import Avatar from 'components/Avatar'
 import ReactComponentTest from 'test/support/ReactComponentTest'
 
-import { testUser } from 'test/fixtures'
+import { cachedUser } from 'test/fixtures'
 
 const test = new ReactComponentTest(Avatar)
 
 describe('Avatar', () => {
   beforeEach(() => {
-    test.props = { user: testUser }
+    test.props = { user: cachedUser }
   })
 
   it('displays a single <img>', () => {
