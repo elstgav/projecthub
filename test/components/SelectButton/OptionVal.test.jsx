@@ -46,16 +46,10 @@ describe('OptionVal', () => {
       expect(avatar.props().user).toBe(testUser)
     })
 
-    it('displays their name', () => {
+    it('displays their name and login', () => {
       expect(
         test.OptionVal.find('.select-menu-item-text').text(),
-      ).toMatch(testUser.name)
-    })
-
-    it('displays their login', () => {
-      expect(
-        test.OptionVal.find('.select-menu-item-text').text(),
-      ).toMatch(testUser.login)
+      ).toBe(`${testUser.name} ${testUser.login}`)
     })
 
     describe('…without a name', () => {
