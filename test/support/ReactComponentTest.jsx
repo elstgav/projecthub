@@ -19,6 +19,9 @@ export default class ReactComponentTest {
 
     ReactComponentTest.tests.push(this)
 
+    // Setup dynamic Component property. e.g:
+    // const test = new ReactComponentTest(FooBar)
+    // test.FooBar => the rendered component
     return new Proxy(this, {
       get: (target, prop) => {
         if (prop === Component.name) return this.rendered
