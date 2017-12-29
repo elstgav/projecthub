@@ -42,7 +42,7 @@ export default class Dropdown extends React.Component {
     if (isDropdownItem || isOutsideClick) this.closeDropdown()
   }
 
-  closeDropdown = () => {
+  closeDropdown() {
     this.setState({ isDropdownOpen: false })
   }
 
