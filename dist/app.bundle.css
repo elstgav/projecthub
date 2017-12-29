@@ -1,6 +1,4 @@
-.projecthub-is-hidden.projecthub-is-hidden {
-  display: none !important;
-}
+/* Overrides */
 
 /* Hide link text for icon buttons */
 .project-header-link {
@@ -10,6 +8,12 @@
 /* Remove margin from filter input */
 .subnav-search {
   margin-left: 0 !important;
+}
+
+/* Project Hub Styles */
+
+.projecthub-is-hidden.projecthub-is-hidden {
+  display: none !important;
 }
 
 /* Even out spacing between filter input and icon buttons */
