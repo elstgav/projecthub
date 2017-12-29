@@ -33,6 +33,10 @@ const Session = {
   },
 
   set(key, val) {
+    if (typeof val === 'function') {
+      val = val(this.get(key))
+    }
+
     return sessionStorage.setItem(`${App.namespace}-${key}`, this.serialize(val))
   },
 }

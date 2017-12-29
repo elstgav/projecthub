@@ -66,5 +66,11 @@ describe('Session', () => {
       Session.set('new', 'value')
       expect(sessionStorage.getItem(`${App.namespace}-new`)).toBe(`"value"`)
     })
+
+    it('sets a value based on the previous value', () => {
+      Session.set('counter', 1)
+      Session.set('counter', prev => prev + 1)
+      expect(sessionStorage.getItem(`${App.namespace}-counter`)).toBe('2')
+    })
   })
 })
