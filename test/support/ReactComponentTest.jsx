@@ -14,6 +14,7 @@ export default class ReactComponentTest {
 
   constructor(Component, renderMethod = 'shallow') {
     this.props     = {}
+    this.options   = {}
     this.component = Component
     this.render    = ReactComponentTest.renderMethods[renderMethod]
 
@@ -32,12 +33,13 @@ export default class ReactComponentTest {
 
   @Memoized
   get rendered() {
-    return this.render(<this.component {...this.props} />)
+    return this.render(<this.component {...this.props} />, this.options)
   }
 
   /* eslint-disable no-underscore-dangle */
   reset() {
-    this.props = {}
+    this.props   = {}
+    this.options = {}
     if (this.__memoized__) this.__memoized__.clear()
   }
   /* eslint-enable */
