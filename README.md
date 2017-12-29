@@ -1,5 +1,5 @@
-# ProjectHub
-ProjectHub is a Chrome extension that adds filters to GitHub project boards.
+# ProjectHub [![Build Status](https://travis-ci.org/elstgav/projecthub.svg?branch=master)](https://travis-ci.org/elstgav/projecthub) [![Version](https://img.shields.io/github/tag/elstgav/projecthub.svg?label=version)]() [![Maintainability](https://img.shields.io/codeclimate/maintainability/elstgav/projecthub.svg)](https://codeclimate.com/github/elstgav/projecthub/maintainability)
+ProjectHub is a Chrome extension that adds filters to GitHub project boards. 
 
 
 ## Installation
