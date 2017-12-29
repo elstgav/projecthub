@@ -31,6 +31,12 @@
   right: -85%;
 }
 
+.projecthub-dropdown .dropdown-menu {
+  width: inherit !important;
+  min-width: 160px;
+  max-width: 260px;
+}
+
 .projecthub-semantic-btn {
   display: block;
   color: inherit;
