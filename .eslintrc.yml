@@ -29,6 +29,12 @@ rules:
   no-multi-spaces:
     - off
 
+  # prevent unused expressions that have no effect on program state
+  no-unused-expressions:
+    - error
+    - allowShortCircuit: true
+    - allowTernary: true
+
   # remove all unused variables
   no-unused-vars:
     - error
