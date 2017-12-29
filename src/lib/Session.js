@@ -28,8 +28,8 @@ const Session = {
     })
   },
 
-  get(key) {
-    return this.deserialize(sessionStorage.getItem(`${App.namespace}-${key}`))
+  get(key, defaultVal) {
+    return this.deserialize(sessionStorage.getItem(`${App.namespace}-${key}`)) || defaultVal
   },
 
   set(key, val) {

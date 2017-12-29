@@ -12,7 +12,7 @@ export default class User extends BaseModel {
 
   @Memoized
   static get names() {
-    return Session.get(User.USER_NAMES_KEY) || {}
+    return Session.get(User.USER_NAMES_KEY, {})
   }
 
   static fromAvatarElement = avatar => new User({

@@ -15,8 +15,7 @@ export default class Filter extends React.Component {
   constructor(props) {
     super(props)
 
-    const cachedState = Session.get(this.cacheKey())
-    this.state = cachedState || this.constructor.defaultState
+    this.state = Session.get(this.cacheKey(), this.constructor.defaultState)
   }
 
   componentWillMount() {
