@@ -35,7 +35,7 @@ export default class Filter extends React.Component {
       throw new Error(`${this.constructor.name}.CACHE_KEY is undefined`)
     }
 
-    return `state-${this.constructor.CACHE_KEY}`
+    return `${this.constructor.CACHE_KEY}-state`
   }
 
   /* eslint-disable class-methods-use-this */
