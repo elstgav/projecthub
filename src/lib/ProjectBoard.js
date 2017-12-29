@@ -6,8 +6,8 @@ import { Memoized } from 'src/utils'
 
 const ProjectBoard = {
   @Memoized
-  get readOnly() {
-    return !document.querySelector('.project-header-link[aria-label="Add cards"]')
+  get isEditable() {
+    return document.querySelector('.project-header-link[aria-label="Add cards"]')
   },
 
   @Memoized

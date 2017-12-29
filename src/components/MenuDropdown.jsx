@@ -62,7 +62,7 @@ export default class MenuDropdown extends React.Component {
 
             <li className="dropdown-divider" />
 
-            {!ProjectBoard.readOnly && (
+            {ProjectBoard.isEditable && (
               <li>
                 <a className="dropdown-item" href={`${window.location.pathname}/edit`}>
                   Edit Project
