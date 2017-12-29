@@ -50,6 +50,7 @@
     "prop-types": "^15.5.10",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "simulant": "^0.2.2",
     "webpack": "^3.2.0"
   }
 }
