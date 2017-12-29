@@ -18,6 +18,17 @@ const App = {
   },
 
   @Memoized
+  get addCardsSandbox() {
+    const addLink = document.querySelector('.project-header-link[aria-label="Add cards"]')
+    if (addLink) return addLink.parentElement
+
+    const newAddDropdown = stringToDOM(`<div class="pl-4"><div className="${App.namespace}-add-dropdown dropdown"></div></div>`)
+    document.querySelector('.project-header').lastElementChild.append(newAddDropdown)
+
+    return newAddDropdown.firstElementChild
+  },
+
+  @Memoized
   get menuSandbox() {
     const menuLink = document.querySelector('.project-header-link[aria-label="Menu"]')
     if (menuLink) return menuLink.parentElement

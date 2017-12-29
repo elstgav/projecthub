@@ -26,7 +26,7 @@
 }
 
 /* Position dropdown relative to icon button */
-.projecthub-menu-dropdown .dropdown-menu-sw {
+.projecthub-dropdown .project-header-link + .dropdown-menu-content .dropdown-menu-sw {
   top:   140%;
   right: -85%;
 }
