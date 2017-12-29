@@ -8,6 +8,7 @@ import AddItemsDropdown from 'components/AddItemsDropdown'
 import MenuDropdown from 'components/MenuDropdown'
 
 App.init()
+ProjectBoard.init()
 
 ReactDOM.render(<ProjectBoardFilters />, App.controlsSandbox)
 ReactDOM.render(<MenuDropdown />, App.menuSandbox)

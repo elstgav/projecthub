@@ -1,14 +1,25 @@
 import React from 'react'
 
-import { ProjectBoard } from 'src/lib'
+import { ProjectBoard, Session } from 'src/lib'
+import { Aux } from 'src/utils'
 
 import Icon from 'components/Icon'
 import Dropdown from 'components/Dropdown'
 
-
 export default class MenuDropdown extends React.PureComponent {
+  constructor(props) {
+    super(props)
+
+    this.state = { isNewColumnButtonHidden : ProjectBoard.isNewColumnButtonHidden }
+  }
+
   onSettingsClick = () => {
     chrome.runtime.sendMessage({ openOptionsPage: true })
+  }
+
+  onToggleNewColumnButton = () => {
+    ProjectBoard.toggleNewColumnButton()
+    this.setState({ isNewColumnButtonHidden : ProjectBoard.isNewColumnButtonHidden })
   }
 
   render() {
@@ -29,11 +40,19 @@ export default class MenuDropdown extends React.PureComponent {
         <li className="dropdown-divider" />
 
         {ProjectBoard.isEditable && (
-          <li>
-            <a className="dropdown-item" href={`${window.location.pathname}/edit`}>
-              Edit Project
-            </a>
-          </li>
+          <Aux>
+            <li>
+              <button className="dropdown-item btn-link" onClick={this.onToggleNewColumnButton}>
+                {this.state.isNewColumnButtonHidden ? 'Show' : 'Hide'} “Add column” button
+              </button>
+            </li>
+
+            <li>
+              <a className="dropdown-item" href={`${window.location.pathname}/edit`}>
+                Edit Project
+              </a>
+            </li>
+          </Aux>
         )}
 
         <li>
