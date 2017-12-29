@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import Icon   from 'components/Icon'
 
@@ -8,7 +9,6 @@ import OptionVal from './OptionVal'
 
 export default class Option extends React.Component {
   static defaultProps = {
-    id:         null,
     isSelected: false,
   }
 
@@ -31,17 +31,23 @@ export default class Option extends React.Component {
   }
 
   render() {
+    const optionClassNames = classNames('select-menu-item projecthub-option', {
+      selected:           this.props.isSelected,
+      'navigation-focus': this.state.isHovered,
+    })
+
     return (
       <li
         aria-selected={this.props.isSelected}
-        className={`select-menu-item ${this.props.isSelected && 'selected'} ${this.state.isHovered && 'navigation-focus'}`}
-        onClick={this.onClick}
+        className={optionClassNames}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         role="option"
       >
-        <Icon icon="check" className="select-menu-item-icon" width="12" />
-        <OptionVal option={this.props.option} />
+        <button className="projecthub-semantic-btn" onClick={this.onClick}>
+          <Icon icon="check" className="select-menu-item-icon" width="12" />
+          <OptionVal option={this.props.option} />
+        </button>
       </li>
     )
   }

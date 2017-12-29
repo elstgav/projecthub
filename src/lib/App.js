@@ -18,14 +18,25 @@ const App = {
   },
 
   @Memoized
-  get settingsSandbox() {
-    const settingsLink = document.querySelector('.project-header-link[aria-label="Settings"]')
-    if (settingsLink) return settingsLink.parentElement
+  get addCardsSandbox() {
+    const addLink = document.querySelector('.project-header-link[aria-label="Add cards"]')
+    if (addLink) return addLink.parentElement
 
-    const newSettingsDropdown = stringToDOM('<div class="pl-4"><div className="projecthub-settings-dropdown dropdown"></div></div>')
-    document.querySelector('.project-header').lastElementChild.append(newSettingsDropdown)
+    const newAddDropdown = stringToDOM(`<div class="pl-4"><div className="${App.namespace}-add-dropdown dropdown"></div></div>`)
+    document.querySelector('.project-header').lastElementChild.append(newAddDropdown)
 
-    return newSettingsDropdown.firstElementChild
+    return newAddDropdown.firstElementChild
+  },
+
+  @Memoized
+  get menuSandbox() {
+    const menuLink = document.querySelector('.project-header-link[aria-label="Menu"]')
+    if (menuLink) return menuLink.parentElement
+
+    const newMenuDropdown = stringToDOM(`<div class="pl-4"><div className="${App.namespace}-menu-dropdown dropdown"></div></div>`)
+    document.querySelector('.project-header').lastElementChild.append(newMenuDropdown)
+
+    return newMenuDropdown.firstElementChild
   },
 
   @Memoized

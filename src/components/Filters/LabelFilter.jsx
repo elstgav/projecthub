@@ -7,6 +7,7 @@ import { Label }    from 'src/models'
 import SelectButton from 'components/SelectButton'
 import BaseFilter   from 'components/Filters/BaseFilter'
 
+
 export default class LabelFilter extends BaseFilter {
   static CACHE_KEY = 'label-filter'
 
@@ -28,16 +29,6 @@ export default class LabelFilter extends BaseFilter {
     this.setState({
       selectedLabel: label,
     }, this.props.onChange)
-  }
-
-  hydrateCachedState(cachedState) {
-    const hydratedState = super.hydrateCachedState(cachedState)
-    if (isEmpty(hydratedState)) return hydratedState
-    if (hydratedState.selectedLabel.id.startsWith('@')) return hydratedState
-
-    hydratedState.selectedLabel = new Label(cachedState.selectedLabel)
-
-    return hydratedState
   }
 
   shouldDisplayCard(card) {

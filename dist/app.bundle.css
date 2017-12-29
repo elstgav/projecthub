@@ -1,8 +1,6 @@
-.projecthub-is-hidden.projecthub-is-hidden {
-  display: none !important;
-}
+/* Overrides */
 
-/* Hide link text for header links */
+/* Hide link text for icon buttons */
 .project-header-link {
   font-size: 0 !important;
 }
@@ -12,7 +10,49 @@
   margin-left: 0 !important;
 }
 
-.projecthub-settings-dropdown .dropdown-menu-sw {
+/* Project Hub Styles */
+
+.projecthub-is-hidden.projecthub-is-hidden {
+  display: none !important;
+}
+
+/* Even out spacing between filter input and icon buttons */
+#projecthub-sandbox ~ * {
+  padding-left:  0 !important;
+  padding-right: 0 !important;
+}
+#projecthub-sandbox ~ *:not(:last-child) {
+  margin-right: 24px;
+}
+
+/* Position dropdown relative to icon button */
+.projecthub-dropdown .project-header-link + .dropdown-menu-content .dropdown-menu-sw {
   top:   140%;
   right: -85%;
+}
+
+.projecthub-dropdown .dropdown-menu {
+  width: inherit !important;
+  min-width: 160px;
+  max-width: 260px;
+}
+
+.projecthub-semantic-btn {
+  display: block;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  outline: none;
+  text-align: inherit;
+  width: -webkit-fill-available;
+}
+
+.projecthub-option {
+  padding: 0 !important;
+}
+
+.projecthub-option button {
+  padding: 8px;
+  padding-left: 30px;
 }

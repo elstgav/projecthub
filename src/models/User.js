@@ -1,39 +1,51 @@
-import { GitHubAPI, Session } from 'src/models'
+import { GitHubAPI, Session } from 'src/lib'
+import { Memoized } from 'src/utils'
 
-const ID_FROM_IMG_SRC = /\/u\/(\d+)\?/
-const USER_NAMES_KEY  = 'user-names'
+import BaseModel from './BaseModel'
 
-const userNames = Session.get(USER_NAMES_KEY) || {}
+export default class User extends BaseModel {
+  static CACHE_KEY = 'user'
+  static ID_FROM_IMG_SRC = /\/u\/(\d+)\?/
+  static USER_NAMES_KEY = 'user-names'
 
-export default class User {
+  static fetchedNames = new Set()
+
+  @Memoized
+  static get names() {
+    return Session.get(User.USER_NAMES_KEY, {})
+  }
+
   static fromAvatarElement = avatar => new User({
-    id:     avatar.src.match(ID_FROM_IMG_SRC)[1],
+    id:     avatar.src.match(User.ID_FROM_IMG_SRC)[1],
     login:  avatar.alt.substring(1),
     avatar: avatar.src,
   })
 
   constructor({ id, login, avatar }) {
+    super()
+
     this.id     = id
     this.login  = login
     this.avatar = avatar
   }
 
   get name() {
-    let name = userNames[this.login]
-
-    if (!name) {
-      name = this.login
-      this.fetchNameFromApi()
-    }
-
-    return name
+    return User.names[this.login] || this.fallbackName()
   }
 
-  fetchNameFromApi() {
-    GitHubAPI.getUser(this.login).then((data) => {
-      const name = data.name || this.login
-      userNames[this.login] = name
-      Session.set(USER_NAMES_KEY, userNames)
-    })
+  fallbackName() {
+    if (!User.fetchedNames.has(this.login)) this.fetchNameFromApi()
+
+    return this.login
+  }
+
+  async fetchNameFromApi() {
+    User.fetchedNames.add(this.login)
+
+    const user = await GitHubAPI.getUser(this.login)
+    const name = user.name || this.login
+    User.names[this.login] = name
+
+    Session.set(User.USER_NAMES_KEY, User.names)
   }
 }

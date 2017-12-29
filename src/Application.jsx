@@ -1,12 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { App } from 'src/models'
+import { App, ProjectBoard } from 'src/lib'
 
 import ProjectBoardFilters from 'components/ProjectBoardFilters'
-import SettingsDropdown from 'components/SettingsDropdown'
+import AddItemsDropdown from 'components/AddItemsDropdown'
+import MenuDropdown from 'components/MenuDropdown'
 
 App.init()
+ProjectBoard.init()
 
 ReactDOM.render(<ProjectBoardFilters />, App.controlsSandbox)
-ReactDOM.render(<SettingsDropdown />,    App.settingsSandbox)
+ReactDOM.render(<MenuDropdown />, App.menuSandbox)
+
+if (ProjectBoard.isEditable) {
+  ReactDOM.render(<AddItemsDropdown />, App.addCardsSandbox)
+}

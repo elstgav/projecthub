@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { clone } from 'lodash'
 
-import { Session } from 'src/models'
+import { Session } from 'src/lib'
+
 
 export default class Filter extends React.Component {
   static propTypes = {
@@ -15,8 +15,7 @@ export default class Filter extends React.Component {
   constructor(props) {
     super(props)
 
-    const cachedState = this.hydrateCachedState(Session.get(this.cacheKey()))
-    this.state = cachedState || this.constructor.defaultState
+    this.state = Session.get(this.cacheKey(), this.constructor.defaultState)
   }
 
   componentWillMount() {
@@ -36,14 +35,10 @@ export default class Filter extends React.Component {
       throw new Error(`${this.constructor.name}.CACHE_KEY is undefined`)
     }
 
-    return `state-${this.constructor.CACHE_KEY}`
+    return `${this.constructor.CACHE_KEY}-state`
   }
 
   /* eslint-disable class-methods-use-this */
-  hydrateCachedState(cachedState) {
-    return clone(cachedState)
-  }
-
   shouldDisplayCard(_card)     { return true }
   shouldDisplayColumn(_column) { return true }
   /* eslint-enable */

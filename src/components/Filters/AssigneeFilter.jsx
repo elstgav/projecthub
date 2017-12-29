@@ -7,6 +7,7 @@ import { User }     from 'src/models'
 import SelectButton from 'components/SelectButton'
 import BaseFilter   from 'components/Filters/BaseFilter'
 
+
 export default class AssigneeFilter extends BaseFilter {
   static CACHE_KEY = 'assignee-filter'
 
@@ -28,16 +29,6 @@ export default class AssigneeFilter extends BaseFilter {
     this.setState({
       selectedAssignee: assignee,
     }, this.props.onChange)
-  }
-
-  hydrateCachedState(cachedState) {
-    const hydratedState = super.hydrateCachedState(cachedState)
-    if (isEmpty(hydratedState)) return hydratedState
-    if (hydratedState.selectedAssignee.id.startsWith('@')) return hydratedState
-
-    hydratedState.selectedAssignee = new User(cachedState.selectedAssignee)
-
-    return hydratedState
   }
 
   shouldDisplayCard(card) {

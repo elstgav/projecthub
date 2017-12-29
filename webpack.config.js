@@ -1,13 +1,13 @@
 const path = require('path')
 const webpack = require('webpack')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const MinifyPlugin = require('babel-minify-webpack-plugin')
 
 const isProdEnvironment = (process.env.NODE_ENV === 'production')
-const isDevEnvironment  = (process.env.NODE_ENV === 'development')
 
 module.exports = {
   cache:   true,
-  devtool: isProdEnvironment ? 'source-map' : 'cheap-module-source-map',
+  devtool: isProdEnvironment ? false : 'cheap-module-source-map',
 
   context: __dirname,
 
@@ -44,15 +44,14 @@ module.exports = {
     if (isProdEnvironment) {
       plugins = plugins.concat([
         new webpack.optimize.OccurrenceOrderPlugin(),
+
         new webpack.LoaderOptionsPlugin({
           debug:    false,
           minimize: true,
         }),
-        new webpack.optimize.UglifyJsPlugin({
-          beautify:  false,
-          sourceMap: false,
-          comments:  false,
-          compress:  { warnings: false },
+
+        new MinifyPlugin({}, {
+          test: /\.(js|jsx)$/,
         }),
       ])
     }

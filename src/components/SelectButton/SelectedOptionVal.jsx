@@ -9,7 +9,7 @@ const SelectedOptionVal = ({ option }) => {
 
   switch (option.constructor) {
     case User:
-      value = option.name.split(' ')[0]
+      [value] = option.name.split(' ')
       break
 
     default:

@@ -1,44 +1,52 @@
+extends: 'airbnb'
+
+env:
+  browser: true
+  jest: true
+
+globals:
+  chrome: false
+
 rules:
   jsx-a11y/interactive-supports-focus:
-    - 0
+    - off
+
+  # ensure consistency when using newlines within a function’s parens
+  function-paren-newline:
+    - error
+    - consistent
 
   # object keys must have at least one space after the colon
   key-spacing:
-    - 2
+    - error
     - mode: 'minimum'
-
-  # never use semi-colons
-  semi:
-    - 2
-    - never
 
   # allow console use
   no-console:
-    - 0
+    - off
 
   # though we don’t enforce, only use multi spaces for alignment
   no-multi-spaces:
-    - 0
+    - off
+
+  # prevent unused expressions that have no effect on program state
+  no-unused-expressions:
+    - error
+    - allowShortCircuit: true
+    - allowTernary: true
 
   # remove all unused variables
   no-unused-vars:
-    - 2
+    - error
     - argsIgnorePattern: '^_' # ignore vars with a _ prefix (e.g. _foo)
 
-  # For our test files; disable this for sinon-chai’s `foo.should.have.been.calledOnce` signature
-  no-unused-expressions:
-    - 0
-
-extends: 'airbnb'
+  # never use semi-colons
+  semi:
+    - error
+    - never
 
 parser: 'babel-eslint'
 
 settings:
   import/resolver:
     babel-module: {}
-
-env:
-  browser: true
-
-globals:
-  chrome: false

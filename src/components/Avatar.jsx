@@ -1,25 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import { User } from 'src/models'
 
-const Avatar = ({ user, size }) => (
-  <img
-    alt={`@${user.login}`}
-    className="avatar"
-    height={size}
-    width={size}
-    src={user.avatar}
-  />
-)
+export default class Avatar extends React.PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    user:      PropTypes.instanceOf(User).isRequired,
+    size:      PropTypes.number,
+  }
 
-Avatar.propTypes = {
-  user: PropTypes.instanceOf(User).isRequired,
-  size: PropTypes.number,
+  static defaultProps = {
+    className: null,
+    size:      20,
+  }
+
+  render = () => (
+    <img
+      alt={`@${this.props.user.login}`}
+      className={classNames('avatar', this.props.className)}
+      height={this.props.size}
+      width={this.props.size}
+      src={this.props.user.avatar}
+    />
+  )
 }
-
-Avatar.defaultProps = {
-  size: 20,
-}
-
-export default Avatar

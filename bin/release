@@ -5,9 +5,30 @@ require 'pathname'
 # path to your application root.
 APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
 
+
+# Monkey patching
+# --------------------------------------------------------------------------------------------------
+
+class String
+  def colorize(color_code)
+    "\e[#{color_code}m#{self}\e[0m"
+  end
+
+  def red;   colorize(31); end
+  def green; colorize(32); end
+end
+
+def abort(msg)
+  Kernel.abort(msg.red)
+end
+
 def system!(*args)
   system(*args) || abort("\n== Command #{args} failed ==")
 end
+
+
+# Helper methods
+# --------------------------------------------------------------------------------------------------
 
 def tag_is_on_current_commit?(tag)
   current_commit = `git rev-parse --verify HEAD`.strip
@@ -18,18 +39,18 @@ def versions_match?(v1, v2)
   v1.gsub(/^v/, '') == v2.gsub(/^v/, '')
 end
 
-def uncommitted_changes?
-  !`git status -s`.strip.empty?
+def verify_no_uncommitted_changes!
+  return if `git status -s`.strip.empty?
+  abort('You have uncommited changes. Please commit or stash your changes before proceeding.')
 end
 
-Dir.chdir APP_ROOT do
-  if uncommitted_changes?
-    abort('You have uncommited changes. Please commit or stash your changes before proceeding.')
-  end
+def verify_react_dev_tools_are_not_included!(manifest)
+  return unless manifest.include?('react-dev-tools.js')
+  abort("Your manifest includes react-dev-tools.js; it must be removed before releasing.")
+end
 
+def verify_version!(version)
   latest_tag = `git describe --abbrev=0 --tags`.strip
-  manifest   = File.read('./dist/manifest.json')
-  version    = manifest.match(/^\s*"version":\s*"(.+)"/)[1]
 
   if tag_is_on_current_commit?(latest_tag)
     unless versions_match?(latest_tag, version)
@@ -44,16 +65,44 @@ Dir.chdir APP_ROOT do
       "Please bump the version number in dist/manifest.json."
     )
   end
+end
+
+def verify_application_state!(manifest, version)
+  verify_no_uncommitted_changes!
+  verify_react_dev_tools_are_not_included!(manifest)
+  verify_version!(version)
+end
+
+
+# The actual script
+# --------------------------------------------------------------------------------------------------
+
+Dir.chdir APP_ROOT do
+  manifest = File.read('./dist/manifest.json')
+  version  = manifest.match(/^\s*"version":\s*"(.+)"/)[1]
+
+  verify_application_state!(manifest, version)
 
   puts "Creating v#{version} release…"
-  system!('rm -f dist/*.bundle.js*')
-  system!('yarn run build:prod')
-  system!("mkdir -p pkg")
-  system!("zip -r -X pkg/projecthub-v#{version}.zip dist/")
-  system!("git tag -f v#{version}")
-  system!("git push origin v#{version}")
 
-  puts "\n\n----------------------------------------------------------------------"
-  puts "✓ v#{version} built to pkg/projecthub-v#{version}.zip"
-  puts "\nGo to https://chrome.google.com/webstore/developer/dashboard to upload"
+  <<-SCRIPT.each_line { |cmd| system!(cmd.strip) unless cmd.strip.empty? }
+    rm -f dist/*.bundle.js*
+    yarn run build:prod
+
+    rm -f dist/react-dev-tools.js
+      mkdir -p pkg
+      zip -r -X pkg/projecthub-v#{version}.zip dist/
+    git checkout -- dist/react-dev-tools.js
+
+    git tag -f v#{version}
+    git push origin v#{version}
+  SCRIPT
+
+  puts <<-MSG.gsub(/^ */, '').green
+
+    ----------------------------------------------------------------------
+    ✓ v#{version} built to pkg/projecthub-v#{version}.zip
+
+    Go to https://chrome.google.com/webstore/developer/dashboard to upload
+  MSG
 end
