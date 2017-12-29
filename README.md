@@ -46,6 +46,13 @@ React’s dev tools Chrome Extension unfortunately can’t inspect other extensi
 
 ## Changelog
 
+### 0.0.1.0 (December 29, 2017)
+* Breaking change: Change how we store session state, fix several inconsistency issues #1
+* Add ability to hide “+ Add new column” button #22
+* Move “Activity” menu and project settings into menu dropdown
+* Shrink the extension’s file size
+* Fix button styling issues
+
 ### 0.0.0.7 (November 22, 2017)
 * Fix filter options rendering incorrectly
 * Fix caching bug
