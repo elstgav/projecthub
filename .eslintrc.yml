@@ -33,7 +33,7 @@ rules:
   no-unused-expressions:
     - error
     - allowShortCircuit: true
-    - allowTernary: true
+      allowTernary: true
 
   # remove all unused variables
   no-unused-vars:
