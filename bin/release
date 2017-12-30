@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'pathname'
+require 'English'
 
 # path to your application root.
 APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
@@ -44,6 +46,18 @@ def verify_no_uncommitted_changes!
   abort('You have uncommited changes. Please commit or stash your changes before proceeding.')
 end
 
+def verify_tests_pass!
+  puts "Running tests…\n\n"
+  return puts if system('yarn test')
+  abort("\nTests failed. Please address issues before proceeding.")
+end
+
+def verify_no_linter_errors!
+  puts "Running linter…\n\n"
+  return puts if system('yarn lint')
+  abort("\nLinter checks failed. Please address issues before proceeding.")
+end
+
 def verify_react_dev_tools_are_not_included!(manifest)
   return unless manifest.include?('react-dev-tools.js')
   abort("Your manifest includes react-dev-tools.js; it must be removed before releasing.")
@@ -69,6 +83,8 @@ end
 
 def verify_application_state!(manifest, version)
   verify_no_uncommitted_changes!
+  verify_tests_pass!
+  verify_no_linter_errors!
   verify_react_dev_tools_are_not_included!(manifest)
   verify_version!(version)
 end
