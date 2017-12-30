@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const MinifyPlugin = require('babel-minify-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const isProdEnvironment = (process.env.NODE_ENV === 'production')
 
@@ -41,8 +42,17 @@ module.exports = {
       new LodashModuleReplacementPlugin(),
     ]
 
+    if (process.env.ANALYZE_WEBPACK_BUNDLE) {
+      plugins = [
+        ...plugins,
+        new BundleAnalyzerPlugin(),
+      ]
+    }
+
     if (isProdEnvironment) {
-      plugins = plugins.concat([
+      plugins = [
+        ...plugins,
+
         new webpack.optimize.OccurrenceOrderPlugin(),
 
         new webpack.LoaderOptionsPlugin({
@@ -53,7 +63,7 @@ module.exports = {
         new MinifyPlugin({}, {
           test: /\.(js|jsx)$/,
         }),
-      ])
+      ]
     }
 
     return plugins

@@ -5,6 +5,7 @@
   ],
   "scripts": {
     "build": "if-env NODE_ENV=production && npm run build:prod || npm run build:dev",
+    "build:analyze": "NODE_ENV=production ANALYZE_WEBPACK_BUNDLE=true yarn build:watch",
     "build:dev": "NODE_ENV=development webpack",
     "build:prod": "NODE_ENV=production webpack --env=prod --progress --profile --colors --display-error-details",
     "build:watch": "webpack -w",
@@ -51,6 +52,7 @@
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "simulant": "^0.2.2",
-    "webpack": "^3.2.0"
+    "webpack": "^3.2.0",
+    "webpack-bundle-analyzer": "^2.9.1"
   }
 }
