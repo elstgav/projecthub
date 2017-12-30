@@ -12,6 +12,7 @@
     "lint": "eslint --cache 'src/**' 'test/**'",
     "release": "./bin/release",
     "test": "jest",
+    "test:ci": "jest --ci --coverage",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --watch",
     "test:watch": "jest --watch"
   },
