@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProjectBoard, Session } from 'src/lib'
+import { ProjectBoard } from 'src/lib'
 import { Aux } from 'src/utils'
 
 import Icon from 'components/Icon'
@@ -10,7 +10,7 @@ export default class MenuDropdown extends React.PureComponent {
   constructor(props) {
     super(props)
 
-    this.state = { isNewColumnButtonHidden : ProjectBoard.isNewColumnButtonHidden }
+    this.state = { isNewColumnButtonHidden: ProjectBoard.isNewColumnButtonHidden }
   }
 
   onSettingsClick = () => {
@@ -19,7 +19,7 @@ export default class MenuDropdown extends React.PureComponent {
 
   onToggleNewColumnButton = () => {
     ProjectBoard.toggleNewColumnButton()
-    this.setState({ isNewColumnButtonHidden : ProjectBoard.isNewColumnButtonHidden })
+    this.setState({ isNewColumnButtonHidden: ProjectBoard.isNewColumnButtonHidden })
   }
 
   render() {

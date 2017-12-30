@@ -9,7 +9,7 @@
     "build:dev": "NODE_ENV=development webpack",
     "build:prod": "NODE_ENV=production webpack --env=prod --progress --profile --colors --display-error-details",
     "build:watch": "webpack -w",
-    "lint": "eslint 'src/**' 'test/**'",
+    "lint": "eslint --cache 'src/**' 'test/**'",
     "release": "./bin/release",
     "test": "jest",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --watch",

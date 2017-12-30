@@ -34,7 +34,7 @@ const Session = {
 
   set(key, val) {
     if (typeof val === 'function') {
-      val = val(this.get(key))
+      val = val(this.get(key)) // eslint-disable-line no-param-reassign
     }
 
     return sessionStorage.setItem(`${App.namespace}-${key}`, this.serialize(val))

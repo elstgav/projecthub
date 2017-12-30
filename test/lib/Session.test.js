@@ -45,7 +45,7 @@ describe('Session', () => {
 
   describe('.get()', () => {
     beforeEach(() => {
-      sessionStorage.setItem(`${App.namespace}-foo`, `"bar"`)
+      sessionStorage.setItem(`${App.namespace}-foo`, '"bar"')
     })
 
     it('returns a value from session storage', () => {
@@ -64,7 +64,7 @@ describe('Session', () => {
   describe('.set()', () => {
     it('sets a value in session storage', () => {
       Session.set('new', 'value')
-      expect(sessionStorage.getItem(`${App.namespace}-new`)).toBe(`"value"`)
+      expect(sessionStorage.getItem(`${App.namespace}-new`)).toBe('"value"')
     })
 
     it('sets a value based on the previous value', () => {
