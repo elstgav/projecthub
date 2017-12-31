@@ -96,7 +96,7 @@ describe('App', () => {
     it('adds tooltips and fixes full-screen button alignment', () => {
       App.init()
 
-      expect(App.addTooltipsToHeaderLinks    ).toHaveBeenCalled()
+      expect(App.addTooltipsToHeaderLinks).toHaveBeenCalled()
       expect(App.fixFullScreenButtonAlignment).toHaveBeenCalled()
     })
   })

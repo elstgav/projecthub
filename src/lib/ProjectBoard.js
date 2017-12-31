@@ -14,11 +14,11 @@ const ProjectBoard = {
 
   @Memoized
   get isEditable() {
-    return document.querySelector('.project-header-link[aria-label="Add cards"]')
+    return !!document.querySelector('.project-header-link[aria-label="Add cards"]')
   },
 
   @Memoized
-  get ref() {
+  get container() {
     return document.querySelector('.project-columns-container')
   },
 
@@ -26,7 +26,7 @@ const ProjectBoard = {
   get afterLoaded() {
     return new Promise((resolve) => {
       const observer = new MutationObserver(() => {
-        const finishedLoading = this.ref.querySelector('include-fragment') === null
+        const finishedLoading = this.container.querySelector('include-fragment') === null
 
         if (finishedLoading) {
           resolve()
@@ -34,25 +34,25 @@ const ProjectBoard = {
         }
       })
 
-      observer.observe(this.ref, { childList: true, subtree: true })
+      observer.observe(this.container, { childList: true, subtree: true })
     })
   },
 
   @Memoized
   get newColumnButton() {
-    return document.querySelector('.js-new-project-column-container .js-new-column-button')
+    return this.container.querySelector('.js-new-project-column-container .js-new-column-button')
   },
 
   get cards() {
-    return Array.from(this.ref.querySelectorAll('.issue-card'))
+    return Array.from(this.container.querySelectorAll('.issue-card'))
   },
 
   get columns() {
-    return Array.from(this.ref.querySelectorAll('.project-column'))
+    return Array.from(this.container.querySelectorAll('.project-column'))
   },
 
   get assignees() {
-    const avatars = Array.from(this.ref.querySelectorAll('.avatar img'))
+    const avatars = Array.from(this.container.querySelectorAll('.avatar img'))
     if (isEmpty(avatars)) return []
 
     let users = avatars.map(avatar => User.fromAvatarElement(avatar))
@@ -63,7 +63,7 @@ const ProjectBoard = {
   },
 
   get labels() {
-    let labels = Array.from(this.ref.querySelectorAll('.issue-card-label'))
+    let labels = Array.from(this.container.querySelectorAll('.issue-card-label'))
     if (isEmpty(labels)) return []
 
     labels = labels.map(label => Label.fromLabelElement(label))
