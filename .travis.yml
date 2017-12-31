@@ -2,6 +2,11 @@ language: node_js
 node_js:
   - 'node'
 
+cache:
+  yarn:    true
+  directories:
+    - node_modules
+
 env:
   global:
     - CC_TEST_REPORTER_ID=9cbc847f17b3f055c8510bc01afceb725141c445ea64b2ceb173ca5c23c8fa2d
