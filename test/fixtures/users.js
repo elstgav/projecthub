@@ -4,16 +4,20 @@ import MockAdapter from 'axios-mock-adapter'
 import Session from 'src/lib/Session'
 import User from 'src/models/User'
 
-// Mock session storage
-Session.set(User.USER_NAMES_KEY, {
-  test1: 'Tester McGoo',
-  test2: 'test2',
+beforeAll(() => {
+  // Mock GitHub API calls
+  const mock = new MockAdapter(axios)
+  mock.onGet('https://api.github.com/users/test3').reply(200, { name: 'Tester McGee' })
+  mock.onGet('https://api.github.com/users/test4').reply(200, { name: null           })
 })
 
-// Mock GitHub API calls
-const mock = new MockAdapter(axios)
-mock.onGet('https://api.github.com/users/test3').reply(200, { name: 'Tester McGee' })
-mock.onGet('https://api.github.com/users/test4').reply(200, { name: null           })
+beforeEach(() => {
+  // Mock session storage
+  Session.set(User.USER_NAMES_KEY, {
+    test1: 'Tester McGoo',
+    test2: 'test2',
+  })
+})
 
 export const cachedUser = new User({
   id:     1,
