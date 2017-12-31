@@ -40,6 +40,10 @@ rules:
     - error
     - argsIgnorePattern: '^_' # ignore vars with a _ prefix (e.g. _foo)
 
+  # though we don’t enforce, prefer destructuring when it makes sense
+  prefer-destructuring:
+    - off
+
   # never use semi-colons
   semi:
     - error
