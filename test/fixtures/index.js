@@ -7,5 +7,5 @@ export {
 
 export {
   fooLabel,
-  barLabel2,
+  barLabel,
 } from './labels'
