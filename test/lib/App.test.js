@@ -8,16 +8,12 @@ describe('App', () => {
   })
 
   afterEach(() => {
-    document.body.innerHTML = ''
     App.__memoized__.clear() // eslint-disable-line no-underscore-dangle
   })
 
   describe('.currentUser', () => {
     it('returns the current user’s login', () => {
-      document.head.innerHTML = oneLine`
-        <meta content="tester" name="octolytics-actor-login">
-      `
-
+      document.head.innerHTML = '<meta content="tester" name="octolytics-actor-login">'
       expect(App.currentUser).toBe('tester')
     })
   })
@@ -81,7 +77,7 @@ describe('App', () => {
     })
   })
 
-  describe('.init', () => {
+  describe('.init()', () => {
     const {
       addTooltipsToHeaderLinks,
       fixFullScreenButtonAlignment,
@@ -105,7 +101,7 @@ describe('App', () => {
     })
   })
 
-  describe('.addTooltipsToHeaderLinks', () => {
+  describe('.addTooltipsToHeaderLinks()', () => {
     it('adds tooltip classes and aria-labels to project header links ', () => {
       document.body.innerHTML = oneLine`
         <button class="project-header-link">First link</button>
@@ -127,7 +123,7 @@ describe('App', () => {
     })
   })
 
-  describe('.fixFullScreenButtonAlignment', () => {
+  describe('.fixFullScreenButtonAlignment()', () => {
     it('adds a .btn-link class to the full-screen link if it’s missing', () => {
       document.body.innerHTML = oneLine`
         <button class="js-project-fullscreen-link"></button>

@@ -2,10 +2,6 @@ import { App, Session } from 'src/lib'
 import { fooLabel, cachedUser } from 'test/fixtures'
 
 describe('Session', () => {
-  afterEach(() => {
-    sessionStorage.clear()
-  })
-
   describe('.serialize()', () => {
     it('turns an object into JSON', () => {
       expect(Session.serialize({ foo: 'bar' })).toBe(JSON.stringify({ foo: 'bar' }))

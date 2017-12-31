@@ -83,10 +83,6 @@ describe('Dropdown', () => {
       mounted.Dropdown.setState({ isDropdownOpen: true })
     })
 
-    afterEach(() => {
-      document.body.innerHTML = ''
-    })
-
     it('stays open when you click inside the dropdown', () => {
       expect(mounted.Dropdown.state('isDropdownOpen')).toBe(true)
       simulant.fire(document.body.querySelector('.test-content'), 'click')
