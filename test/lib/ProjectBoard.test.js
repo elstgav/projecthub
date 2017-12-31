@@ -157,7 +157,7 @@ describe('ProjectBoard', () => {
     })
   })
 
-  describe('.init', () => {
+  describe('.init()', () => {
     const renderNewColumnButton = ProjectBoard.renderNewColumnButton
 
     beforeEach(() => {
@@ -182,7 +182,7 @@ describe('ProjectBoard', () => {
     })
   })
 
-  describe('.toggleNewColumnButton', () => {
+  describe('.toggleNewColumnButton()', () => {
     beforeEach(() => {
       document.body.innerHTML = oneLine`
         <div class="project-columns-container">
@@ -217,7 +217,7 @@ describe('ProjectBoard', () => {
     })
   })
 
-  describe('.renderNewColumnButton', () => {
+  describe('.renderNewColumnButton()', () => {
     beforeEach(() => {
       document.body.innerHTML = oneLine`
         <div class="project-columns-container">

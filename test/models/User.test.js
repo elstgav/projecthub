@@ -21,7 +21,7 @@ describe('User', () => {
     })
   })
 
-  describe('.fromAvatarElement', () => {
+  describe('.fromAvatarElement()', () => {
     it('creates a new user from an avatar element', () => {
       const avatar = stringToDOM(oneLine`
         <img
@@ -38,8 +38,10 @@ describe('User', () => {
       expect(bobby.avatar).toBe('https://avatars3.githubusercontent.com/u/123456?s=40&v=4')
     })
   })
+})
 
-  describe('#name', () => {
+describe('new User()', () => {
+  describe('.name', () => {
     it('returns the user’s cached name', () => {
       expect(User.names[cachedUser.login]).toBe('Tester McGoo')
       expect(cachedUser.name).toBe('Tester McGoo')

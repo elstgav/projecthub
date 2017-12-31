@@ -4,7 +4,7 @@ import { Label } from 'src/models'
 import { stringToDOM } from 'src/utils'
 
 describe('Label', () => {
-  describe('.fromLabelElement', () => {
+  describe('.fromLabelElement()', () => {
     it('creates a new Label from a label element', () => {
       const labelElement = stringToDOM(oneLine`
         <button
