@@ -22,10 +22,7 @@ const App = {
     const addLink = document.querySelector('.project-header-link[aria-label="Add cards"]')
     if (addLink) return addLink.parentElement
 
-    const newAddDropdown = stringToDOM(`<div class="pl-4"><div className="${App.namespace}-add-dropdown dropdown"></div></div>`)
-    document.querySelector('.project-header').lastElementChild.append(newAddDropdown)
-
-    return newAddDropdown.firstElementChild
+    throw new Error('Could not find “Add cards” link!')
   },
 
   @Memoized
@@ -33,10 +30,7 @@ const App = {
     const menuLink = document.querySelector('.project-header-link[aria-label="Menu"]')
     if (menuLink) return menuLink.parentElement
 
-    const newMenuDropdown = stringToDOM(`<div class="pl-4"><div className="${App.namespace}-menu-dropdown dropdown"></div></div>`)
-    document.querySelector('.project-header').lastElementChild.append(newMenuDropdown)
-
-    return newMenuDropdown.firstElementChild
+    throw new Error('Could not find “Menu” link!')
   },
 
   @Memoized
