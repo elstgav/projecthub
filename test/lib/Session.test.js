@@ -1,6 +1,11 @@
 import { App, Session } from 'src/lib'
 import { fooLabel, cachedUser } from 'test/fixtures'
 
+import {
+  Label,
+  User,
+} from 'src/models'
+
 describe('Session', () => {
   describe('.serialize()', () => {
     it('turns an object into JSON', () => {
@@ -22,18 +27,41 @@ describe('Session', () => {
       expect(Session.deserialize(JSON.stringify({ foo: 'bar' }))).toEqual({ foo: 'bar' })
     })
 
-    it('returns a hydrated object', () => {
-      const hydratedLabel = Session.deserialize(JSON.stringify({
+    it('returns hydrated Users', () => {
+      const hydratedUser = Session.deserialize(JSON.stringify({
         __constructor__: cachedUser.CACHE_KEY,
         ...cachedUser,
       }))
 
-      expect(hydratedLabel).toBeInstanceOf(cachedUser.constructor)
+      expect(hydratedUser).toBeInstanceOf(User)
       expect(
-        Object.entries(hydratedLabel).toString(),
+        Object.entries(hydratedUser).toString(),
       ).toEqual(
         Object.entries(cachedUser).toString(),
       )
+    })
+
+    it('returns hydrated Labels', () => {
+      const hydratedLabel = Session.deserialize(JSON.stringify({
+        __constructor__: fooLabel.CACHE_KEY,
+        ...fooLabel,
+      }))
+
+      expect(hydratedLabel).toBeInstanceOf(Label)
+      expect(
+        Object.entries(hydratedLabel).toString(),
+      ).toEqual(
+        Object.entries(fooLabel).toString(),
+      )
+    })
+
+    it('throws an error for unrecognized dehydrated objects', () => {
+      expect(() => {
+        Session.deserialize(JSON.stringify({
+          __constructor__: 'foo',
+          foo:             'bar',
+        }))
+      }).toThrow('Don’t know how to deserialize foo')
     })
   })
 
