@@ -46,6 +46,12 @@ React’s dev tools Chrome Extension unfortunately can’t inspect other extensi
 
 ## Changelog
 
+### 0.0.1.1 (December 31, 2017)
+
+* Shrink the extension’s file size a bit more
+* Refactor GitHub API error handling
+* Refactor dropdown button DOM manipulation
+
 ### 0.0.1.0 (December 29, 2017)
 
 * Breaking change: Change how we store session state, fix several inconsistency issues #1
