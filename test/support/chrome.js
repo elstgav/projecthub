@@ -8,7 +8,7 @@ global.chrome = {
 
   storage: {
     sync: {
-      get(items, callback) {
+      get(items, callback = () => {}) {
         const payload = {}
         switch (items.constructor.name) {
           default:
@@ -22,12 +22,12 @@ global.chrome = {
         callback(payload)
       },
 
-      set(items, callback) {
+      set(items, callback = () => {}) {
         Object.assign(storage, items)
         callback()
       },
 
-      clear(callback) {
+      clear(callback = () => {}) {
         Object.keys(storage).forEach(key => delete storage[key])
         callback()
       },
