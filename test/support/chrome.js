@@ -2,7 +2,7 @@ const storage = {}
 
 global.chrome = {
   runtime: {
-    lastError: false,
+    lastError: undefined,
     sendMessage(_msg) {},
   },
 
