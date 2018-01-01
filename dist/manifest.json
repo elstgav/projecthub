@@ -20,7 +20,7 @@
     {
       "matches": ["https://*.github.com/*/*/projects/*"],
       "css":     ["app.bundle.css"],
-      "js":      ["app.bundle.js"],
+      "js":      ["common.bundle.js", "app.bundle.js"],
       "run_at":  "document_end"
     }
   ],

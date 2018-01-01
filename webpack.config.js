@@ -40,6 +40,7 @@ module.exports = {
     let plugins = [
       new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
       new LodashModuleReplacementPlugin(),
+      new webpack.optimize.CommonsChunkPlugin({ name: 'common' }),
     ]
 
     if (process.env.ANALYZE_WEBPACK_BUNDLE) {
