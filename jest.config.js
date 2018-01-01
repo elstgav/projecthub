@@ -1,4 +1,7 @@
 module.exports = {
+  clearMocks: true,
+  resetMocks: true,
+
   setupFiles: [
     'mock-local-storage',
     'mutationobserver-shim',
