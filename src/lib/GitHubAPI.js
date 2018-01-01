@@ -71,12 +71,6 @@ class GitHubAPI {
         `)
         break
 
-      case 404:
-        console.error(
-          `Request failed with status code 404: No data found at ${error.request.responseURL}`,
-        )
-        break
-
       default:
         GitHubAPI.logError(error)
     }
