@@ -26,6 +26,11 @@ global.chrome = {
         Object.assign(storage, items)
         callback()
       },
+
+      clear(callback) {
+        Object.keys(storage).forEach(key => delete storage[key])
+        callback()
+      },
     },
   },
 }
