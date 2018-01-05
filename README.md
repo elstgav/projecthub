@@ -46,6 +46,10 @@ React’s dev tools Chrome Extension unfortunately can’t inspect other extensi
 
 ## Changelog
 
+### 0.0.1.2 (January 4, 2018)
+
+* Fix link styling issues
+
 ### 0.0.1.1 (December 31, 2017)
 
 * Shrink the extension’s file size a bit more
