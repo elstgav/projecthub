@@ -80,24 +80,20 @@ describe('App', () => {
   describe('.init()', () => {
     const {
       addTooltipsToHeaderLinks,
-      fixFullScreenButtonAlignment,
     } = App
 
     beforeEach(() => {
-      App.addTooltipsToHeaderLinks     = jest.fn()
-      App.fixFullScreenButtonAlignment = jest.fn()
+      App.addTooltipsToHeaderLinks = jest.fn()
     })
 
     afterEach(() => {
-      App.addTooltipsToHeaderLinks     = addTooltipsToHeaderLinks
-      App.fixFullScreenButtonAlignment = fixFullScreenButtonAlignment
+      App.addTooltipsToHeaderLinks = addTooltipsToHeaderLinks
     })
 
-    it('adds tooltips and fixes full-screen button alignment', () => {
+    it('adds tooltips', () => {
       App.init()
 
       expect(App.addTooltipsToHeaderLinks).toHaveBeenCalled()
-      expect(App.fixFullScreenButtonAlignment).toHaveBeenCalled()
     })
   })
 
@@ -120,22 +116,6 @@ describe('App', () => {
       expect(link2.getAttribute('aria-label')).toBe('Pre-existing label')
       expect(link3.classList).toContain('tooltipped')
       expect(link3.getAttribute('aria-label')).toBe('Third link')
-    })
-  })
-
-  describe('.fixFullScreenButtonAlignment()', () => {
-    it('adds a .btn-link class to the full-screen link if it’s missing', () => {
-      document.body.innerHTML = oneLine`
-        <button class="js-project-fullscreen-link"></button>
-        <button class="js-project-fullscreen-link btn-link"></button>
-      `
-      const link1 = document.querySelector('.js-project-fullscreen-link:nth-child(1)')
-      const link2 = document.querySelector('.js-project-fullscreen-link:nth-child(2)')
-
-      App.fixFullScreenButtonAlignment()
-
-      expect(link1.classList).toContain('btn-link')
-      expect(link2.classList.length).toBe(2)
     })
   })
 })

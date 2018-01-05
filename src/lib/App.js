@@ -40,7 +40,6 @@ const App = {
 
   init() {
     this.addTooltipsToHeaderLinks()
-    this.fixFullScreenButtonAlignment()
   },
 
   addTooltipsToHeaderLinks() {
@@ -50,13 +49,6 @@ const App = {
       }
 
       link.classList.add('tooltipped', 'tooltipped-w')
-    })
-  },
-
-  // Fix full-screen button alignment (See #11)
-  fixFullScreenButtonAlignment() {
-    document.querySelectorAll('.js-project-fullscreen-link:not(.btn-link)').forEach((link) => {
-      link.classList.add('btn-link')
     })
   },
 }

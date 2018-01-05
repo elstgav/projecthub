@@ -1,7 +1,10 @@
+/*************/
 /* Overrides */
+/*************/
 
 /* Hide link text for icon buttons */
 .project-header-link {
+  display: inline-block;
   font-size: 0 !important;
 }
 
@@ -10,7 +13,10 @@
   margin-left: 0 !important;
 }
 
+
+/**********************/
 /* Project Hub Styles */
+/**********************/
 
 .projecthub-is-hidden.projecthub-is-hidden {
   display: none !important;
