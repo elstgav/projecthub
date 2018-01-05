@@ -13,7 +13,7 @@ export default class AddItemsDropdown extends React.PureComponent {
         buttonText={<Icon icon="plus" width="14" />}
         buttonProps={{
           'aria-label': 'Add items',
-          className:    'project-header-link v-align-middle no-underline btn-link',
+          className:    'project-header-link muted-link v-align-middle no-underline btn-link',
         }}
       >
         <li>

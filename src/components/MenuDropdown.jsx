@@ -28,7 +28,7 @@ export default class MenuDropdown extends React.PureComponent {
         buttonText={<Icon icon="menu" width="14" />}
         buttonProps={{
           'aria-label': 'Menu',
-          className:    'project-header-link v-align-middle no-underline btn-link',
+          className:    'project-header-link muted-link v-align-middle no-underline btn-link',
         }}
       >
         <li>
