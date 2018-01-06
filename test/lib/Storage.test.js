@@ -2,7 +2,7 @@ import { Storage } from 'src/lib'
 
 describe('Storage', () => {
   beforeEach(() => {
-    jest.spyOn(console, 'error')
+    jest.spyOn(console, 'error').mockImplementation()
   })
 
   describe('.get()', () => {

@@ -17,7 +17,6 @@ describe('User', () => {
       expect(User.names).toBeDefined()
       expect(User.names).toBeDefined()
       expect(spy).toHaveBeenCalledTimes(1)
-      spy.mockRestore()
     })
   })
 

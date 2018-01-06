@@ -19,7 +19,6 @@ describe('GitHubAPI', () => {
 
   afterEach(() => {
     GitHubAPI.isTimedOut = false
-    axios.get.mockRestore()
   })
 
   describe('.query()', () => {

@@ -1,7 +1,10 @@
 afterEach(() => {
+  // Restore all mocks
+  jest.restoreAllMocks()
+
   // Reset chrome
   chrome.storage.sync.clear()
-  chrome.runtime.lastError = undefined
+  delete chrome.runtime.lastError
 
   // Reset sessionStorage
   sessionStorage.clear()
