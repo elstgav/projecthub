@@ -11,14 +11,7 @@
 
   "env": {
     "test": {
-      "presets": [
-        ["env", {
-          "targets": {
-            "browsers": ["last 4 Chrome versions"]
-          }
-        }],
-        "react"
-      ],
+      // Required for Jest, which runs in node, which doesn’t support ES6 modules
       "plugins": ["transform-es2015-modules-commonjs"]
     }
   },
