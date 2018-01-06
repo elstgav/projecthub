@@ -2,6 +2,10 @@ module.exports = {
   clearMocks: true,
   resetMocks: true,
 
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx}',
+  ],
+
   setupFiles: [
     'mock-local-storage',
     'mutationobserver-shim',
