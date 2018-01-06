@@ -19,7 +19,7 @@ describe('Dropdown', () => {
     expect(test.Dropdown.find('.dropdown')).toHaveLength(1)
     expect(test.Dropdown.props().className).toBe('projecthub-dropdown dropdown')
     expect(test.Dropdown.find('.dropdown-menu-content').text()).toBe('Pick me')
-    expect(test.Dropdown.html()).toMatchSnapshot()
+    expect(test.Dropdown).toMatchSnapshot()
   })
 
   it('has a configurable className', () => {

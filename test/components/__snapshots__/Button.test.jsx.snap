@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button displays a <button> element 1`] = `"<button class=\\"btn btn-default\\">Foo</button>"`;
+exports[`Button displays a <button> element 1`] = `
+<button
+  className="btn btn-default"
+>
+  Foo
+</button>
+`;

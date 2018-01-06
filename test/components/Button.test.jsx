@@ -12,7 +12,7 @@ describe('Button', () => {
     expect(test.Button.find('button')).toHaveLength(1)
     expect(test.Button.props().className).toBe('btn btn-default')
     expect(test.Button.text()).toBe('Foo')
-    expect(test.Button.html()).toMatchSnapshot()
+    expect(test.Button).toMatchSnapshot()
   })
 
   it('has a configurable className', () => {

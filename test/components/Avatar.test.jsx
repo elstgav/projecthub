@@ -13,7 +13,7 @@ describe('Avatar', () => {
   it('displays a single <img>', () => {
     expect(test.Avatar.find('img')).toHaveLength(1)
     expect(test.Avatar.props().className).toBe('avatar')
-    expect(test.Avatar.html()).toMatchSnapshot()
+    expect(test.Avatar).toMatchSnapshot()
   })
 
   it('has a default size', () => {

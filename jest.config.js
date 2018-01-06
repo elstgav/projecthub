@@ -11,4 +11,8 @@ module.exports = {
   ],
 
   setupTestFrameworkScriptFile: './test/support/jest-environment',
+
+  snapshotSerializers: [
+    'enzyme-to-json/serializer',
+  ],
 }

@@ -1,3 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropdown displays a <Dropdown> element 1`] = `"<div class=\\"projecthub-dropdown dropdown\\"><button aria-expanded=\\"false\\" aria-haspopup=\\"true\\" class=\\"btn\\">Open me</button><div class=\\"dropdown-menu-content f5\\" aria-expanded=\\"false\\"><ul class=\\"dropdown-menu dropdown-menu-sw\\">Pick me</ul></div></div>"`;
+exports[`Dropdown displays a <Dropdown> element 1`] = `
+<div
+  className="projecthub-dropdown dropdown"
+>
+  <button
+    aria-expanded={false}
+    aria-haspopup={true}
+    className="btn"
+    onClick={[Function]}
+  >
+    Open me
+  </button>
+  <div
+    aria-expanded={false}
+    className="dropdown-menu-content f5"
+  >
+    <ul
+      className="dropdown-menu dropdown-menu-sw"
+    >
+      Pick me
+    </ul>
+  </div>
+</div>
+`;
