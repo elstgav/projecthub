@@ -46,6 +46,10 @@ React’s dev tools Chrome Extension unfortunately can’t inspect other extensi
 
 ## Changelog
 
+### 0.0.1.3 (January 8, 2018)
+
+* Fix label filtering
+
 ### 0.0.1.2 (January 4, 2018)
 
 * Fix link styling issues
