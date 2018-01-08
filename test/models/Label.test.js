@@ -13,7 +13,9 @@ describe('Label', () => {
           data-label="Priority 2"
           style="background-color: #00ff00; color: #fff;"
           type="button"
-        >Foo Bar</button>
+        >
+          Foo Bar
+        </button>
       `)
 
       const label = Label.fromLabelElement(labelElement)
