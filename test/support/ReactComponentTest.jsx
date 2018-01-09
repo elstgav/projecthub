@@ -6,7 +6,7 @@ import { Memoized } from 'src/utils'
 
 export default class ReactComponentTest {
   static tests = []
-  static renderMethods = { shallow, mount, render }
+  static enzymeRenderers = { shallow, mount, render }
 
   /**
    * ReactComponentTest.resetAll()
@@ -39,7 +39,7 @@ export default class ReactComponentTest {
    * @param   {React}   Component
    *   The React component you want to test
    *
-   * @param   {String}  renderMethod  (shallow)
+   * @param   {String}  enzymeRenderer  (shallow)
    *   The enzyme render method to use for rendering the component
    *   One of: shallow|mount|render
    *   Defaults to shallow
@@ -47,11 +47,11 @@ export default class ReactComponentTest {
    *
    * @return  {ReactComponentTest}
    */
-  constructor(Component, renderMethod = 'shallow') {
-    this.props         = {}
-    this.enzymeOptions = {}
-    this.component     = Component
-    this.render        = ReactComponentTest.renderMethods[renderMethod]
+  constructor(Component, enzymeRenderer = 'shallow') {
+    this.props          = {}
+    this.enzymeOptions  = {}
+    this.component      = Component
+    this.enzymeRenderer = ReactComponentTest.enzymeRenderers[enzymeRenderer]
 
     ReactComponentTest.tests.push(this)
 
@@ -87,7 +87,7 @@ export default class ReactComponentTest {
    */
   @Memoized
   get rendered() {
-    return this.render(<this.component {...this.props} />, this.enzymeOptions)
+    return this.enzymeRenderer(<this.component {...this.props} />, this.enzymeOptions)
   }
 
   /**
