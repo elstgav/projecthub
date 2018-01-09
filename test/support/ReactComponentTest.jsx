@@ -91,6 +91,35 @@ export default class ReactComponentTest {
   }
 
   /**
+   * .nextTick()
+   *
+   * lets you check the component’s render state after process.nextTick(), useful for when the component’s render depends on
+   * an asynchronous call.
+   *
+   * @example awaiting the next render…
+   *   const test = new ReactComponentTest(LoadingWindow)
+   *   test.LoadingWindow.simulate('click')
+   *
+   *   expect(test.LoadingWindow.text()).toBe('Loading…')
+   *
+   *   // Need to wait for async functionality…
+   *   await test.nextTick()
+   *
+   *   // Now the async functionality should be done
+   *   expect(test.LoadingWindow.text()).toBe('Loaded!')
+   *
+   * @return  {Promise}  A promise that resolves on process.nextTick()
+   */
+  nextTick() {
+    return new Promise((resolve) => {
+      process.nextTick(() => {
+        this.rendered.update()
+        resolve()
+      })
+    })
+  }
+
+  /**
    * .reset()
    *
    * Resets the component’s `.props` and `.enzymeOptions`, so it can be rendered anew
