@@ -36,13 +36,11 @@ export default class ReactComponentTest {
     return this.render(<this.component {...this.props} />, this.options)
   }
 
-  /* eslint-disable no-underscore-dangle */
   reset() {
     this.props   = {}
     this.options = {}
-    if (this.__memoized__) this.__memoized__.clear()
+    if (this.__memoized__) this.__memoized__.clear() // eslint-disable-line no-underscore-dangle
   }
-  /* eslint-enable */
 }
 
 beforeEach(() => {
