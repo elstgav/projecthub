@@ -66,7 +66,7 @@ describe('Dropdown', () => {
     const mounted = new ReactComponentTest(Dropdown, 'mount')
 
     beforeEach(() => {
-      mounted.options = {
+      mounted.enzymeOptions = {
         attachTo: document.body.appendChild(document.createElement('div')),
       }
 
