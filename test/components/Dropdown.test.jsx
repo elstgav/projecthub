@@ -63,14 +63,13 @@ describe('Dropdown', () => {
   })
 
   describe('when open', () => {
-    const mounted = new ReactComponentTest(Dropdown, 'mount')
-
     beforeEach(() => {
-      mounted.enzymeOptions = {
+      test.enzymeRenderer = ReactComponentTest.enzymeRenderers.mount
+      test.enzymeOptions = {
         attachTo: document.body.appendChild(document.createElement('div')),
       }
 
-      mounted.props = {
+      test.props = {
         buttonText: 'Open me',
         children: (
           <Aux>
@@ -80,25 +79,25 @@ describe('Dropdown', () => {
         ),
       }
 
-      mounted.Dropdown.setState({ isDropdownOpen: true })
+      test.Dropdown.setState({ isDropdownOpen: true })
     })
 
     it('stays open when you click inside the dropdown', () => {
-      expect(mounted.Dropdown.state('isDropdownOpen')).toBe(true)
+      expect(test.Dropdown.state('isDropdownOpen')).toBe(true)
       simulant.fire(document.body.querySelector('.test-content'), 'click')
-      expect(mounted.Dropdown.state('isDropdownOpen')).toBe(true)
+      expect(test.Dropdown.state('isDropdownOpen')).toBe(true)
     })
 
     it('closes itself when you click a dropdown item', () => {
-      expect(mounted.Dropdown.state('isDropdownOpen')).toBe(true)
+      expect(test.Dropdown.state('isDropdownOpen')).toBe(true)
       simulant.fire(document.querySelector('.dropdown-item'), 'click')
-      expect(mounted.Dropdown.state('isDropdownOpen')).toBe(false)
+      expect(test.Dropdown.state('isDropdownOpen')).toBe(false)
     })
 
     it('closes itself when you click outside the dropdown', () => {
-      expect(mounted.Dropdown.state('isDropdownOpen')).toBe(true)
+      expect(test.Dropdown.state('isDropdownOpen')).toBe(true)
       simulant.fire(document.body, 'click')
-      expect(mounted.Dropdown.state('isDropdownOpen')).toBe(false)
+      expect(test.Dropdown.state('isDropdownOpen')).toBe(false)
     })
   })
 })
