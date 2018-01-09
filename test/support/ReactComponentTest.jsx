@@ -36,16 +36,28 @@ export default class ReactComponentTest {
    * @example A static-rendered component
    *   new ReactComponentTest(UserAvatar, render)
    *
-   * @param   {React}   Component
+   * @param {React.Component} Component
    *   The React component you want to test
    *
-   * @param   {String}  enzymeRenderer  (shallow)
+   * @param {string} [enzymeRenderer='shallow']
    *   The enzyme render method to use for rendering the component
    *   One of: shallow|mount|render
    *   Defaults to shallow
    *   See http://airbnb.io/enzyme/
    *
-   * @return  {ReactComponentTest}
+   * @return {ReactComponentTest}
+   *
+   * @property {Object} props
+   *   The props to pass to the React component
+   *
+   * @property {Object} enzymeOptions
+   *   Options to pass to the Enzyme render method
+   *
+   * @property {React.Component} component
+   *   The component to render
+   *
+   * @property {function} enzymeRenderer
+   *   The enzyme render method used to render the component
    */
   constructor(Component, enzymeRenderer = 'shallow') {
     this.props          = {}
@@ -81,7 +93,7 @@ export default class ReactComponentTest {
    *
    * @alias [Component.name]
    *
-   * @return  {EnzymeWrapper}  The component rendered by enzyme
+   * @return {EnzymeWrapper} The component rendered by enzyme
    *
    * @see http://airbnb.io/enzyme/
    */
@@ -108,7 +120,7 @@ export default class ReactComponentTest {
    *   // Now the async functionality should be done
    *   expect(test.LoadingWindow.text()).toBe('Loaded!')
    *
-   * @return  {Promise}  A promise that resolves on process.nextTick()
+   * @return {Promise} A promise that resolves on process.nextTick()
    */
   nextTick() {
     return new Promise((resolve) => {
