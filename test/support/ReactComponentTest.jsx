@@ -8,15 +8,50 @@ export default class ReactComponentTest {
   static tests = []
   static renderMethods = { shallow, mount, render }
 
+  /**
+   * ReactComponentTest.resetAll()
+   *
+   * Calls .reset() on every instance of ReactComponentTest
+   */
   static resetAll() {
     ReactComponentTest.tests.map(test => test.reset())
   }
 
+  /**
+   * ReactComponentTest
+   *
+   * Lets you easily create tests of React components, using enzyme’s rendering methods. The component is reset for every
+   * test, and isn’t rendered until you call .rendered/.ComponentName, so you can change props right up until render.
+   *
+   * @constructor
+   *
+   * @example A shallow-rendered component
+   *   const test = new ReactComponentTest(UserAvatar)
+   *   test.props = { user: testUser }
+   *   expect(test.UserAvatar.find('img').prop('src')).toBe(testUser.avatarSrc)
+   *
+   * @example A mounted component
+   *   new ReactComponentTest(UserAvatar, mount)
+   *
+   * @example A static-rendered component
+   *   new ReactComponentTest(UserAvatar, render)
+   *
+   * @param   {React}   Component
+   *   The React component you want to test
+   *
+   * @param   {String}  renderMethod  (shallow)
+   *   The enzyme render method to use for rendering the component
+   *   One of: shallow|mount|render
+   *   Defaults to shallow
+   *   See http://airbnb.io/enzyme/
+   *
+   * @return  {ReactComponentTest}
+   */
   constructor(Component, renderMethod = 'shallow') {
-    this.props     = {}
-    this.options   = {}
-    this.component = Component
-    this.render    = ReactComponentTest.renderMethods[renderMethod]
+    this.props         = {}
+    this.enzymeOptions = {}
+    this.component     = Component
+    this.render        = ReactComponentTest.renderMethods[renderMethod]
 
     ReactComponentTest.tests.push(this)
 
@@ -31,14 +66,38 @@ export default class ReactComponentTest {
     })
   }
 
+  /**
+   * .rendered
+   *
+   * rendered returns the Enzyme-rendered component, based on the current `.props` and `.enzymeOptions`
+   *
+   * ReactComponentTest also generates an alias of this method based off the tested component’s name, for better readability
+   * of tests
+   *
+   * @example
+   *   const test = new ReactComponentTest(Button)
+   *   // test.Button === test.rendered
+   *   expect(test.Button.text()).toBe('Click me')
+   *
+   * @alias [Component.name]
+   *
+   * @return  {EnzymeWrapper}  The component rendered by enzyme
+   *
+   * @see http://airbnb.io/enzyme/
+   */
   @Memoized
   get rendered() {
-    return this.render(<this.component {...this.props} />, this.options)
+    return this.render(<this.component {...this.props} />, this.enzymeOptions)
   }
 
+  /**
+   * .reset()
+   *
+   * Resets the component’s `.props` and `.enzymeOptions`, so it can be rendered anew
+   */
   reset() {
     this.props   = {}
-    this.options = {}
+    this.enzymeOptions = {}
     if (this.__memoized__) this.__memoized__.clear() // eslint-disable-line no-underscore-dangle
   }
 }
