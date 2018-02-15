@@ -72,46 +72,4 @@ describe('App', () => {
       expect(App.hiddenClass).toBe('test-is-hidden')
     })
   })
-
-  describe('.init()', () => {
-    const {
-      addTooltipsToHeaderLinks,
-    } = App
-
-    beforeEach(() => {
-      App.addTooltipsToHeaderLinks = jest.fn()
-    })
-
-    afterEach(() => {
-      App.addTooltipsToHeaderLinks = addTooltipsToHeaderLinks
-    })
-
-    it('adds tooltips', () => {
-      App.init()
-
-      expect(App.addTooltipsToHeaderLinks).toHaveBeenCalled()
-    })
-  })
-
-  describe('.addTooltipsToHeaderLinks()', () => {
-    it('adds tooltip classes and aria-labels to project header links ', () => {
-      document.body.innerHTML = oneLine`
-        <button class="project-header-link">First link</button>
-        <button class="project-header-link" aria-label="Pre-existing label">Second link</button>
-        <a href="#!" class="project-header-link">Third link</a>
-      `
-      const link1 = document.querySelector('.project-header-link:nth-child(1)')
-      const link2 = document.querySelector('.project-header-link:nth-child(2)')
-      const link3 = document.querySelector('.project-header-link:nth-child(3)')
-
-      App.addTooltipsToHeaderLinks()
-
-      expect(link1.classList).toContain('tooltipped')
-      expect(link1.getAttribute('aria-label')).toBe('First link')
-      expect(link2.classList).toContain('tooltipped')
-      expect(link2.getAttribute('aria-label')).toBe('Pre-existing label')
-      expect(link3.classList).toContain('tooltipped')
-      expect(link3.getAttribute('aria-label')).toBe('Third link')
-    })
-  })
 })

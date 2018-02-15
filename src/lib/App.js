@@ -38,20 +38,6 @@ const App = {
   get hiddenClass() {
     return `${this.namespace}-is-hidden`
   },
-
-  init() {
-    this.addTooltipsToHeaderLinks()
-  },
-
-  addTooltipsToHeaderLinks() {
-    document.querySelectorAll(GitHubSelectors.projectHeaderLink).forEach((link) => {
-      if (!link.hasAttribute('aria-label')) {
-        link.setAttribute('aria-label', link.textContent.trim())
-      }
-
-      link.classList.add('tooltipped', 'tooltipped-w')
-    })
-  },
 }
 
 export default App
