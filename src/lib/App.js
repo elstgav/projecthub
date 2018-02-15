@@ -19,7 +19,7 @@ const App = {
 
   @Memoized
   get addCardsSandbox() {
-    const addLink = document.querySelector('.project-header-link[aria-label="Add cards"]')
+    const addLink = document.querySelector('.project-header-link[aria-label="Toggle add cards to project"]')
     if (addLink) return addLink.parentElement
 
     throw new Error('Could not find “Add cards” link!')
@@ -27,7 +27,7 @@ const App = {
 
   @Memoized
   get menuSandbox() {
-    const menuLink = document.querySelector('.project-header-link[aria-label="Menu"]')
+    const menuLink = document.querySelector('.project-header-link[aria-label="Toggle project menu"]')
     if (menuLink) return menuLink.parentElement
 
     throw new Error('Could not find “Menu” link!')
