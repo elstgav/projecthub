@@ -73,7 +73,7 @@ const ProjectBoard = {
     return labels
   },
 
-  get isNewColumnButtonHidden() {
+  get shouldNewColumnButtonBeHidden() {
     return Session.get(this.CACHE_KEY, this.defaultState).hideNewColumnButton
   },
 
@@ -97,7 +97,7 @@ const ProjectBoard = {
   renderNewColumnButton() {
     if (!this.newColumnButton) return
 
-    this.isNewColumnButtonHidden ? hide(this.newColumnButton) : show(this.newColumnButton)
+    this.shouldNewColumnButtonBeHidden ? hide(this.newColumnButton) : show(this.newColumnButton)
   },
 }
 

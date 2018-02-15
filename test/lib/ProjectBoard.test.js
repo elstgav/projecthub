@@ -141,19 +141,19 @@ describe('ProjectBoard', () => {
     })
   })
 
-  describe('.isNewColumnButtonHidden', () => {
+  describe('.shouldNewColumnButtonBeHidden', () => {
     it('returns false on initial load', () => {
-      expect(ProjectBoard.isNewColumnButtonHidden).toBe(false)
+      expect(ProjectBoard.shouldNewColumnButtonBeHidden).toBe(false)
     })
 
     it('returns true depending on session state', () => {
       Session.set('test-project-board', { hideNewColumnButton: true })
-      expect(ProjectBoard.isNewColumnButtonHidden).toBe(true)
+      expect(ProjectBoard.shouldNewColumnButtonBeHidden).toBe(true)
     })
 
     it('returns false depending on session state', () => {
       Session.set('test-project-board', { hideNewColumnButton: false })
-      expect(ProjectBoard.isNewColumnButtonHidden).toBe(false)
+      expect(ProjectBoard.shouldNewColumnButtonBeHidden).toBe(false)
     })
   })
 
