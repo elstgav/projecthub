@@ -1,3 +1,4 @@
+import { GitHubSelectors } from 'src/lib'
 import { stringToDOM, Memoized } from 'src/utils'
 
 const App = {
@@ -5,21 +6,21 @@ const App = {
 
   @Memoized
   get currentUser() {
-    return document.getElementsByName('octolytics-actor-login')[0].content
+    return document.getElementsByName(GitHubSelectors.names.currentUser)[0].content
   },
 
   @Memoized
   get controlsSandbox() {
     const sandboxElement = stringToDOM(`<div id="${this.namespace}-sandbox" class="ml-2"></div>`)
 
-    document.querySelector('.project-header').lastElementChild.prepend(sandboxElement)
+    document.querySelector(GitHubSelectors.projectHeaderControls).prepend(sandboxElement)
 
     return sandboxElement
   },
 
   @Memoized
   get addCardsSandbox() {
-    const addLink = document.querySelector('.project-header-link[aria-label="Toggle add cards to project"]')
+    const addLink = document.querySelector(GitHubSelectors.addCardsButton)
     if (addLink) return addLink.parentElement
 
     throw new Error('Could not find “Add cards” link!')
@@ -27,7 +28,7 @@ const App = {
 
   @Memoized
   get menuSandbox() {
-    const menuLink = document.querySelector('.project-header-link[aria-label="Toggle project menu"]')
+    const menuLink = document.querySelector(GitHubSelectors.menuButton)
     if (menuLink) return menuLink.parentElement
 
     throw new Error('Could not find “Menu” link!')
@@ -43,7 +44,7 @@ const App = {
   },
 
   addTooltipsToHeaderLinks() {
-    document.querySelectorAll('.project-header-link').forEach((link) => {
+    document.querySelectorAll(GitHubSelectors.projectHeaderLink).forEach((link) => {
       if (!link.hasAttribute('aria-label')) {
         link.setAttribute('aria-label', link.textContent.trim())
       }

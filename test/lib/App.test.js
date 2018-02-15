@@ -21,20 +21,16 @@ describe('App', () => {
   describe('.controlsSandbox', () => {
     it('returns a new element, prepended to the .project-header’s last child', () => {
       document.body.innerHTML = oneLine`
-        <div class="project-header">
+        <div class="project-header-controls">
           <div></div>
           <div></div>
-          <div class="foo">
-            <div></div>
-            <div></div>
-          </div>
         </div>
       `
 
       const controlsSandbox = App.controlsSandbox
 
       expect(controlsSandbox.id).toBe('test-sandbox')
-      expect(document.querySelector('.foo :first-child')).toBe(controlsSandbox)
+      expect(document.querySelector('.project-header-controls :first-child')).toBe(controlsSandbox)
     })
   })
 

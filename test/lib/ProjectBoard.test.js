@@ -14,7 +14,7 @@ describe('ProjectBoard', () => {
 
   describe('.isEditable', () => {
     it('returns true if “Add cards” link is present', () => {
-      document.body.innerHTML = '<a class="project-header-link" aria-label="Add cards"></a>'
+      document.body.innerHTML = '<a class="project-header-link" aria-label="Toggle add cards to project"></a>'
       expect(ProjectBoard.isEditable).toBe(true)
     })
 

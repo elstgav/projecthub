@@ -1,6 +1,6 @@
 import { isEmpty, uniqBy, sortBy } from 'lodash'
 
-import { Session } from 'src/lib'
+import { GitHubSelectors, Session } from 'src/lib'
 import { Label, User } from 'src/models'
 import { Memoized, show, hide } from 'src/utils'
 
@@ -14,19 +14,19 @@ const ProjectBoard = {
 
   @Memoized
   get isEditable() {
-    return !!document.querySelector('.project-header-link[aria-label="Add cards"]')
+    return !!document.querySelector(GitHubSelectors.addCardsButton)
   },
 
   @Memoized
   get container() {
-    return document.querySelector('.project-columns-container')
+    return document.querySelector(GitHubSelectors.projectColumnsContainer)
   },
 
   @Memoized
   get afterLoaded() {
     return new Promise((resolve) => {
       const observer = new MutationObserver(() => {
-        const finishedLoading = this.container.querySelector('include-fragment') === null
+        const finishedLoading = this.container.querySelector(GitHubSelectors.projectLoadingIndicator) === null
 
         if (finishedLoading) {
           resolve()
@@ -40,19 +40,19 @@ const ProjectBoard = {
 
   @Memoized
   get newColumnButton() {
-    return this.container.querySelector('.js-new-project-column-container .js-new-column-button')
+    return this.container.querySelector(GitHubSelectors.newColumnButton)
   },
 
   get cards() {
-    return Array.from(this.container.querySelectorAll('.issue-card'))
+    return Array.from(this.container.querySelectorAll(GitHubSelectors.card))
   },
 
   get columns() {
-    return Array.from(this.container.querySelectorAll('.project-column'))
+    return Array.from(this.container.querySelectorAll(GitHubSelectors.column))
   },
 
   get assignees() {
-    const avatars = Array.from(this.container.querySelectorAll('.avatar img'))
+    const avatars = Array.from(this.container.querySelectorAll(GitHubSelectors.avatar))
     if (isEmpty(avatars)) return []
 
     let users = avatars.map(avatar => User.fromAvatarElement(avatar))
@@ -63,7 +63,7 @@ const ProjectBoard = {
   },
 
   get labels() {
-    let labels = Array.from(this.container.querySelectorAll('.issue-card-label'))
+    let labels = Array.from(this.container.querySelectorAll(GitHubSelectors.label))
     if (isEmpty(labels)) return []
 
     labels = labels.map(label => Label.fromLabelElement(label))
