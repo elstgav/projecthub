@@ -1,7 +1,7 @@
 import Icon from 'components/Icon'
-import ReactComponentTest from 'test/support/ReactComponentTest'
+import EnzymeTest from 'test/support/EnzymeTest'
 
-const test = new ReactComponentTest(Icon)
+const test = new EnzymeTest(Icon)
 
 describe('Icon', () => {
   beforeEach(() => {

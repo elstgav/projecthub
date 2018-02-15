@@ -1,9 +1,9 @@
 import Avatar from 'components/Avatar'
-import ReactComponentTest from 'test/support/ReactComponentTest'
+import EnzymeTest from 'test/support/EnzymeTest'
 
 import { cachedUser } from 'test/fixtures'
 
-const test = new ReactComponentTest(Avatar)
+const test = new EnzymeTest(Avatar)
 
 describe('Avatar', () => {
   beforeEach(() => {

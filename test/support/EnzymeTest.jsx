@@ -4,21 +4,21 @@ import { shallow, mount, render } from 'enzyme'
 import { Memoized } from 'src/utils'
 
 
-export default class ReactComponentTest {
+export default class EnzymeTest {
   static tests = []
-  static enzymeRenderers = { shallow, mount, render }
+  static renderers = { shallow, mount, render }
 
   /**
-   * ReactComponentTest.resetAll()
+   * EnzymeTest.resetAll()
    *
-   * Calls .reset() on every instance of ReactComponentTest
+   * Calls .reset() on every instance of EnzymeTest
    */
   static resetAll() {
-    ReactComponentTest.tests.map(test => test.reset())
+    EnzymeTest.tests.map(test => test.reset())
   }
 
   /**
-   * ReactComponentTest
+   * EnzymeTest
    *
    * Lets you easily create tests of React components, using enzyme’s rendering methods. The component is reset for every
    * test, and isn’t rendered until you call .rendered/.ComponentName, so you can change props right up until render.
@@ -26,49 +26,49 @@ export default class ReactComponentTest {
    * @constructor
    *
    * @example A shallow-rendered component
-   *   const test = new ReactComponentTest(UserAvatar)
+   *   const test = new EnzymeTest(UserAvatar)
    *   test.props = { user: testUser }
    *   expect(test.UserAvatar.find('img').prop('src')).toBe(testUser.avatarSrc)
    *
    * @example A mounted component
-   *   new ReactComponentTest(UserAvatar, mount)
+   *   new EnzymeTest(UserAvatar, mount)
    *
    * @example A static-rendered component
-   *   new ReactComponentTest(UserAvatar, render)
+   *   new EnzymeTest(UserAvatar, render)
    *
    * @param {React.Component} Component
    *   The React component you want to test
    *
-   * @param {string} [enzymeRenderer='shallow']
+   * @param {string} [renderer='shallow']
    *   The enzyme render method to use for rendering the component
    *   One of: shallow|mount|render
    *   Defaults to shallow
    *   See http://airbnb.io/enzyme/
    *
-   * @return {ReactComponentTest}
+   * @return {EnzymeTest}
    *
    * @property {Object} props
    *   The props to pass to the React component
    *
-   * @property {Object} enzymeOptions
-   *   Options to pass to the Enzyme render method
+   * @property {Object} renderOptions
+   *   options to pass to the Enzyme render method
    *
    * @property {React.Component} component
    *   The component to render
    *
-   * @property {function} enzymeRenderer
+   * @property {function} renderer
    *   The enzyme render method used to render the component
    */
-  constructor(Component, enzymeRenderer = 'shallow') {
-    this.props          = {}
-    this.enzymeOptions  = {}
-    this.component      = Component
-    this.enzymeRenderer = ReactComponentTest.enzymeRenderers[enzymeRenderer]
+  constructor(Component, renderer = 'shallow') {
+    this.props     = {}
+    this.component = Component
+    this.renderer  = EnzymeTest.renderers[renderer]
+    this.renderOptions   = {}
 
-    ReactComponentTest.tests.push(this)
+    EnzymeTest.tests.push(this)
 
     // Setup dynamic Component property. e.g:
-    // const test = new ReactComponentTest(FooBar)
+    // const test = new EnzymeTest(FooBar)
     // test.FooBar => the rendered component
     return new Proxy(this, {
       get: (target, prop) => {
@@ -81,13 +81,13 @@ export default class ReactComponentTest {
   /**
    * .rendered
    *
-   * rendered returns the Enzyme-rendered component, based on the current `.props` and `.enzymeOptions`
+   * rendered returns the Enzyme-rendered component, based on the current `.props` and `.renderOptions`
    *
-   * ReactComponentTest also generates an alias of this method based off the tested component’s name, for better readability
+   * EnzymeTest also generates an alias of this method based off the tested component’s name, for better readability
    * of tests
    *
    * @example
-   *   const test = new ReactComponentTest(Button)
+   *   const test = new EnzymeTest(Button)
    *   // test.Button === test.rendered
    *   expect(test.Button.text()).toBe('Click me')
    *
@@ -99,7 +99,7 @@ export default class ReactComponentTest {
    */
   @Memoized
   get rendered() {
-    return this.enzymeRenderer(<this.component {...this.props} />, this.enzymeOptions)
+    return this.renderer(<this.component {...this.props} />, this.renderOptions)
   }
 
   /**
@@ -109,7 +109,7 @@ export default class ReactComponentTest {
    * an asynchronous call.
    *
    * @example awaiting the next render…
-   *   const test = new ReactComponentTest(LoadingWindow)
+   *   const test = new EnzymeTest(LoadingWindow)
    *   test.LoadingWindow.simulate('click')
    *
    *   expect(test.LoadingWindow.text()).toBe('Loading…')
@@ -134,15 +134,15 @@ export default class ReactComponentTest {
   /**
    * .reset()
    *
-   * Resets the component’s `.props` and `.enzymeOptions`, so it can be rendered anew
+   * Resets the component’s `.props` and `.renderOptions`, so it can be rendered anew
    */
   reset() {
     this.props   = {}
-    this.enzymeOptions = {}
+    this.renderOptions = {}
     if (this.__memoized__) this.__memoized__.clear() // eslint-disable-line no-underscore-dangle
   }
 }
 
 beforeEach(() => {
-  ReactComponentTest.resetAll()
+  EnzymeTest.resetAll()
 })

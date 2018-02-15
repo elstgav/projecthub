@@ -1,9 +1,9 @@
 import OptionVal from 'components/SelectButton/OptionVal'
-import ReactComponentTest from 'test/support/ReactComponentTest'
+import EnzymeTest from 'test/support/EnzymeTest'
 
 import { cachedUser, cachedUserWithNoName, fooLabel } from 'test/fixtures'
 
-const test = new ReactComponentTest(OptionVal, 'mount')
+const test = new EnzymeTest(OptionVal, 'mount')
 
 describe('OptionVal', () => {
   describe('When rendering a plain object', () => {

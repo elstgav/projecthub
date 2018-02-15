@@ -1,7 +1,7 @@
 import Button from 'components/Button'
-import ReactComponentTest from 'test/support/ReactComponentTest'
+import EnzymeTest from 'test/support/EnzymeTest'
 
-const test = new ReactComponentTest(Button)
+const test = new EnzymeTest(Button)
 
 describe('Button', () => {
   beforeEach(() => {
