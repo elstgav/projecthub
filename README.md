@@ -46,6 +46,13 @@ React’s dev tools Chrome Extension unfortunately can’t inspect other extensi
 
 ## Changelog
 
+### 0.0.2.0 (February 15, 2018)
+
+* Adjusts column layout so 5 columns fit in a 1440px-wide window
+* Permanently remembers your “Hide ‘Add column’ button” preference
+* Remove tooltips from project header buttons
+* Fix “add items” and “menu” dropdowns
+
 ### 0.0.1.3 (January 8, 2018)
 
 * Fix label filtering
