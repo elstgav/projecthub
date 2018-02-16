@@ -13,6 +13,10 @@
   margin-left: 0 !important;
 }
 
+/* Set min-width so 5 columns fit on a standard 1440px-wide screen */
+.project-page-responsive .project-column {
+  min-width: 315px !important;
+}
 
 /**********************/
 /* Project Hub Styles */
