@@ -1,11 +1,11 @@
 import { oneLine } from 'common-tags'
 
 import { Label, User } from 'src/models'
-import { App, ProjectBoard, Session } from 'src/lib'
+import { App, ProjectBoard, Storage } from 'src/lib'
 
 describe('ProjectBoard', () => {
   beforeEach(() => {
-    ProjectBoard.CACHE_KEY = 'test-project-board'
+    ProjectBoard.CACHE_KEY = 'testProjectBoard'
   })
 
   afterEach(() => {
@@ -141,19 +141,19 @@ describe('ProjectBoard', () => {
     })
   })
 
-  describe('.shouldNewColumnButtonBeHidden', () => {
-    it('returns false on initial load', () => {
-      expect(ProjectBoard.shouldNewColumnButtonBeHidden).toBe(false)
+  describe('.shouldHideNewColumnButton', () => {
+    it('returns false on initial load', async () => {
+      expect(await ProjectBoard.shouldHideNewColumnButton()).toBe(false)
     })
 
-    it('returns true depending on session state', () => {
-      Session.set('test-project-board', { hideNewColumnButton: true })
-      expect(ProjectBoard.shouldNewColumnButtonBeHidden).toBe(true)
+    it('returns true depending on storage state', async () => {
+      await Storage.set({ testProjectBoard: { hideNewColumnButton: true } })
+      expect(await ProjectBoard.shouldHideNewColumnButton()).toBe(true)
     })
 
-    it('returns false depending on session state', () => {
-      Session.set('test-project-board', { hideNewColumnButton: false })
-      expect(ProjectBoard.shouldNewColumnButtonBeHidden).toBe(false)
+    it('returns false depending on storage state', async () => {
+      await Storage.set({ testProjectBoard: { hideNewColumnButton: false } })
+      expect(await ProjectBoard.shouldHideNewColumnButton()).toBe(false)
     })
   })
 
@@ -193,26 +193,26 @@ describe('ProjectBoard', () => {
       `
     })
 
-    it('does nothing if there’s no “new column” button', () => {
+    it('does nothing if there’s no “new column” button', async () => {
       ProjectBoard.container.innerHTML = ''
-      expect(ProjectBoard.toggleNewColumnButton()).toBeUndefined()
+      expect(await ProjectBoard.toggleNewColumnButton()).toBeUndefined()
     })
 
-    it('hides the “new column” button initially', () => {
-      ProjectBoard.toggleNewColumnButton()
+    it('hides the “new column” button initially', async () => {
+      await ProjectBoard.toggleNewColumnButton()
       expect(ProjectBoard.newColumnButton.classList).toContain(App.hiddenClass)
     })
 
-    it('hides the “new column” button if previously shown', () => {
+    it('hides the “new column” button if previously shown', async () => {
       ProjectBoard.newColumnButton.classList.add(App.hiddenClass)
-      Session.set('test-project-board', { hideNewColumnButton: true })
-      ProjectBoard.toggleNewColumnButton()
+      await Storage.set({ testProjectBoard: { hideNewColumnButton: true } })
+      await ProjectBoard.toggleNewColumnButton()
       expect(ProjectBoard.newColumnButton.classList).not.toContain(App.hiddenClass)
     })
 
-    it('shows the “new column” button if previously hidden', () => {
-      Session.set('test-project-board', { hideNewColumnButton: false })
-      ProjectBoard.toggleNewColumnButton()
+    it('shows the “new column” button if previously hidden', async () => {
+      await Storage.set({ testProjectBoard: { hideNewColumnButton: false } })
+      await ProjectBoard.toggleNewColumnButton()
       expect(ProjectBoard.newColumnButton.classList).toContain(App.hiddenClass)
     })
   })
@@ -228,22 +228,22 @@ describe('ProjectBoard', () => {
       `
     })
 
-    it('does nothing if there’s no “new column” button', () => {
+    it('does nothing if there’s no “new column” button', async () => {
       ProjectBoard.container.innerHTML = ''
-      expect(ProjectBoard.renderNewColumnButton()).toBeUndefined()
+      expect(await ProjectBoard.renderNewColumnButton()).toBeUndefined()
     })
 
-    it('hides the “new column” button depending on session state', () => {
-      Session.set('test-project-board', { hideNewColumnButton: true })
-      ProjectBoard.renderNewColumnButton()
+    it('hides the “new column” button depending on storag state', async () => {
+      await Storage.set({ testProjectBoard: { hideNewColumnButton: true } })
+      await ProjectBoard.renderNewColumnButton()
       expect(ProjectBoard.newColumnButton.classList).toContain(App.hiddenClass)
     })
 
-    it('shows the “new column” button depending on session state', () => {
+    it('shows the “new column” button depending on storag state', async () => {
       ProjectBoard.newColumnButton.classList.add(App.hiddenClass)
 
-      Session.set('test-project-board', { hideNewColumnButton: false })
-      ProjectBoard.renderNewColumnButton()
+      await Storage.set({ testProjectBoard: { hideNewColumnButton: false } })
+      await ProjectBoard.renderNewColumnButton()
       expect(ProjectBoard.newColumnButton.classList).not.toContain(App.hiddenClass)
     })
   })

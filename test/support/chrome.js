@@ -15,8 +15,17 @@ global.chrome = {
           case 'String':
             payload[items] = storage[items]
             break
+
           case 'Array':
-            items.forEach((item) => { payload[item] = storage[item] })
+            items.forEach((item) => {
+              payload[item] = storage[item]
+            })
+            break
+
+          case 'Object':
+            Object.keys(items).forEach((item) => {
+              payload[item] = storage[item] || items[item]
+            })
             break
         }
         callback(payload)

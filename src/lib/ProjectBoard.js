@@ -1,12 +1,12 @@
 import { isEmpty, uniqBy, sortBy } from 'lodash'
 
-import { GitHubSelectors, Session } from 'src/lib'
+import { GitHubSelectors, Storage } from 'src/lib'
 import { Label, User } from 'src/models'
 import { Memoized, show, hide } from 'src/utils'
 
 
 const ProjectBoard = {
-  CACHE_KEY: 'board-state',
+  CACHE_KEY: 'projectBoardState',
 
   defaultState: {
     hideNewColumnButton: false,
@@ -73,31 +73,37 @@ const ProjectBoard = {
     return labels
   },
 
-  get shouldNewColumnButtonBeHidden() {
-    return Session.get(this.CACHE_KEY, this.defaultState).hideNewColumnButton
-  },
-
   async init() {
     await this.afterLoaded
 
     this.renderNewColumnButton()
   },
 
-  toggleNewColumnButton() {
-    if (!this.newColumnButton) return
-
-    Session.set(this.CACHE_KEY, prev => ({
-      ...prev,
-      hideNewColumnButton: !(prev && prev.hideNewColumnButton),
-    }))
-
-    this.renderNewColumnButton()
+  async shouldHideNewColumnButton() {
+    const boardState = await Storage.get({
+      [this.CACHE_KEY]: this.defaultState,
+    })
+    return boardState[this.CACHE_KEY].hideNewColumnButton
   },
 
-  renderNewColumnButton() {
+  async toggleNewColumnButton() {
     if (!this.newColumnButton) return
 
-    this.shouldNewColumnButtonBeHidden ? hide(this.newColumnButton) : show(this.newColumnButton)
+    const prevState = await Storage.get(this.CACHE_KEY)
+    Storage.set({
+      [this.CACHE_KEY]: {
+        ...prevState,
+        hideNewColumnButton: !(prevState && prevState.hideNewColumnButton),
+      },
+    })
+
+    await this.renderNewColumnButton()
+  },
+
+  async renderNewColumnButton() {
+    if (!this.newColumnButton) return
+    const shouldHide = await this.shouldHideNewColumnButton()
+    shouldHide ? hide(this.newColumnButton) : show(this.newColumnButton)
   },
 }
 

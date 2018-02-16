@@ -9,17 +9,23 @@ import Dropdown from 'components/Dropdown'
 export default class MenuDropdown extends React.PureComponent {
   constructor(props) {
     super(props)
-
-    this.state = { isNewColumnButtonHidden: ProjectBoard.isNewColumnButtonHidden }
+    this.state = { isNewColumnButtonHidden: false }
+    this.syncNewColumnButtonHiddenState()
   }
 
   onSettingsClick = () => {
     chrome.runtime.sendMessage({ openOptionsPage: true })
   }
 
-  onToggleNewColumnButton = () => {
-    ProjectBoard.toggleNewColumnButton()
-    this.setState({ isNewColumnButtonHidden: ProjectBoard.isNewColumnButtonHidden })
+  onToggleNewColumnButton = async () => {
+    await ProjectBoard.toggleNewColumnButton()
+    this.syncNewColumnButtonHiddenState()
+  }
+
+  async syncNewColumnButtonHiddenState() {
+    this.setState({
+      isNewColumnButtonHidden: await ProjectBoard.shouldHideNewColumnButton(),
+    })
   }
 
   render() {
