@@ -20,8 +20,9 @@ export default class EnzymeTest {
   /**
    * EnzymeTest
    *
-   * Lets you easily create tests of React components, using enzyme’s rendering methods. The component is reset for every
-   * test, and isn’t rendered until you call .rendered/.ComponentName, so you can change props right up until render.
+   * Lets you easily create tests of React components, using enzyme’s rendering methods. The
+   * component is reset for every test, and isn’t rendered until you call .rendered/.ComponentName,
+   * so you can change props right up until render.
    *
    * @constructor
    *
@@ -81,10 +82,10 @@ export default class EnzymeTest {
   /**
    * .rendered
    *
-   * rendered returns the Enzyme-rendered component, based on the current `.props` and `.renderOptions`
+   * returns the Enzyme-rendered component, based on the current `.props` and `.renderOptions`
    *
-   * EnzymeTest also generates an alias of this method based off the tested component’s name, for better readability
-   * of tests
+   * EnzymeTest also generates an alias of this method based off the tested component’s name, for
+   * better readability of tests
    *
    * @example
    *   const test = new EnzymeTest(Button)
@@ -105,8 +106,8 @@ export default class EnzymeTest {
   /**
    * .nextTick()
    *
-   * lets you check the component’s render state after process.nextTick(), useful for when the component’s render depends on
-   * an asynchronous call.
+   * lets you check the component’s render state after process.nextTick(), useful for when the
+   * component’s render depends on an asynchronous call.
    *
    * @example awaiting the next render…
    *   const test = new EnzymeTest(LoadingWindow)

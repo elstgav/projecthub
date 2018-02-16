@@ -26,12 +26,10 @@ const ProjectBoard = {
   get afterLoaded() {
     return new Promise((resolve) => {
       const observer = new MutationObserver(() => {
-        const finishedLoading = this.container.querySelector(GitHubSelectors.projectLoadingIndicator) === null
+        if (this.container.querySelector(GitHubSelectors.projectLoadingIndicator)) return
 
-        if (finishedLoading) {
-          resolve()
-          observer.disconnect()
-        }
+        resolve()
+        observer.disconnect()
       })
 
       observer.observe(this.container, { childList: true, subtree: true })
