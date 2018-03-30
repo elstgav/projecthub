@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.0.2.1 (March 30, 2018)
+
+* Fixes an outdated CSS selector for smaller column widths
+
 ### 0.0.2.0 (February 15, 2018)
 
 * Adjusts column layout so 5 columns fit in a 1440px-wide window

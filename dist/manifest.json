@@ -4,7 +4,7 @@
   "name":           "ProjectHub",
   "author":         "Gavin Elster",
   "description":    "Adds useful filters to your GitHub project board",
-  "version":        "0.0.2.0",
+  "version":        "0.0.2.1",
 
   "options_ui": {
     "page":         "options.html",
