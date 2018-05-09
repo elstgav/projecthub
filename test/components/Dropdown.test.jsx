@@ -3,9 +3,9 @@ import simulant from 'simulant'
 
 import Aux from 'src/utils/Aux'
 import Dropdown from 'components/Dropdown'
-import EnzymeTest from 'test/support/EnzymeTest'
+import EnzymeTestWrapper from 'test/support/EnzymeTestWrapper'
 
-const test = new EnzymeTest(Dropdown)
+const test = new EnzymeTestWrapper(Dropdown)
 
 describe('Dropdown', () => {
   beforeEach(() => {
@@ -64,7 +64,7 @@ describe('Dropdown', () => {
 
   describe('when open', () => {
     beforeEach(() => {
-      test.renderer = EnzymeTest.renderers.mount
+      test.renderer = EnzymeTestWrapper.renderers.mount
       test.renderOptions = {
         attachTo: document.body.appendChild(document.createElement('div')),
       }

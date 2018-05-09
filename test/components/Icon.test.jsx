@@ -1,7 +1,7 @@
 import Icon from 'components/Icon'
-import EnzymeTest from 'test/support/EnzymeTest'
+import EnzymeTestWrapper from 'test/support/EnzymeTestWrapper'
 
-const test = new EnzymeTest(Icon)
+const test = new EnzymeTestWrapper(Icon)
 
 describe('Icon', () => {
   beforeEach(() => {

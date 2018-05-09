@@ -3,39 +3,38 @@ import { shallow, mount, render } from 'enzyme'
 
 import { Memoized } from 'src/utils'
 
-
-export default class EnzymeTest {
+/**
+ * EnzymeTestWrapper
+ *
+ * Makes it easy to use Enzyme in your tests without cross-contamination
+ *
+ * @see http://airbnb.io/enzyme/
+ *
+ */
+export default class EnzymeTestWrapper {
   static tests = []
   static renderers = { shallow, mount, render }
 
   /**
-   * EnzymeTest.resetAll()
+   * EnzymeTestWrapper.resetAll()
    *
-   * Calls .reset() on every instance of EnzymeTest
+   * Calls .reset() on every instance of EnzymeTestWrapper
    */
   static resetAll() {
-    EnzymeTest.tests.map(test => test.reset())
+    EnzymeTestWrapper.tests.map(test => test.reset())
   }
 
   /**
-   * EnzymeTest
+   * EnzymeTestWrapper
    *
    * Lets you easily create tests of React components, using enzyme’s rendering methods. The
-   * component is reset for every test, and isn’t rendered until you call .rendered/.ComponentName,
-   * so you can change props right up until render.
+   * component is reset for every test, and isn’t rendered until you call .rendered or
+   * .ComponentName, so you can change props right up until render.
+   *
+   * Originally inspired by the boilerplate suggested here:
+   * https://medium.freecodecamp.org/the-right-way-to-test-react-components-548a4736ab22#df5e
    *
    * @constructor
-   *
-   * @example A shallow-rendered component
-   *   const test = new EnzymeTest(UserAvatar)
-   *   test.props = { user: testUser }
-   *   expect(test.UserAvatar.find('img').prop('src')).toBe(testUser.avatarSrc)
-   *
-   * @example A mounted component
-   *   new EnzymeTest(UserAvatar, mount)
-   *
-   * @example A static-rendered component
-   *   new EnzymeTest(UserAvatar, render)
    *
    * @param {React.Component} Component
    *   The React component you want to test
@@ -46,7 +45,7 @@ export default class EnzymeTest {
    *   Defaults to shallow
    *   See http://airbnb.io/enzyme/
    *
-   * @return {EnzymeTest}
+   * @return {EnzymeTestWrapper}
    *
    * @property {Object} props
    *   The props to pass to the React component
@@ -59,17 +58,28 @@ export default class EnzymeTest {
    *
    * @property {function} renderer
    *   The enzyme render method used to render the component
+   *
+   * @example A shallow-rendered component
+   *   const test = new EnzymeTestWrapper(UserAvatar)
+   *   test.props = { user: testUser }
+   *   expect(test.UserAvatar.find('img').prop('src')).toBe(testUser.avatarSrc)
+   *
+   * @example A mounted component
+   *   new EnzymeTestWrapper(UserAvatar, 'mount')
+   *
+   * @example A static-rendered component
+   *   new EnzymeTestWrapper(UserAvatar, 'render')
    */
   constructor(Component, renderer = 'shallow') {
-    this.props     = {}
-    this.component = Component
-    this.renderer  = EnzymeTest.renderers[renderer]
-    this.renderOptions   = {}
+    this.props         = {}
+    this.component     = Component
+    this.renderer      = EnzymeTestWrapper.renderers[renderer]
+    this.renderOptions = {}
 
-    EnzymeTest.tests.push(this)
+    EnzymeTestWrapper.tests.push(this)
 
     // Setup dynamic Component property. e.g:
-    // const test = new EnzymeTest(FooBar)
+    // const test = new EnzymeTestWrapper(FooBar)
     // test.FooBar => the rendered component
     return new Proxy(this, {
       get: (target, prop) => {
@@ -84,13 +94,13 @@ export default class EnzymeTest {
    *
    * returns the Enzyme-rendered component, based on the current `.props` and `.renderOptions`
    *
-   * EnzymeTest also generates an alias of this method based off the tested component’s name, for
-   * better readability of tests
+   * EnzymeTestWrapper also generates an alias of this method based off the tested component’s name,
+   * for better readability of tests
    *
    * @example
-   *   const test = new EnzymeTest(Button)
-   *   // test.Button === test.rendered
-   *   expect(test.Button.text()).toBe('Click me')
+   *   const test = new EnzymeTestWrapper(MyButton)
+   *   // test.MyButton === test.rendered
+   *   expect(test.MyButton.text()).toBe('Click me')
    *
    * @alias [Component.name]
    *
@@ -110,7 +120,7 @@ export default class EnzymeTest {
    * component’s render depends on an asynchronous call.
    *
    * @example awaiting the next render…
-   *   const test = new EnzymeTest(LoadingWindow)
+   *   const test = new EnzymeTestWrapper(LoadingWindow)
    *   test.LoadingWindow.simulate('click')
    *
    *   expect(test.LoadingWindow.text()).toBe('Loading…')
@@ -145,5 +155,5 @@ export default class EnzymeTest {
 }
 
 beforeEach(() => {
-  EnzymeTest.resetAll()
+  EnzymeTestWrapper.resetAll()
 })

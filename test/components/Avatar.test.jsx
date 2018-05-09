@@ -1,9 +1,9 @@
 import Avatar from 'components/Avatar'
-import EnzymeTest from 'test/support/EnzymeTest'
+import EnzymeTestWrapper from 'test/support/EnzymeTestWrapper'
 
 import { cachedUser } from 'test/fixtures'
 
-const test = new EnzymeTest(Avatar)
+const test = new EnzymeTestWrapper(Avatar)
 
 describe('Avatar', () => {
   beforeEach(() => {

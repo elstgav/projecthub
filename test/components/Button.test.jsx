@@ -1,7 +1,7 @@
 import Button from 'components/Button'
-import EnzymeTest from 'test/support/EnzymeTest'
+import EnzymeTestWrapper from 'test/support/EnzymeTestWrapper'
 
-const test = new EnzymeTest(Button)
+const test = new EnzymeTestWrapper(Button)
 
 describe('Button', () => {
   beforeEach(() => {
