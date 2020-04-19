@@ -4,23 +4,24 @@ import { GitHubSelectors, Storage } from 'src/lib'
 import { Label, User } from 'src/models'
 import { Memoized, show, hide } from 'src/utils'
 
+/* eslint-disable class-methods-use-this */
 
-const ProjectBoard = {
-  CACHE_KEY: 'projectBoardState',
+class ProjectBoard {
+  CACHE_KEY = 'projectBoardState'
 
-  defaultState: {
+  defaultState = {
     hideNewColumnButton: false,
-  },
+  }
 
   @Memoized
   get isEditable() {
     return !!document.querySelector(GitHubSelectors.addCardsButton)
-  },
+  }
 
   @Memoized
   get container() {
     return document.querySelector(GitHubSelectors.projectColumnsContainer)
-  },
+  }
 
   @Memoized
   get afterLoaded() {
@@ -34,20 +35,20 @@ const ProjectBoard = {
 
       observer.observe(this.container, { childList: true, subtree: true })
     })
-  },
+  }
 
   @Memoized
   get newColumnButton() {
     return this.container.querySelector(GitHubSelectors.newColumnButton)
-  },
+  }
 
   get cards() {
     return Array.from(this.container.querySelectorAll(GitHubSelectors.card))
-  },
+  }
 
   get columns() {
     return Array.from(this.container.querySelectorAll(GitHubSelectors.column))
-  },
+  }
 
   get assignees() {
     const avatars = Array.from(this.container.querySelectorAll(GitHubSelectors.avatar))
@@ -58,7 +59,7 @@ const ProjectBoard = {
     users = sortBy(users, [user => user.name.toLowerCase()])
 
     return users
-  },
+  }
 
   get labels() {
     let labels = Array.from(this.container.querySelectorAll(GitHubSelectors.label))
@@ -69,20 +70,20 @@ const ProjectBoard = {
     labels = sortBy(labels, [label => label.val.toLowerCase()])
 
     return labels
-  },
+  }
 
   async init() {
     await this.afterLoaded
 
     this.renderNewColumnButton()
-  },
+  }
 
   async shouldHideNewColumnButton() {
     const boardState = await Storage.get({
       [this.CACHE_KEY]: this.defaultState,
     })
     return boardState[this.CACHE_KEY].hideNewColumnButton
-  },
+  }
 
   async toggleNewColumnButton() {
     if (!this.newColumnButton) return
@@ -96,13 +97,15 @@ const ProjectBoard = {
     })
 
     await this.renderNewColumnButton()
-  },
+  }
 
   async renderNewColumnButton() {
     if (!this.newColumnButton) return
     const shouldHide = await this.shouldHideNewColumnButton()
     shouldHide ? hide(this.newColumnButton) : show(this.newColumnButton)
-  },
+  }
 }
 
-export default ProjectBoard
+const ProjectBoardSingleton = new ProjectBoard()
+
+export default ProjectBoardSingleton
