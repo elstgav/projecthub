@@ -4,9 +4,9 @@
 // and https://github.com/andreypopp/memoize-decorator/blob/master/src/index.js
 
 /* eslint-disable no-param-reassign, no-prototype-builtins, no-underscore-dangle */
-export default function Memoized({ key, descriptor }) {
+export default function memoize({ key, descriptor }) {
   if (typeof descriptor.get !== 'function') {
-    throw new Error('@Memoized can only be applied to getters')
+    throw new Error('@memoize can only be applied to getters')
   }
 
   const originalGet = descriptor.get

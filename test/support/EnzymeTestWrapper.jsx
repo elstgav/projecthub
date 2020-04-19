@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow, mount, render } from 'enzyme'
 
-import { Memoized } from 'src/utils'
+import { memoize } from 'src/utils'
 
 /**
  * EnzymeTestWrapper
@@ -148,7 +148,7 @@ export default class EnzymeTestWrapper {
    *
    * @see http://airbnb.io/enzyme/
    */
-  @Memoized
+  @memoize
   get rendered() {
     return this.renderMethod(<this.Component {...this.props} />, this.renderOptions)
   }

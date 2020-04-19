@@ -1,4 +1,4 @@
-import { Memoized } from 'src/utils'
+import { memoize } from 'src/utils'
 
 /* eslint-disable no-plusplus, no-underscore-dangle */
 
@@ -7,19 +7,19 @@ class Foo {
 
   j = 1
 
-  @Memoized
+  @memoize
   get iterator() {
     return this.i++
   }
 
-  @Memoized
+  @memoize
   get multiplier() {
     this.j *= 2
     return this.j
   }
 }
 
-describe('Memoized', () => {
+describe('memoize', () => {
   let foo
 
   beforeEach(() => {
@@ -66,7 +66,7 @@ describe('Memoized', () => {
       class Bar { // eslint-disable-line no-unused-vars
         i = 1
 
-        @Memoized
+        @memoize
         iterator() {
           return this.i++
         }

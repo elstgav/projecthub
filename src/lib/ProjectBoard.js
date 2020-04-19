@@ -2,7 +2,7 @@ import { isEmpty, uniqBy, sortBy } from 'lodash'
 
 import { GitHubSelectors, Storage } from 'src/lib'
 import { Label, User } from 'src/models'
-import { Memoized, show, hide } from 'src/utils'
+import { memoize, show, hide } from 'src/utils'
 
 /* eslint-disable class-methods-use-this */
 
@@ -13,17 +13,17 @@ class ProjectBoard {
     hideNewColumnButton: false,
   }
 
-  @Memoized
+  @memoize
   get isEditable() {
     return !!document.querySelector(GitHubSelectors.addCardsButton)
   }
 
-  @Memoized
+  @memoize
   get container() {
     return document.querySelector(GitHubSelectors.projectColumnsContainer)
   }
 
-  @Memoized
+  @memoize
   get afterLoaded() {
     return new Promise((resolve) => {
       const observer = new MutationObserver(() => {
@@ -37,7 +37,7 @@ class ProjectBoard {
     })
   }
 
-  @Memoized
+  @memoize
   get newColumnButton() {
     return this.container.querySelector(GitHubSelectors.newColumnButton)
   }

@@ -1,5 +1,5 @@
 import { GitHubAPI, Session } from 'src/lib'
-import { Memoized } from 'src/utils'
+import { memoize } from 'src/utils'
 
 import BaseModel from './BaseModel'
 
@@ -10,7 +10,7 @@ export default class User extends BaseModel {
 
   static fetchedNames = new Set()
 
-  @Memoized
+  @memoize
   static get names() {
     return Session.get(User.USER_NAMES_KEY, {})
   }
