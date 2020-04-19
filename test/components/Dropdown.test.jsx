@@ -46,7 +46,7 @@ describe('Dropdown', () => {
 
   describe('when open', () => {
     beforeEach(() => {
-      test.renderMethod = EnzymeTestWrapper.renderMethods.mount
+      test.renderMethod = EnzymeTestWrapper.renderMethods.fullDOM
       test.renderOptions = {
         attachTo: document.body.appendChild(document.createElement('div')),
       }
