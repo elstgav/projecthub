@@ -13,7 +13,7 @@ import { Memoized } from 'src/utils'
  */
 export default class EnzymeTestWrapper {
   static tests = []
-  static renderers = { shallow, mount, render }
+  static renderMethods = { shallow, mount, render }
 
   /**
    * EnzymeTestWrapper.resetAll()
@@ -39,7 +39,7 @@ export default class EnzymeTestWrapper {
    * @param {React.Component} Component
    *   The React component you want to test
    *
-   * @param {string} [renderer='shallow']
+   * @param {string} [renderMethod='shallow']
    *   The enzyme render method to use for rendering the component
    *   One of: shallow|mount|render
    *   Defaults to shallow
@@ -53,7 +53,7 @@ export default class EnzymeTestWrapper {
    * @property {Object} renderOptions
    *   options to pass to the Enzyme render method
    *
-   * @property {function} renderer
+   * @property {function} renderMethod
    *   The enzyme render method used to render the component
    *
    * @example A shallow-rendered component
@@ -67,10 +67,10 @@ export default class EnzymeTestWrapper {
    * @example A static-rendered component
    *   new EnzymeTestWrapper(UserAvatar, 'render')
    */
-  constructor(Component, renderer = 'shallow') {
+  constructor(Component, renderMethod = 'shallow') {
     this.props         = {}
     this.component     = Component
-    this.renderer      = EnzymeTestWrapper.renderers[renderer]
+    this.renderMethod  = EnzymeTestWrapper.renderMethods[renderMethod]
     this.renderOptions = {}
 
     EnzymeTestWrapper.tests.push(this)
@@ -107,7 +107,7 @@ export default class EnzymeTestWrapper {
    */
   @Memoized
   get rendered() {
-    return this.renderer(<this.component {...this.props} />, this.renderOptions)
+    return this.renderMethod(<this.component {...this.props} />, this.renderOptions)
   }
 
   /**

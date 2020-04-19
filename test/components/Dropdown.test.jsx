@@ -46,7 +46,7 @@ describe('Dropdown', () => {
 
   describe('when open', () => {
     beforeEach(() => {
-      test.renderer = EnzymeTestWrapper.renderers.mount
+      test.renderMethod = EnzymeTestWrapper.renderMethods.mount
       test.renderOptions = {
         attachTo: document.body.appendChild(document.createElement('div')),
       }
@@ -85,7 +85,7 @@ describe('Dropdown', () => {
 
   describe('when clicked', () => {
     beforeEach(() => {
-      test.renderer = EnzymeTestWrapper.renderers.shallow
+      test.renderMethod = EnzymeTestWrapper.renderMethods.shallow
     })
 
     it('toggles an “active” class', () => {
