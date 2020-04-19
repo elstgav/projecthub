@@ -44,7 +44,7 @@ export default class Option extends React.Component {
         onMouseLeave={this.onMouseLeave}
         role="option"
       >
-        <button className="projecthub-semantic-btn" onClick={this.onClick}>
+        <button type="button" className="projecthub-semantic-btn" onClick={this.onClick}>
           <Icon icon="check" className="select-menu-item-icon" width="12" />
           <OptionVal option={this.props.option} />
         </button>

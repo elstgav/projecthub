@@ -17,7 +17,7 @@ export default class AddItemsDropdown extends React.PureComponent {
         }}
       >
         <li>
-          <button className="dropdown-item btn-link js-show-project-triage" onClick={this.closeDropdown}>
+          <button type="button" className="dropdown-item btn-link js-show-project-triage" onClick={this.closeDropdown}>
             Add cards
           </button>
         </li>

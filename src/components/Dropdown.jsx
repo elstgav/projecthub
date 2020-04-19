@@ -64,6 +64,7 @@ export default class Dropdown extends React.Component {
           aria-haspopup
           className="btn"
           onClick={this.onDropdownClick}
+          type="button"
           {...this.props.buttonProps}
         >
           {this.props.buttonText}

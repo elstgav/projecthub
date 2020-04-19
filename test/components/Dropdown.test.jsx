@@ -56,7 +56,7 @@ describe('Dropdown', () => {
         children: (
           <Aux>
             <li><span className="test-content">Pick me</span></li>
-            <li><button className="dropdown-item">Pick me</button></li>
+            <li><button type="button" className="dropdown-item">Pick me</button></li>
           </Aux>
         ),
       }
