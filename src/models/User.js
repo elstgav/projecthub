@@ -1,4 +1,5 @@
-import { GitHubAPI, Session } from 'src/lib'
+import GitHubAPI   from 'src/lib/GitHubAPI'
+import Session     from 'src/lib/Session'
 import { memoize } from 'src/utils'
 
 import BaseModel from './BaseModel'

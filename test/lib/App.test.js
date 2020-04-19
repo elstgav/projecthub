@@ -1,6 +1,6 @@
 import { oneLine } from 'common-tags'
 
-import { App } from 'src/lib'
+import App from 'src/lib/App'
 
 describe('App', () => {
   beforeEach(() => {

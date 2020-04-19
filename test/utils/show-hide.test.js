@@ -1,4 +1,4 @@
-import { App } from 'src/lib'
+import App from 'src/lib/App'
 import { show, hide } from 'src/utils'
 
 const isVisible = el => !el.classList.contains(App.hiddenClass)

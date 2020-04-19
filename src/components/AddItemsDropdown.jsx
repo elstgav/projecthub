@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProjectBoard } from 'src/lib'
+import ProjectBoard from 'src/lib/ProjectBoard'
 
 import Icon from 'components/Icon'
 import Dropdown from 'components/Dropdown'

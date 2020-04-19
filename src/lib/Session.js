@@ -1,4 +1,4 @@
-import { App } from 'src/lib'
+import App from 'src/lib/App'
 
 import {
   BaseModel,

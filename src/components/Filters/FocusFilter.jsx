@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'lodash'
 
-import { App } from 'src/lib'
+import App from 'src/lib/App'
 
 import BaseFilter from 'components/Filters/BaseFilter'
 import Button from 'components/Button'

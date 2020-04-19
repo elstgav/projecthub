@@ -1,4 +1,4 @@
-import { GitHubSelectors } from 'src/lib'
+import GitHubSelectors from 'src/lib/GitHubSelectors'
 import { stringToDOM, memoize } from 'src/utils'
 
 /* eslint-disable class-methods-use-this */

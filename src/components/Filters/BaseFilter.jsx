@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Session } from 'src/lib'
+import Session from 'src/lib/Session'
 
 
 export default class Filter extends React.Component {

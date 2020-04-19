@@ -1,4 +1,6 @@
-import { App, Session } from 'src/lib'
+import App     from 'src/lib/App'
+import Session from 'src/lib/Session'
+
 import { fooLabel, cachedUser } from 'test/fixtures'
 
 import {

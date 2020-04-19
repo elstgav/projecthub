@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { App } from 'src/lib'
+import App from 'src/lib/App'
 
 
 export default class Dropdown extends React.Component {

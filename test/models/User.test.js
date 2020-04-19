@@ -1,7 +1,7 @@
 import { oneLine } from 'common-tags'
 
 import { User } from 'src/models'
-import { Session } from 'src/lib'
+import Session from 'src/lib/Session'
 import { stringToDOM } from 'src/utils'
 
 import {

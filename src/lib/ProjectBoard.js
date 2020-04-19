@@ -1,7 +1,9 @@
 import { isEmpty, uniqBy, sortBy } from 'lodash'
 
-import { GitHubSelectors, Storage } from 'src/lib'
-import { Label, User } from 'src/models'
+import GitHubSelectors         from 'src/lib/GitHubSelectors'
+import Storage                 from 'src/lib/Storage'
+
+import { Label, User }         from 'src/models'
 import { memoize, show, hide } from 'src/utils'
 
 /* eslint-disable class-methods-use-this */

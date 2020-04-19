@@ -1,4 +1,4 @@
-import { Storage } from 'src/lib'
+import Storage from 'src/lib/Storage'
 
 describe('Storage', () => {
   beforeEach(() => {

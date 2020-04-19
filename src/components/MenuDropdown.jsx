@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProjectBoard } from 'src/lib'
+import ProjectBoard from 'src/lib/ProjectBoard'
 import { Aux } from 'src/utils'
 
 import Icon from 'components/Icon'

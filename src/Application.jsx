@@ -1,11 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React               from 'react'
+import ReactDOM            from 'react-dom'
 
-import { App, ProjectBoard } from 'src/lib'
+import App                 from 'src/lib/App'
+import ProjectBoard        from 'src/lib/ProjectBoard'
 
 import ProjectBoardFilters from 'components/ProjectBoardFilters'
-import AddItemsDropdown from 'components/AddItemsDropdown'
-import MenuDropdown from 'components/MenuDropdown'
+import AddItemsDropdown    from 'components/AddItemsDropdown'
+import MenuDropdown        from 'components/MenuDropdown'
 
 ProjectBoard.init()
 
