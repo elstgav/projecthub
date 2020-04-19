@@ -516,7 +516,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
 
-axios-mock-adapter@^1.10.0:
+axios-mock-adapter@^1.18.1:
   version "1.18.1"
   resolved "https://registry.yarnpkg.com/axios-mock-adapter/-/axios-mock-adapter-1.18.1.tgz#a2ba2638ef513d954793f96bde3e26bd4a1b7940"
   integrity sha512-kFBZsG1Ma5yxjRGHq5KuuL55mPb7WzFULhypquEhzPg8SH5CXICb+qwC2CCA5u+GQVpiqGPwKSRkd3mBCs6gdw==
@@ -524,13 +524,12 @@ axios-mock-adapter@^1.10.0:
     fast-deep-equal "^3.1.1"
     is-buffer "^2.0.3"
 
-axios@^0.17.0:
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.17.1.tgz#2d8e3e5d0bdbd7327f91bc814f5c57660f81824d"
-  integrity sha1-LY4+XQvb1zJ/kbyBT1xXZg+Bgk0=
+axios@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   dependencies:
-    follow-redirects "^1.2.5"
-    is-buffer "^1.1.5"
+    follow-redirects "1.5.10"
 
 axobject-query@^2.0.2:
   version "2.1.2"
@@ -1958,7 +1957,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -2044,7 +2043,7 @@ commander@^2.11.0, commander@^2.13.0, commander@^2.19.0, commander@~2.20.3:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
-common-tags@^1.4.0:
+common-tags@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.8.0.tgz#8e3153e542d4a39e9b10554434afaaf98956a937"
   integrity sha512-6P6g0uetGpW/sdyUy/iQQCbFF0kWVMSIVSyYz7Zgjcgh8mgw8PQzDNZeyZ5DQ2gM7LBoZPHmnjz8rUthkBG5tw==
@@ -2283,7 +2282,14 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@^3.0.0, debug@^3.1.0:
+debug@=3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+  dependencies:
+    ms "2.0.0"
+
+debug@^3.1.0:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
   integrity sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
@@ -3315,12 +3321,12 @@ flat-cache@^1.2.1:
     rimraf "~2.6.2"
     write "^0.2.1"
 
-follow-redirects@^1.2.5:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.11.0.tgz#afa14f08ba12a52963140fe43212658897bc0ecb"
-  integrity sha512-KZm0V+ll8PfBrKwMzdo5D13b1bur9Iq9Zd/RMmAoQQcl2PxxFml8cxXPaaPYVbV0RjNjq1CU7zIzAOqtUPudmA==
+follow-redirects@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   dependencies:
-    debug "^3.0.0"
+    debug "=3.1.0"
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
@@ -3757,7 +3763,7 @@ ieee754@^1.1.4:
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.13.tgz#ec168558e95aa181fd87d37f55c32bbcb6708b84"
   integrity sha512-4vf7I2LYV/HaWerSo3XmlMkp5eZ83i+/CDluXi/IGTs/O1sejBNhTtnxzmRZfvOUqj7lZjqHkeTvpgSFDlWZTg==
 
-if-env@^1.0.0:
+if-env@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/if-env/-/if-env-1.0.4.tgz#8b2b6bd308af86a3a19bb273426761085104878b"
   integrity sha1-iytr0wivhqOhm7JzQmdhCFEEh4s=
@@ -5050,7 +5056,7 @@ mixin-deep@^1.2.0:
   dependencies:
     minimist "^1.2.5"
 
-mock-local-storage@^1.0.5:
+mock-local-storage@^1.1.12:
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/mock-local-storage/-/mock-local-storage-1.1.12.tgz#b1ee96d7bac6e46fc0a3a72a518d758cac4a1771"
   integrity sha512-LBxvtbUE384RV+rQbeklJ/Ii08qmDpod65XkcnFybZD9o4YaT1CBwk77kjtCQxi4CKzjqr5dStUuy2KynOQvNg==
@@ -5078,7 +5084,7 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-mutationobserver-shim@^0.3.2:
+mutationobserver-shim@^0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/mutationobserver-shim/-/mutationobserver-shim-0.3.5.tgz#6f35ce85867b21aa1e58f78892d0ab4eee942c0e"
   integrity sha512-YAMuSp4Oi19SYQF04dGnRajyFp4Wyam+jKKWzm5roPcNh1Rip8dnHPxls5F/xBgY0H2gV+3IzWuIvYQPDAvmBQ==
