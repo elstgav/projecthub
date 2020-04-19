@@ -44,27 +44,9 @@ describe('Dropdown', () => {
     })
   })
 
-  describe('when clicked', () => {
-    it('toggles an “active” class', () => {
-      expect(test.Dropdown.props().className).not.toContain('active')
-      test.Dropdown.find('button').simulate('click')
-      expect(test.Dropdown.props().className).toContain('active')
-      test.Dropdown.find('button').simulate('click')
-      expect(test.Dropdown.props().className).not.toContain('active')
-    })
-
-    it('toggles its open state', () => {
-      expect(test.Dropdown.state('isDropdownOpen')).toBe(false)
-      test.Dropdown.find('button').simulate('click')
-      expect(test.Dropdown.state('isDropdownOpen')).toBe(true)
-      test.Dropdown.find('button').simulate('click')
-      expect(test.Dropdown.state('isDropdownOpen')).toBe(false)
-    })
-  })
-
   describe('when open', () => {
     beforeEach(() => {
-      test.renderer = EnzymeTestWrapper.renderers.mount
+      test.renderMethod = EnzymeTestWrapper.renderMethods.fullDOM
       test.renderOptions = {
         attachTo: document.body.appendChild(document.createElement('div')),
       }
@@ -74,7 +56,7 @@ describe('Dropdown', () => {
         children: (
           <Aux>
             <li><span className="test-content">Pick me</span></li>
-            <li><button className="dropdown-item">Pick me</button></li>
+            <li><button type="button" className="dropdown-item">Pick me</button></li>
           </Aux>
         ),
       }
@@ -97,6 +79,24 @@ describe('Dropdown', () => {
     it('closes itself when you click outside the dropdown', () => {
       expect(test.Dropdown.state('isDropdownOpen')).toBe(true)
       simulant.fire(document.body, 'click')
+      expect(test.Dropdown.state('isDropdownOpen')).toBe(false)
+    })
+  })
+
+  describe('when clicked', () => {
+    it('toggles an “active” class', () => {
+      expect(test.Dropdown.props().className).not.toContain('active')
+      test.Dropdown.find('button').simulate('click')
+      expect(test.Dropdown.props().className).toContain('active')
+      test.Dropdown.find('button').simulate('click')
+      expect(test.Dropdown.props().className).not.toContain('active')
+    })
+
+    it('toggles its open state', () => {
+      expect(test.Dropdown.state('isDropdownOpen')).toBe(false)
+      test.Dropdown.find('button').simulate('click')
+      expect(test.Dropdown.state('isDropdownOpen')).toBe(true)
+      test.Dropdown.find('button').simulate('click')
       expect(test.Dropdown.state('isDropdownOpen')).toBe(false)
     })
   })

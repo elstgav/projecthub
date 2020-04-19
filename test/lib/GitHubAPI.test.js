@@ -1,7 +1,8 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
-import { GitHubAPI, Storage } from 'src/lib'
+import GitHubAPI from 'src/lib/GitHubAPI'
+import Storage   from 'src/lib/Storage'
 
 const mock = new MockAdapter(axios)
 

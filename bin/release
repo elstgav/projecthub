@@ -5,7 +5,7 @@ require 'pathname'
 require 'English'
 
 # path to your application root.
-APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+APP_ROOT = Pathname.new File.expand_path('../', __dir__)
 
 
 # Monkey patching
@@ -43,6 +43,7 @@ end
 
 def verify_no_uncommitted_changes!
   return if `git status -s`.strip.empty?
+
   abort('You have uncommited changes. Please commit or stash your changes before proceeding.')
 end
 
@@ -63,6 +64,7 @@ end
 
 def verify_react_dev_tools_are_not_included!(manifest)
   return unless manifest.include?('react-dev-tools.js')
+
   abort("Your manifest includes react-dev-tools.js; it must be removed before releasing.")
 end
 
@@ -73,13 +75,13 @@ def verify_version!(version)
     unless versions_match?(latest_tag, version)
       abort(
         "Your manifest version (#{version}) does not match the current git tag: #{latest_tag}.\n" \
-        "Please update the version number in dist/manifest.json."
+        "Please update the version number in dist/manifest.json.",
       )
     end
   elsif versions_match?(latest_tag, version)
     abort(
       "Your manifest version (#{version}) matches an earlier release.\n" \
-      "Please bump the version number in dist/manifest.json."
+      "Please bump the version number in dist/manifest.json.",
     )
   end
 end

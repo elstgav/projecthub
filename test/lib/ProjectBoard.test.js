@@ -1,7 +1,10 @@
 import { oneLine } from 'common-tags'
 
+import App             from 'src/lib/App'
+import ProjectBoard    from 'src/lib/ProjectBoard'
+import Storage         from 'src/lib/Storage'
+
 import { Label, User } from 'src/models'
-import { App, ProjectBoard, Storage } from 'src/lib'
 
 describe('ProjectBoard', () => {
   beforeEach(() => {

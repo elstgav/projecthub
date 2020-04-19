@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 import React     from 'react'
 import PropTypes from 'prop-types'
 import { pick }  from 'lodash'
@@ -6,8 +8,6 @@ import { Label, User } from 'src/models'
 import { Aux } from 'src/utils'
 
 import Avatar from 'components/Avatar'
-
-/* eslint-disable react/no-multi-comp */
 
 
 export default class OptionVal extends React.PureComponent {

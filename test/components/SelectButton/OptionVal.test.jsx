@@ -3,9 +3,13 @@ import EnzymeTestWrapper from 'test/support/EnzymeTestWrapper'
 
 import { cachedUser, cachedUserWithNoName, fooLabel } from 'test/fixtures'
 
-const test = new EnzymeTestWrapper(OptionVal, 'mount')
+const test = new EnzymeTestWrapper(OptionVal)
 
 describe('OptionVal', () => {
+  beforeEach(() => {
+    test.renderMethod = EnzymeTestWrapper.renderMethods.fullDOM
+  })
+
   describe('When rendering a plain object', () => {
     beforeEach(() => {
       test.props.option = { val: 'Foo' }

@@ -1,4 +1,4 @@
-import { Storage } from 'src/lib'
+import Storage from 'src/lib/Storage'
 
 describe('Storage', () => {
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe('Storage', () => {
 
     it('logs an error if chrome has a runtime error', async () => {
       chrome.runtime.lastError = 'Chrome’s error'
-      await expect(Storage.get('whatever')).rejects.toThrow('Chrome’s error')
+      await expect(Storage.get('whatever')).rejects.toMatch('Chrome’s error')
       expect(console.error).toHaveBeenCalledWith(
         'chrome.storage.sync.get error: %o',
         'Chrome’s error',

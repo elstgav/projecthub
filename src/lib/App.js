@@ -1,43 +1,47 @@
-import { GitHubSelectors } from 'src/lib'
-import { stringToDOM, Memoized } from 'src/utils'
+import GitHubSelectors from 'src/lib/GitHubSelectors'
+import { stringToDOM, memoize } from 'src/utils'
 
-const App = {
-  namespace: 'projecthub',
+/* eslint-disable class-methods-use-this */
 
-  @Memoized
+class App {
+  namespace = 'projecthub'
+
+  @memoize
   get currentUser() {
     return document.getElementsByName(GitHubSelectors.names.currentUser)[0].content
-  },
+  }
 
-  @Memoized
+  @memoize
   get controlsSandbox() {
     const sandboxElement = stringToDOM(`<div id="${this.namespace}-sandbox" class="ml-2"></div>`)
 
     document.querySelector(GitHubSelectors.projectHeaderControls).prepend(sandboxElement)
 
     return sandboxElement
-  },
+  }
 
-  @Memoized
+  @memoize
   get addCardsSandbox() {
     const addLink = document.querySelector(GitHubSelectors.addCardsButton)
     if (addLink) return addLink.parentElement
 
     throw new Error('Could not find “Add cards” link!')
-  },
+  }
 
-  @Memoized
+  @memoize
   get menuSandbox() {
     const menuLink = document.querySelector(GitHubSelectors.menuButton)
     if (menuLink) return menuLink.parentElement
 
     throw new Error('Could not find “Menu” link!')
-  },
+  }
 
-  @Memoized
+  @memoize
   get hiddenClass() {
     return `${this.namespace}-is-hidden`
-  },
+  }
 }
 
-export default App
+const AppSingleton = new App()
+
+export default AppSingleton

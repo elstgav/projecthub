@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
-const MinifyPlugin = require('babel-minify-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const isProdEnvironment = (process.env.NODE_ENV === 'production')
@@ -9,12 +8,19 @@ const isProdEnvironment = (process.env.NODE_ENV === 'production')
 module.exports = {
   cache:   true,
   devtool: isProdEnvironment ? false : 'cheap-module-source-map',
+  mode:    isProdEnvironment ? 'production' : 'development',
 
   context: __dirname,
 
   entry: {
     app:     './src/Application.jsx',
     options: './src/Options.jsx',
+  },
+
+  optimization: {
+    splitChunks: {
+      name: 'common',
+    },
   },
 
   output: {
@@ -27,7 +33,7 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
@@ -40,30 +46,12 @@ module.exports = {
     let plugins = [
       new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
       new LodashModuleReplacementPlugin(),
-      new webpack.optimize.CommonsChunkPlugin({ name: 'common' }),
     ]
 
     if (process.env.ANALYZE_WEBPACK_BUNDLE) {
       plugins = [
         ...plugins,
         new BundleAnalyzerPlugin(),
-      ]
-    }
-
-    if (isProdEnvironment) {
-      plugins = [
-        ...plugins,
-
-        new webpack.optimize.OccurrenceOrderPlugin(),
-
-        new webpack.LoaderOptionsPlugin({
-          debug:    false,
-          minimize: true,
-        }),
-
-        new MinifyPlugin({}, {
-          test: /\.(js|jsx)$/,
-        }),
       ]
     }
 

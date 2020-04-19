@@ -1,19 +1,24 @@
 import React from 'react'
 import { shallow, mount, render } from 'enzyme'
 
-import { Memoized } from 'src/utils'
+import { memoize } from 'src/utils'
 
 /**
  * EnzymeTestWrapper
  *
- * Makes it easy to use Enzyme in your tests without cross-contamination
+ * Makes it easier to use Enzyme without cross-contaminating state and props between tests
  *
  * @see http://airbnb.io/enzyme/
  *
  */
 export default class EnzymeTestWrapper {
   static tests = []
-  static renderers = { shallow, mount, render }
+
+  static renderMethods = {
+    shallow,
+    fullDOM:    mount,
+    staticHTML: render,
+  }
 
   /**
    * EnzymeTestWrapper.resetAll()
@@ -39,42 +44,71 @@ export default class EnzymeTestWrapper {
    * @param {React.Component} Component
    *   The React component you want to test
    *
-   * @param {string} [renderer='shallow']
-   *   The enzyme render method to use for rendering the component
-   *   One of: shallow|mount|render
-   *   Defaults to shallow
-   *   See http://airbnb.io/enzyme/
-   *
    * @return {EnzymeTestWrapper}
    *
    * @property {Object} props
    *   The props to pass to the React component
    *
+   * @property {function} renderMethod (EnzymeTestWrapper.renderMethods.shallow)
+   *   The enzyme render method to use for rendering the component
+   *   See EnzymeTestWrapper.renderMethods for available options
+   *   Defaults to shallow
+   *   See https://airbnb.io/enzyme/docs/api/
+   *
    * @property {Object} renderOptions
    *   options to pass to the Enzyme render method
+   *   See each render method’s options on https://airbnb.io/enzyme/docs/api/
    *
-   * @property {React.Component} component
-   *   The component to render
+   * @property {EnzymeWrapper} rendered (or your ComponentName)
+   *   returns an enzyme ShallowWrapper, ReactWrapper, or CheerioWrapper depending on .renderMethod,
+   *   rendered with the current .props and .renderOptions
    *
-   * @property {function} renderer
-   *   The enzyme render method used to render the component
+   *   You can access this property with your component’s name, e.g.
    *
-   * @example A shallow-rendered component
+   *   ```js
+   *   const test = new EnzymeTestWrapper(UserAvatar)
+   *   test.props = { user: testUser }
+   *   test.UserAvatar // => equivalent to enzyme’s shallow(<UserAvatar user={testUser} />)
+   *   ````
+   *
+   * @example A shallow-rendered test (equivalent to enzyme.shallow)
+   *   The default form of test.
+   *
+   *   Shallow rendering is useful to constrain yourself to testing a component as a unit, and to
+   *   ensure that your tests aren't indirectly asserting on behavior of child components.
+   *
+   *   See https://airbnb.io/enzyme/docs/api/shallow.html
+   *
+   *   ```js
    *   const test = new EnzymeTestWrapper(UserAvatar)
    *   test.props = { user: testUser }
    *   expect(test.UserAvatar.find('img').prop('src')).toBe(testUser.avatarSrc)
+   *   ```
    *
-   * @example A mounted component
-   *   new EnzymeTestWrapper(UserAvatar, 'mount')
+   * @example A full-DOM-rendered test (equivalent to enzyme.mount)
+   *   Full DOM rendering is ideal for use cases where you have components that may interact with
+   *   DOM APIs or need to test components that are wrapped in higher order components.
    *
-   * @example A static-rendered component
-   *   new EnzymeTestWrapper(UserAvatar, 'render')
+   *   See https://airbnb.io/enzyme/docs/api/mount.html
+   *
+   *   ```js
+   *   const test = new EnzymeTestWrapper(Foo)
+   *   test.renderMethod = EnzymeTestWrapper.renderMethods.fullDOM
+   *   ```
+   *
+   * @example A static-HTML-rendered test (equivalent to enzyme.render)
+   *   Static HTML rendering is useful for analyzing the HTML structure of your rendered component.
+   *
+   *   See https://airbnb.io/enzyme/docs/api/render.html
+   *
+   *   ```js
+   *   const test = new EnzymeTestWrapper(Foo)
+   *   test.renderMethod = EnzymeTestWrapper.renderMethods.staticHTML
+   *   ```
    */
-  constructor(Component, renderer = 'shallow') {
-    this.props         = {}
-    this.component     = Component
-    this.renderer      = EnzymeTestWrapper.renderers[renderer]
-    this.renderOptions = {}
+  constructor(Component) {
+    this.Component = Component
+    this.setDefaults()
 
     EnzymeTestWrapper.tests.push(this)
 
@@ -83,10 +117,16 @@ export default class EnzymeTestWrapper {
     // test.FooBar => the rendered component
     return new Proxy(this, {
       get: (target, prop) => {
-        if (prop === Component.name) return this.rendered
+        if (prop === this.Component.name) return this.rendered
         return target[prop]
       },
     })
+  }
+
+  setDefaults() {
+    this.props = {}
+    this.renderOptions = {}
+    this.renderMethod = EnzymeTestWrapper.renderMethods.shallow
   }
 
   /**
@@ -108,9 +148,9 @@ export default class EnzymeTestWrapper {
    *
    * @see http://airbnb.io/enzyme/
    */
-  @Memoized
+  @memoize
   get rendered() {
-    return this.renderer(<this.component {...this.props} />, this.renderOptions)
+    return this.renderMethod(<this.Component {...this.props} />, this.renderOptions)
   }
 
   /**
@@ -145,11 +185,10 @@ export default class EnzymeTestWrapper {
   /**
    * .reset()
    *
-   * Resets the component’s `.props` and `.renderOptions`, so it can be rendered anew
+   * Resets the component so it can be rendered anew
    */
   reset() {
-    this.props   = {}
-    this.renderOptions = {}
+    this.setDefaults()
     if (this.__memoized__) this.__memoized__.clear() // eslint-disable-line no-underscore-dangle
   }
 }

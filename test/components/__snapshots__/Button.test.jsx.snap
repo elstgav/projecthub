@@ -3,6 +3,7 @@
 exports[`Button displays a <button> element 1`] = `
 <button
   className="btn btn-default"
+  type="button"
 >
   Foo
 </button>

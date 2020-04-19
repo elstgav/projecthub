@@ -21,6 +21,7 @@ export default class Button extends React.PureComponent {
     return (
       <button
         {...props}
+        type="button"
         className={classNames('btn btn-default', { selected: isActive }, props.className)}
       >
         {children}

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { App } from 'src/lib'
+import App from 'src/lib/App'
 
 
 export default class Dropdown extends React.Component {
@@ -32,7 +32,7 @@ export default class Dropdown extends React.Component {
   }
 
   onDropdownClick = () => {
-    this.setState({ isDropdownOpen: !this.state.isDropdownOpen })
+    this.setState(prevState => ({ isDropdownOpen: !prevState.isDropdownOpen }))
   }
 
   onDocumentClick = (event) => {
@@ -64,6 +64,7 @@ export default class Dropdown extends React.Component {
           aria-haspopup
           className="btn"
           onClick={this.onDropdownClick}
+          type="button"
           {...this.props.buttonProps}
         >
           {this.props.buttonText}

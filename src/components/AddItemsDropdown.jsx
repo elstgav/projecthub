@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProjectBoard } from 'src/lib'
+import ProjectBoard from 'src/lib/ProjectBoard'
 
 import Icon from 'components/Icon'
 import Dropdown from 'components/Dropdown'
@@ -17,7 +17,7 @@ export default class AddItemsDropdown extends React.PureComponent {
         }}
       >
         <li>
-          <button className="dropdown-item btn-link js-show-project-triage" onClick={this.closeDropdown}>
+          <button type="button" className="dropdown-item btn-link js-show-project-triage" onClick={this.closeDropdown}>
             Add cards
           </button>
         </li>

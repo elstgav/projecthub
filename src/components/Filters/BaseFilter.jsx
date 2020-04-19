@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Session } from 'src/lib'
+import Session from 'src/lib/Session'
 
 
 export default class Filter extends React.Component {
@@ -18,7 +18,9 @@ export default class Filter extends React.Component {
     this.state = Session.get(this.cacheKey(), this.constructor.defaultState)
   }
 
-  componentWillMount() {
+  // TODO: Update to a safe method
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount() {
     this.props.addCardsFilter(this.shouldDisplayCard.bind(this))
     this.props.addColumnsFilter(this.shouldDisplayColumn.bind(this))
   }

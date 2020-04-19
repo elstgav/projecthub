@@ -9,6 +9,7 @@ exports[`Dropdown displays a <Dropdown> element 1`] = `
     aria-haspopup={true}
     className="btn"
     onClick={[Function]}
+    type="button"
   >
     Open me
   </button>
