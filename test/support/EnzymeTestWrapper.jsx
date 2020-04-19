@@ -53,9 +53,6 @@ export default class EnzymeTestWrapper {
    * @property {Object} renderOptions
    *   options to pass to the Enzyme render method
    *
-   * @property {React.Component} component
-   *   The component to render
-   *
    * @property {function} renderer
    *   The enzyme render method used to render the component
    *
