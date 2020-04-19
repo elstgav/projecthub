@@ -8,6 +8,11 @@ globals:
   chrome: false
 
 rules:
+  arrow-parens:
+    - error
+    - as-needed
+    - requireForBlockBody: true
+
   jsx-a11y/interactive-supports-focus:
     - off
 
@@ -20,6 +25,14 @@ rules:
   key-spacing:
     - error
     - mode: 'minimum'
+
+  # Allow index files in cyclical dependency tracking
+  import/no-cycle:
+    - error
+    - maxDepth: 1
+
+  lines-between-class-members:
+    - off
 
   # allow console use
   no-console:
@@ -40,8 +53,26 @@ rules:
     - error
     - argsIgnorePattern: '^_' # ignore vars with a _ prefix (e.g. _foo)
 
+  # Place operators at the ends of lines when doing linebreaks
+  operator-linebreak:
+    - error
+    - after
+
   # though we don’t enforce, prefer destructuring when it makes sense
   prefer-destructuring:
+    - off
+
+  # though we don’t enforce, prefer destructuring props only when its minimal; it’s better to be
+  # explicit about where they’re coming from
+  react/destructuring-assignment:
+    - off
+
+  # allow multiple expressions on the same line, e.g. `<App><Hello /> World</App>`
+  react/jsx-one-expression-per-line:
+    - off
+
+  # allow defining props with a spread, e.g. <foo {...props} />
+  react/jsx-props-no-spreading:
     - off
 
   react/sort-comp:
@@ -53,10 +84,20 @@ rules:
       - everything-else
       - render
 
+  react/static-property-placement:
+    - error
+    - static public field
+
   # never use semi-colons
   semi:
     - error
     - never
+
+overrides:
+  - files:
+    - 'test/**/*.js'
+    rules:
+      max-classes-per-file: off
 
 parser: 'babel-eslint'
 
