@@ -44,6 +44,15 @@ rules:
   prefer-destructuring:
     - off
 
+  react/sort-comp:
+    - error
+    - order:
+      - static-variables
+      - static-methods
+      - lifecycle
+      - everything-else
+      - render
+
   # never use semi-colons
   semi:
     - error
