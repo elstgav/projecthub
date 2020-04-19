@@ -1,22 +1,57 @@
 {
   "presets": [
-    ["env", {
+    // Determines the polyfills we need based on browser version
+    ["@babel/preset-env", {
+      // Disable module transformation—we don’t need it in Chrome
       "modules": false,
       "targets": {
         "browsers": ["last 4 Chrome versions"]
-      }
+      },
+
+      // Trims down babel-polyfill to only the polyfills we need for our supported browsers
+      "useBuiltIns": "usage",
+
+      // Explicitly indicate which version of core-js we’re using—required for `useBuiltIns` option
+      corejs: 2,
     }],
-    "react"
+
+    // Adds support for JSX
+    "@babel/preset-react",
   ],
 
   "env": {
     "test": {
       // Required for Jest, which runs in node, which doesn’t support ES6 modules
-      "plugins": ["transform-es2015-modules-commonjs"]
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
     }
   },
 
   "plugins": [
+    // Adds support for @decorators
+    // NOTE: Must be before plugin-proposal-class-properties
+    // See https://babeljs.io/docs/plugins/transform-decorators/
+    ["@babel/plugin-proposal-decorators", {
+      "legacy": true,
+    }],
+
+    // Adds support for static class properties
+    // NOTE: Must be after plugin-proposal-decorators
+    // See https://babeljs.io/docs/plugins/transform-class-properties/
+    ["@babel/plugin-proposal-class-properties", {
+      "loose": true, // Define properties loosely with assignment vs `Object.defineProperty()
+    }],
+
+    // Adds support for the spread operator, e.g. `...props`
+    // See https://babeljs.io/docs/plugins/transform-object-rest-spread/
+    "@babel/plugin-proposal-object-rest-spread",
+
+    "lodash",
+
+    // Adds support for aliases in imports, e.g.
+    //     import Foo from 'components/Foo'
+    // instead of
+    //     import Foo from '../../../Foo'
+    // See https://github.com/tleunen/babel-plugin-module-resolver
     ["module-resolver", {
       "alias": {
         "components": "./src/components",
@@ -24,9 +59,5 @@
         "test":       "./test"
       }
     }],
-    "lodash",
-    "transform-class-properties",
-    "transform-decorators-legacy",
-    "transform-object-rest-spread"
   ]
 }
