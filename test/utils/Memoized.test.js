@@ -2,37 +2,75 @@ import { Memoized } from 'src/utils'
 
 /* eslint-disable no-plusplus, no-underscore-dangle */
 
+class Foo {
+  i = 1
+
+  j = 1
+
+  @Memoized
+  get iterator() {
+    return this.i++
+  }
+
+  @Memoized
+  get multiplier() {
+    this.j *= 2
+    return this.j
+  }
+}
+
 describe('Memoized', () => {
-  let obj
+  let foo
 
   beforeEach(() => {
-    obj = {
-      i: 1,
-
-      @Memoized
-      get iterator() {
-        return this.i++
-      },
-    }
+    foo = new Foo()
   })
 
   it('memoizes a computed property after it is first accessed', () => {
-    expect(obj.iterator).toEqual(1)
-    expect(obj.iterator).toEqual(1)
-    expect(obj.iterator).toEqual(1)
+    expect(foo.iterator).toEqual(1)
+    expect(foo.iterator).toEqual(1)
+    expect(foo.iterator).toEqual(1)
   })
 
-  it('can clear its cached value', () => {
-    expect(obj.iterator).toEqual(1)
-    expect(obj.iterator).toEqual(1)
-    expect(obj.iterator).toEqual(1)
-    obj.__memoized__.delete('iterator')
-    expect(obj.iterator).toEqual(2)
-    expect(obj.iterator).toEqual(2)
-    expect(obj.iterator).toEqual(2)
-    obj.__memoized__.delete('iterator')
-    expect(obj.iterator).toEqual(3)
-    expect(obj.iterator).toEqual(3)
-    expect(obj.iterator).toEqual(3)
+  it('supports multiple memoized properties', () => {
+    expect(foo.iterator).toEqual(1)
+    expect(foo.iterator).toEqual(1)
+    expect(foo.iterator).toEqual(1)
+    expect(foo.multiplier).toEqual(2)
+    expect(foo.multiplier).toEqual(2)
+    expect(foo.multiplier).toEqual(2)
+  })
+
+  it('can clear its cached values', () => {
+    expect(foo.iterator).toEqual(1)
+    expect(foo.iterator).toEqual(1)
+    foo.__memoized__.delete('iterator')
+    expect(foo.iterator).toEqual(2)
+    expect(foo.iterator).toEqual(2)
+    foo.__memoized__.delete('iterator')
+    expect(foo.iterator).toEqual(3)
+    expect(foo.iterator).toEqual(3)
+
+    expect(foo.multiplier).toEqual(2)
+    expect(foo.multiplier).toEqual(2)
+    foo.__memoized__.delete('multiplier')
+    expect(foo.multiplier).toEqual(4)
+    expect(foo.multiplier).toEqual(4)
+    foo.__memoized__.delete('multiplier')
+    expect(foo.multiplier).toEqual(8)
+    expect(foo.multiplier).toEqual(8)
+  })
+
+  it('only applies to getter methods', () => {
+    expect(() => {
+      class Bar { // eslint-disable-line no-unused-vars
+        i = 1
+
+        @Memoized
+        iterator() {
+          return this.i++
+        }
+      }
+    }).toThrow('can only be applied to getters')
   })
 })

@@ -31,15 +31,13 @@
     // NOTE: Must be before plugin-proposal-class-properties
     // See https://babeljs.io/docs/plugins/transform-decorators/
     ["@babel/plugin-proposal-decorators", {
-      "legacy": true,
+      "decoratorsBeforeExport": false,
     }],
 
     // Adds support for static class properties
     // NOTE: Must be after plugin-proposal-decorators
     // See https://babeljs.io/docs/plugins/transform-class-properties/
-    ["@babel/plugin-proposal-class-properties", {
-      "loose": true, // Define properties loosely with assignment vs `Object.defineProperty()
-    }],
+    "@babel/plugin-proposal-class-properties",
 
     // Adds support for the spread operator, e.g. `...props`
     // See https://babeljs.io/docs/plugins/transform-object-rest-spread/
