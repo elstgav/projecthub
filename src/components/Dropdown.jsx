@@ -32,7 +32,7 @@ export default class Dropdown extends React.Component {
   }
 
   onDropdownClick = () => {
-    this.setState({ isDropdownOpen: !this.state.isDropdownOpen })
+    this.setState(prevState => ({ isDropdownOpen: !prevState.isDropdownOpen }))
   }
 
   onDocumentClick = (event) => {

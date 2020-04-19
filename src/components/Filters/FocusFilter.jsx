@@ -22,9 +22,9 @@ export default class FocusFilter extends BaseFilter {
   }
 
   onClick = () => {
-    this.setState({
-      isToggled: !this.state.isToggled,
-    }, this.props.onChange)
+    this.setState(prevState => ({
+      isToggled: !prevState.isToggled,
+    }), this.props.onChange)
   }
 
   shouldDisplayCard(card) {

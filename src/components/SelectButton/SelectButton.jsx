@@ -44,7 +44,7 @@ export default class SelectButton extends React.Component {
       this.setState({ selection: nextOption })
       this.props.onChange(nextOption)
     } else {
-      this.setState({ isDropDownOpen: !this.state.isDropDownOpen })
+      this.setState(prevState => ({ isDropDownOpen: !prevState.isDropDownOpen }))
     }
   }
 
