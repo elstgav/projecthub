@@ -84,10 +84,6 @@ describe('Dropdown', () => {
   })
 
   describe('when clicked', () => {
-    beforeEach(() => {
-      test.renderMethod = EnzymeTestWrapper.renderMethods.shallow
-    })
-
     it('toggles an “active” class', () => {
       expect(test.Dropdown.props().className).not.toContain('active')
       test.Dropdown.find('button').simulate('click')
