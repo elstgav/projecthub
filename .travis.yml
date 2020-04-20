@@ -1,28 +1,39 @@
 language: node_js
-node_js:
-  - 'node'
+node_js: node
 
 cache:
   yarn:    true
   directories:
     - node_modules
-
-env:
-  global:
-    - CC_TEST_REPORTER_ID=9cbc847f17b3f055c8510bc01afceb725141c445ea64b2ceb173ca5c23c8fa2d
-
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+    - tmp/cache/jest
+    - tmp/cache/webpacker
+    - .eslintcache
 
 before_install:
   # Install yarn version specified in package.json
   - bin/install-yarn
   - export PATH="$HOME/.yarn/bin:$PATH"
 
-script:
-  - yarn test:ci
+jobs:
+  fast_finish: true
 
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  include:
+
+  - name: Tests
+
+    env: CC_TEST_REPORTER_ID=9cbc847f17b3f055c8510bc01afceb725141c445ea64b2ceb173ca5c23c8fa2d
+
+    before_script:
+      - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+      - chmod +x ./cc-test-reporter
+      - ./cc-test-reporter before-build
+
+    script: yarn test:ci
+
+    after_script:
+      - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+
+  - name: Linting
+
+    script: yarn lint
