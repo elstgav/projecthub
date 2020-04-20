@@ -15,7 +15,7 @@
 
 /* Set min-width so 5 columns fit on a standard 1440px-wide screen */
 .project-page .project-column {
-  min-width: 315px !important;
+  min-width: 300px !important;
 }
 
 /**********************/
