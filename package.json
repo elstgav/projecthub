@@ -20,7 +20,8 @@
     "build:development": "webpack --mode=development",
     "build:production":  "webpack --mode=production --env=prod --progress --profile --display-error-details",
 
-    "build:analyze":     "NODE_ENV=production ANALYZE_WEBPACK_BUNDLE=true yarn build:watch",
+    "build:analyze":     "NODE_ENV=production ANALYZE_WEBPACK_BUNDLE=true yarn build:production -w",
+    "build:debug":       "ADD_REACT_DEVTOOLS=true yarn build:watch",
     "build:watch":       "webpack --mode=development --watch",
 
     "lint":              "eslint --cache 'src/**' 'test/**'",
@@ -78,6 +79,7 @@
     "//": "Developer Tools",
 
     "per-env":                                    "^1.0.2",
+    "react-devtools":                             "^4.6.0",
     "webpack-cli":                                "^3.3.11",
     "webpack-bundle-analyzer":                    "^3.7.0",
 
