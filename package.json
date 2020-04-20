@@ -1,63 +1,112 @@
 {
+  "//": [
+    "IMPORTANT: Please update this file manually to preserve its formatting.",
+    "Certain Yarn commands like `add`, `remove`, and `upgrade --latest` will",
+    "update the file but destroy its formatting and comments in the process."
+  ],
+
   "private": "true",
+
   "browserslist": [
     "last 4 Chrome versions"
   ],
-    "engines": {
+
+  "engines": {
     "yarn": "^1.22.4"
   },
+
   "scripts": {
-    "build": "if-env NODE_ENV=production && npm run build:prod || npm run build:dev",
-    "build:analyze": "NODE_ENV=production ANALYZE_WEBPACK_BUNDLE=true yarn build:watch",
-    "build:dev": "NODE_ENV=development webpack",
-    "build:prod": "NODE_ENV=production webpack --env=prod --progress --profile --colors --display-error-details",
-    "build:watch": "webpack -w",
-    "lint": "eslint --cache 'src/**' 'test/**'",
-    "release": "./bin/release",
-    "test": "jest",
-    "test:ci": "jest --ci --coverage",
-    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --watch",
-    "test:watch": "jest --watch"
+    "build":          "if-env NODE_ENV=production && npm run build:prod || npm run build:dev",
+    "build:analyze":  "NODE_ENV=production ANALYZE_WEBPACK_BUNDLE=true yarn build:watch",
+    "build:dev":      "NODE_ENV=development webpack",
+    "build:prod":     "NODE_ENV=production webpack --env=prod --progress --profile --colors --display-error-details",
+    "build:watch":    "webpack -w",
+
+    "lint":           "eslint --cache 'src/**' 'test/**'",
+
+    "release":        "./bin/release",
+
+    "test":           "jest",
+    "test:ci":        "jest --ci --coverage",
+    "test:debug":     "node --inspect-brk node_modules/.bin/jest --runInBand --watch",
+    "test:watch":     "jest --watch"
   },
+
   "dependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-decorators": "^7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.9.5",
+    "axios":                                      "^0.19.2",
+    "classnames":                                 "^2.2.6",
+    "common-tags":                                "^1.8.0",
+    "lodash":                                     "^4.17.15",
+
+
+    "//": "React",
+
+    "react":                                      "^16.1.1",
+    "react-dom":                                  "^16.1.1",
+    "prop-types":                                 "^15.5.10",
+
+
+    "//": "Babel",
+
+    "@babel/core":                                "^7.9.0",
+    "@babel/plugin-proposal-class-properties":    "^7.8.3",
+    "@babel/plugin-proposal-decorators":          "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread":  "^7.9.5",
     "@babel/plugin-transform-async-to-generator": "^7.8.3",
-    "@babel/preset-env": "^7.9.5",
-    "@babel/preset-react": "^7.9.4",
-    "axios": "^0.19.2",
-    "axios-mock-adapter": "^1.18.1",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^25.3.0",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-lodash": "^3.3.2",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "classnames": "^2.2.6",
-    "common-tags": "^1.8.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "enzyme-to-json": "^3.4.4",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-import-resolver-babel-module": "^5.1.2",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.5.1",
-    "if-env": "^1.0.4",
-    "jest": "^25.3.0",
-    "lodash": "^4.17.15",
-    "lodash-webpack-plugin": "^0.11.5",
-    "mock-local-storage": "^1.1.12",
-    "mutationobserver-shim": "^0.3.5",
-    "node-sass": "^4.5.3",
-    "prop-types": "^15.5.10",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "simulant": "^0.2.2",
-    "webpack": "^4.42.1",
-    "webpack-bundle-analyzer": "^3.7.0",
-    "webpack-cli": "^3.3.11"
+    "@babel/preset-env":                          "^7.9.5",
+    "@babel/preset-react":                        "^7.9.4",
+
+    "babel-plugin-lodash":                        "^3.3.2",
+    "babel-plugin-module-resolver":               "^4.0.0",
+
+
+    "//": "Webpack",
+
+    "webpack":                                    "^4.42.1",
+
+    "babel-loader":                               "^8.1.0",
+    "lodash-webpack-plugin":                      "^0.11.5",
+    "node-sass":                                  "^4.5.3",
+
+
+    "//": "--- added to avoid JSON’s no-trailing-comma requirement ---"
+  },
+
+  "devDependencies": {
+    "//": "Developer Tools",
+
+    "if-env":                                     "^1.0.4",
+    "webpack-cli":                                "^3.3.11",
+    "webpack-bundle-analyzer":                    "^3.7.0",
+
+
+    "//": "Linting",
+
+    "eslint":                                     "^6.8.0",
+    "eslint-config-airbnb":                       "^18.1.0",
+    "eslint-import-resolver-babel-module":        "^5.1.2",
+    "eslint-plugin-import":                       "^2.20.2",
+    "eslint-plugin-jsx-a11y":                     "^6.0.2",
+    "eslint-plugin-react":                        "^7.5.1",
+
+    "babel-eslint":                               "^10.1.0",
+
+
+    "//": "Testing",
+
+    "jest":                                       "^25.3.0",
+    "babel-jest":                                 "^25.3.0",
+
+    "enzyme":                                     "^3.11.0",
+    "enzyme-adapter-react-16":                    "^1.15.2",
+    "enzyme-to-json":                             "^3.4.4",  "//": "for snapshot testing",
+
+    "axios-mock-adapter":                         "^1.18.1",
+    "mock-local-storage":                         "^1.1.12",
+    "mutationobserver-shim":                      "^0.3.5",
+    "simulant":                                   "^0.2.2",  "//": "simulate DOM events",
+
+
+    "//": "--- added to avoid JSON’s no-trailing-comma requirement ---"
   }
 }
