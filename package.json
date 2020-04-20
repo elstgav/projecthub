@@ -16,20 +16,21 @@
   },
 
   "scripts": {
-    "build":          "if-env NODE_ENV=production && npm run build:prod || npm run build:dev",
-    "build:analyze":  "NODE_ENV=production ANALYZE_WEBPACK_BUNDLE=true yarn build:watch",
-    "build:dev":      "NODE_ENV=development webpack",
-    "build:prod":     "NODE_ENV=production webpack --env=prod --progress --profile --colors --display-error-details",
-    "build:watch":    "webpack -w",
+    "build":             "per-env",
+    "build:development": "webpack --mode=development",
+    "build:production":  "webpack --mode=production --env=prod --progress --profile --display-error-details",
 
-    "lint":           "eslint --cache 'src/**' 'test/**'",
+    "build:analyze":     "NODE_ENV=production ANALYZE_WEBPACK_BUNDLE=true yarn build:watch",
+    "build:watch":       "webpack --mode=development --watch",
 
-    "release":        "./bin/release",
+    "lint":              "eslint --cache 'src/**' 'test/**'",
 
-    "test":           "jest",
-    "test:ci":        "jest --ci --coverage",
-    "test:debug":     "node --inspect-brk node_modules/.bin/jest --runInBand --watch",
-    "test:watch":     "jest --watch"
+    "release":           "./bin/release",
+
+    "test":              "jest",
+    "test:ci":           "yarn test --ci --coverage",
+    "test:debug":        "node --inspect-brk node_modules/.bin/jest --runInBand --watch",
+    "test:watch":        "yarn test --watch"
   },
 
   "dependencies": {
@@ -76,7 +77,7 @@
   "devDependencies": {
     "//": "Developer Tools",
 
-    "if-env":                                     "^1.0.4",
+    "per-env":                                    "^1.0.2",
     "webpack-cli":                                "^3.3.11",
     "webpack-bundle-analyzer":                    "^3.7.0",
 

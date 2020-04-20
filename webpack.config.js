@@ -8,7 +8,6 @@ const isProdEnvironment = (process.env.NODE_ENV === 'production')
 module.exports = {
   cache:   true,
   devtool: isProdEnvironment ? false : 'cheap-module-source-map',
-  mode:    isProdEnvironment ? 'production' : 'development',
 
   context: __dirname,
 

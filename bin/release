@@ -108,7 +108,7 @@ Dir.chdir APP_ROOT do
 
   <<-SCRIPT.each_line { |cmd| system!(cmd.strip) unless cmd.strip.empty? }
     rm -f dist/*.bundle.js*
-    yarn run build:prod
+    NODE_ENV=production yarn build
 
     rm -f dist/react-dev-tools.js
       mkdir -p pkg
