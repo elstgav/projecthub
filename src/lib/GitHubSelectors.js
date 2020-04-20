@@ -1,15 +1,17 @@
 const GitHubSelectors = {
-  addCardsButton:          '.project-header-link[aria-label="Toggle add cards to project"]',
-  avatar:                  '.avatar img',
-  card:                    '.issue-card',
+  addCardsButton:          '.project-header-link.js-show-project-triage',
+  menuButton:              '.project-header-link.js-show-project-menu',
+
   column:                  '.project-column',
+  card:                    '.issue-card',
+  avatar:                  '.avatar img',
   label:                   '.issue-card-label',
-  menuButton:              '.project-header-link[aria-label="Toggle project menu"]',
+
   newColumnButton:         '.js-new-project-column-container .js-new-column-button',
   projectColumnsContainer: '.project-columns-container',
   projectHeaderControls:   '.project-header-controls',
   projectHeaderLink:       '.project-header-link',
-  projectLoadingIndicator: 'include-fragment',
+  projectLoadingIndicator: '.js-project-column img[src*=octocat-spinner]',
 
   names: {
     currentUser: 'octolytics-actor-login',

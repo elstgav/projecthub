@@ -38,7 +38,7 @@ describe('App', () => {
     it('returns the “add cards” parent element if it exists', () => {
       document.body.innerHTML = oneLine`
         <div class="foo">
-          <div class="project-header-link" aria-label="Toggle add cards to project"></div>
+          <a class="project-header-link js-show-project-triage"></a>
         </div>
       `
 
@@ -54,7 +54,7 @@ describe('App', () => {
     it('returns the “menu” parent element if it exists', () => {
       document.body.innerHTML = oneLine`
         <div class="foo">
-          <div class="project-header-link" aria-label="Toggle project menu"></div>
+          <div class="project-header-link js-show-project-menu"></div>
         </div>
       `
 
