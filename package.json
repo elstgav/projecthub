@@ -3,6 +3,9 @@
   "browserslist": [
     "last 4 Chrome versions"
   ],
+    "engines": {
+    "yarn": "^1.22.4"
+  },
   "scripts": {
     "build": "if-env NODE_ENV=production && npm run build:prod || npm run build:dev",
     "build:analyze": "NODE_ENV=production ANALYZE_WEBPACK_BUNDLE=true yarn build:watch",

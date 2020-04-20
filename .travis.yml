@@ -16,6 +16,11 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
+before_install:
+  # Install yarn version specified in package.json
+  - bin/install-yarn
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
 script:
   - yarn test:ci
 
