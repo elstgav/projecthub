@@ -89,7 +89,17 @@ export default class SelectButton extends React.Component {
           onClick={this.onButtonClick}
           type="button"
         >
-          {this.props.type && <i>{this.props.type}: </i>}
+          {this.props.type && (
+            <>
+              <Icon
+                icon={this.props.type.toLowerCase()}
+                ariaLabel={this.props.type}
+                className="octicon-mute v-align-text-bottom"
+                width="14"
+              />
+              &nbsp;
+            </>
+          )}
           <SelectedOptionVal option={this.state.selection} />
           {' '}
         </Button>
