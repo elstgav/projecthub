@@ -11,13 +11,13 @@ describe('Dropdown', () => {
   beforeEach(() => {
     test.props = {
       buttonText: 'Open me',
-      children:      'Pick me',
+      children:   'Pick me',
     }
   })
 
   it('displays a <Dropdown> element', () => {
     expect(test.Dropdown.find('.dropdown')).toHaveLength(1)
-    expect(test.Dropdown.props().className).toBe('projecthub-dropdown dropdown')
+    expect(test.Dropdown.props().className).toBe('projecthub-dropdown details-reset details-overlay dropdown')
     expect(test.Dropdown.find('.dropdown-menu-content').text()).toBe('Pick me')
     expect(test.Dropdown).toMatchSnapshot()
   })
@@ -34,13 +34,13 @@ describe('Dropdown', () => {
 
   describe('button', () => {
     it('has configurable content', () => {
-      expect(test.Dropdown.find('button').text()).toBe('Open me')
+      expect(test.Dropdown.find('summary').text()).toBe('Open me')
     })
 
     it('has a configurable className', () => {
       test.props.buttonProps = { className: 'foobar', id: 'fooButton' }
-      expect(test.Dropdown.find('button').props().className).toBe('foobar')
-      expect(test.Dropdown.find('button').props().id).toBe('fooButton')
+      expect(test.Dropdown.find('summary').props().className).toBe('foobar')
+      expect(test.Dropdown.find('summary').props().id).toBe('fooButton')
     })
   })
 
@@ -84,19 +84,11 @@ describe('Dropdown', () => {
   })
 
   describe('when clicked', () => {
-    it('toggles an “active” class', () => {
-      expect(test.Dropdown.props().className).not.toContain('active')
-      test.Dropdown.find('button').simulate('click')
-      expect(test.Dropdown.props().className).toContain('active')
-      test.Dropdown.find('button').simulate('click')
-      expect(test.Dropdown.props().className).not.toContain('active')
-    })
-
     it('toggles its open state', () => {
       expect(test.Dropdown.state('isDropdownOpen')).toBe(false)
-      test.Dropdown.find('button').simulate('click')
+      test.Dropdown.find('summary').simulate('click')
       expect(test.Dropdown.state('isDropdownOpen')).toBe(true)
-      test.Dropdown.find('button').simulate('click')
+      test.Dropdown.find('summary').simulate('click')
       expect(test.Dropdown.state('isDropdownOpen')).toBe(false)
     })
   })
