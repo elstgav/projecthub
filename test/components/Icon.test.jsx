@@ -5,9 +5,7 @@ const test = new EnzymeTestWrapper(Icon)
 
 describe('Icon', () => {
   beforeEach(() => {
-    test.props = {
-      icon: Object.keys(Icon.paths)[0],
-    }
+    test.props.icon = Object.keys(Icon.paths)[0] // Pick an existing icon for the test
   })
 
   it('displays a <svg> element', () => {
@@ -32,9 +30,15 @@ describe('Icon', () => {
   })
 
   it('has configurable size', () => {
-    test.props.height = Icon.defaultProps.height * 2
-    test.props.width  = Icon.defaultProps.width  * 2
+    test.props.height = 10
+    test.props.width  = 10
 
-    expect(test.Icon.props()).toMatchObject({ height: test.props.height, width: test.props.width })
+    expect(test.Icon.props()).toMatchObject({ height: 10, width: 10 })
+  })
+
+  it('defaults to a square size if height is not set', () => {
+    test.props.width = 42
+
+    expect(test.Icon.props().height).toBe(42)
   })
 })

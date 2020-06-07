@@ -24,7 +24,7 @@ export default class Icon extends React.PureComponent {
   static defaultProps = {
     ariaLabel: '',
     className: '',
-    height:    16,
+    height:    null,
     width:     16,
   }
 
@@ -33,7 +33,7 @@ export default class Icon extends React.PureComponent {
       aria-hidden={!this.props.ariaLabel}
       aria-label={this.props.ariaLabel}
       className={classNames(`octicon octicon-${this.props.icon}`, this.props.className)}
-      height={this.props.height}
+      height={this.props.height || this.props.width}
       width={this.props.width}
       role="img"
       version="1.1"
