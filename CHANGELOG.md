@@ -1,5 +1,12 @@
 # Changelog
 
+### 0.1.0 (June 7, 2020)
+
+* Fixes outdated GitHub CSS selectors #26
+* Updates several dependencies
+* Filter labels replaced with icons for brevity
+* Reduce minimum column size to accomodate more screen sizes
+
 ### 0.0.2.1 (March 30, 2018)
 
 * Fixes an outdated CSS selector for smaller column widths
