@@ -26,13 +26,8 @@ PRs welcome 👍🏻
 
 React’s dev tools Chrome Extension unfortunately can’t inspect other extensions. So you’ll need to use their remote debugger instead:
 
-1. Install the debugger: `npm install -g react-devtools`
-2. Add 'react-dev-tools.js' to `/dist/manifest.json`:
-   ```json
-   "content_scripts": [{
-     "js": ["react-dev-tools.js", "app.bundle.js"],
-    ```
-3. Run the debugger: `$ react-devtools`
+1. Run in debug mode: `yarn build:debug`
+2. Run the debugger: `yarn react-devtools`
 
 
 ## Publishing

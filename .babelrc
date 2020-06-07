@@ -12,7 +12,7 @@
       "useBuiltIns": "usage",
 
       // Explicitly indicate which version of core-js we’re using—required for `useBuiltIns` option
-      corejs: 2,
+      corejs: 3,
     }],
 
     // Adds support for JSX

@@ -21,6 +21,13 @@ export default class FocusFilter extends BaseFilter {
     isToggled: false,
   }
 
+  // TODO: Make this dynamic/editable
+  static HIDE_COLUMNS = [
+    '8190805', // MLS Countdown
+    '4312722', // Icebox
+    // '3242375', // Backlog
+  ]
+
   onClick = () => {
     this.setState(prevState => ({
       isToggled: !prevState.isToggled,
@@ -36,7 +43,7 @@ export default class FocusFilter extends BaseFilter {
 
   shouldDisplayColumn(column) {
     if (!this.state.isToggled) return true
-    return column.dataset.id !== '1239586' // Backlog column
+    return !FocusFilter.HIDE_COLUMNS.includes(column.dataset.id)
   }
 
   render() {

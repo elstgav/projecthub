@@ -50,32 +50,33 @@ export default class Dropdown extends React.Component {
 
   render() {
     return (
-      <div
+      <details
         className={classNames(
           `${App.namespace}-dropdown`,
+          'details-reset details-overlay',
           'dropdown',
-          { active: this.state.isDropdownOpen },
           this.props.className,
         )}
+        open={this.state.isDropdownOpen}
         ref={this.saveRef}
       >
-        <button
+        <summary
           aria-expanded={this.state.isDropdownOpen}
-          aria-haspopup
+          aria-haspopup="menu"
           className="btn"
           onClick={this.onDropdownClick}
-          type="button"
+          role="button"
           {...this.props.buttonProps}
         >
           {this.props.buttonText}
-        </button>
+        </summary>
 
-        <div className="dropdown-menu-content f5" aria-expanded={this.state.isDropdownOpen}>
+        <details-menu className="dropdown-menu-content f5" role="menu" aria-expanded={this.state.isDropdownOpen}>
           <ul className={`dropdown-menu dropdown-menu-${this.props.dropdownDirection}`}>
             {this.props.children}
           </ul>
-        </div>
-      </div>
+        </details-menu>
+      </details>
     )
   }
 }

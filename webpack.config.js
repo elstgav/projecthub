@@ -5,16 +5,21 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const isProdEnvironment = (process.env.NODE_ENV === 'production')
 
+function dynamicEntry(entry) {
+  if (isProdEnvironment) return entry
+
+  return process.env.ADD_REACT_DEVTOOLS ? ['react-devtools', entry] : entry
+}
+
 module.exports = {
   cache:   true,
   devtool: isProdEnvironment ? false : 'cheap-module-source-map',
-  mode:    isProdEnvironment ? 'production' : 'development',
 
   context: __dirname,
 
   entry: {
-    app:     './src/Application.jsx',
-    options: './src/Options.jsx',
+    app:     dynamicEntry('./src/Application.jsx'),
+    options: dynamicEntry('./src/Options.jsx'),
   },
 
   optimization: {

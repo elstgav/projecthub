@@ -17,7 +17,7 @@ describe('ProjectBoard', () => {
 
   describe('.isEditable', () => {
     it('returns true if “Add cards” link is present', () => {
-      document.body.innerHTML = '<a class="project-header-link" aria-label="Toggle add cards to project"></a>'
+      document.body.innerHTML = '<a class="project-header-link js-show-project-triage"></a>'
       expect(ProjectBoard.isEditable).toBe(true)
     })
 
@@ -38,7 +38,13 @@ describe('ProjectBoard', () => {
     it('returns ', () => {
       expect.assertions(1)
 
-      document.body.innerHTML = '<div class="project-columns-container"><include-fragment /></div>'
+      document.body.innerHTML = oneLine`
+        <div class="project-columns-container">
+          <div class="js-project-column">
+            <img src="https://github.githubassets.com/images/spinners/octocat-spinner-128.gif" />
+          </div>
+        </div>
+      `
 
       const promise = ProjectBoard.afterLoaded.then(() => {
         expect(ProjectBoard.container.textContent).toBe('Loaded!')
@@ -164,7 +170,13 @@ describe('ProjectBoard', () => {
     const renderNewColumnButton = ProjectBoard.renderNewColumnButton
 
     beforeEach(() => {
-      document.body.innerHTML = '<div class="project-columns-container"><include-fragment /></div>'
+      document.body.innerHTML = oneLine`
+        <div class="project-columns-container">
+          <div class="js-project-column">
+            <img src="https://github.githubassets.com/images/spinners/octocat-spinner-128.gif" />
+          </div>
+        </div>
+      `
       ProjectBoard.renderNewColumnButton = jest.fn()
     })
 

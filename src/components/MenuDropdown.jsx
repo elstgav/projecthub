@@ -31,7 +31,13 @@ export default class MenuDropdown extends React.PureComponent {
   render() {
     return (
       <Dropdown
-        buttonText={<Icon icon="menu" width="14" />}
+        buttonText={(
+          <>
+            <Icon icon="menu" width="14" className="v-align-middle" />
+            &nbsp;
+            <span className="dropdown-caret" />
+          </>
+        )}
         buttonProps={{
           'aria-label': 'Menu',
           className:    'project-header-link muted-link v-align-middle no-underline btn-link',

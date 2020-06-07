@@ -1,27 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dropdown displays a <Dropdown> element 1`] = `
-<div
-  className="projecthub-dropdown dropdown"
+<details
+  className="projecthub-dropdown details-reset details-overlay dropdown"
+  open={false}
 >
-  <button
+  <summary
     aria-expanded={false}
-    aria-haspopup={true}
+    aria-haspopup="menu"
     className="btn"
     onClick={[Function]}
-    type="button"
+    role="button"
   >
     Open me
-  </button>
-  <div
+  </summary>
+  <details-menu
     aria-expanded={false}
     className="dropdown-menu-content f5"
+    role="menu"
   >
     <ul
       className="dropdown-menu dropdown-menu-sw"
     >
       Pick me
     </ul>
-  </div>
-</div>
+  </details-menu>
+</details>
 `;

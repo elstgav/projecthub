@@ -62,12 +62,6 @@ def verify_command_passes!(name, cmd)
   puts
 end
 
-def verify_react_dev_tools_are_not_included!(manifest)
-  return unless manifest.include?('react-dev-tools.js')
-
-  abort("Your manifest includes react-dev-tools.js; it must be removed before releasing.")
-end
-
 def verify_version!(version)
   latest_tag = `git describe --abbrev=0 --tags`.strip
 
@@ -86,11 +80,10 @@ def verify_version!(version)
   end
 end
 
-def verify_application_state!(manifest, version)
+def verify_application_state!(version)
   verify_no_uncommitted_changes!
   verify_command_passes! 'tests',   'yarn test'
   verify_command_passes! 'linters', 'yarn lint'
-  verify_react_dev_tools_are_not_included!(manifest)
   verify_version!(version)
 end
 
@@ -102,18 +95,16 @@ Dir.chdir APP_ROOT do
   manifest = File.read('./dist/manifest.json')
   version  = manifest.match(/^\s*"version":\s*"(.+)"/)[1]
 
-  verify_application_state!(manifest, version)
+  verify_application_state!(version)
 
   puts "Creating v#{version} release…"
 
   <<-SCRIPT.each_line { |cmd| system!(cmd.strip) unless cmd.strip.empty? }
     rm -f dist/*.bundle.js*
-    yarn run build:prod
+    NODE_ENV=production yarn build
 
-    rm -f dist/react-dev-tools.js
-      mkdir -p pkg
-      zip -r -X pkg/projecthub-v#{version}.zip dist/
-    git checkout -- dist/react-dev-tools.js
+    mkdir -p pkg
+    zip -r -X pkg/projecthub-v#{version}.zip dist/
 
     git tag -f v#{version}
     git push origin v#{version}
