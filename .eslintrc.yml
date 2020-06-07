@@ -16,6 +16,9 @@ rules:
   jsx-a11y/interactive-supports-focus:
     - off
 
+  jsx-a11y/click-events-have-key-events:
+    - off
+
   # ensure consistency when using newlines within a function’s parens
   function-paren-newline:
     - error
