@@ -106,7 +106,7 @@
     "enzyme-to-json":                             "^3.5.0",  "//": "for snapshot testing",
 
     "axios-mock-adapter":                         "^1.18.1",
-    "mock-local-storage":                         "^1.1.12",
+    "mock-local-storage":                         "^1.1.14",
     "mutationobserver-shim":                      "^0.3.7",
     "simulant":                                   "^0.2.2",  "//": "simulate DOM events",
 
