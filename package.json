@@ -50,7 +50,7 @@
 
     "//": "Babel",
 
-    "@babel/core":                                "^7.10.4",
+    "@babel/core":                                "^7.11.6",
     "@babel/plugin-proposal-class-properties":    "^7.10.1",
     "@babel/plugin-proposal-decorators":          "^7.10.3",
     "@babel/plugin-proposal-object-rest-spread":  "^7.10.3",
