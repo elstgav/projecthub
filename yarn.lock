@@ -5847,10 +5847,10 @@ mixin-deep@^1.2.0:
   dependencies:
     minimist "^1.2.5"
 
-mock-local-storage@^1.1.12:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/mock-local-storage/-/mock-local-storage-1.1.12.tgz#b1ee96d7bac6e46fc0a3a72a518d758cac4a1771"
-  integrity sha512-LBxvtbUE384RV+rQbeklJ/Ii08qmDpod65XkcnFybZD9o4YaT1CBwk77kjtCQxi4CKzjqr5dStUuy2KynOQvNg==
+mock-local-storage@^1.1.15:
+  version "1.1.15"
+  resolved "https://registry.yarnpkg.com/mock-local-storage/-/mock-local-storage-1.1.15.tgz#f7eb8c259b38cbb1d090105483a426e9f1c04c00"
+  integrity sha512-HzlKej+cjXeRG21MrCLpYNxtvdsttAmpPGv8igRHWHmnkaLcUTuyPDo5uS7kJA3APLQIn1F+ufNmN3CtSHKSSg==
   dependencies:
     core-js "^0.8.3"
     global "^4.3.2"
