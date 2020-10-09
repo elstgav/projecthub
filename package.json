@@ -81,7 +81,7 @@
     "per-env":                                    "^1.0.2",
     "react-devtools":                             "^4.8.2",
     "webpack-cli":                                "^3.3.12",
-    "webpack-bundle-analyzer":                    "^3.8.0",
+    "webpack-bundle-analyzer":                    "^3.9.0",
 
 
     "//": "Linting",
