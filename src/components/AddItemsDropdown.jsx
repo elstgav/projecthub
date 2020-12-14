@@ -23,14 +23,14 @@ export default class AddItemsDropdown extends React.PureComponent {
         }}
       >
         <li>
-          <button type="button" className="dropdown-item btn-link js-show-project-triage" onClick={this.closeDropdown}>
+          <button type="button" className="dropdown-item btn-link js-show-project-triage" onClick={this.closeDropdown} role="menuitem">
             Add cards
           </button>
         </li>
 
         {ProjectBoard.isEditable && (
           <li className="js-new-column-button">
-            <a className="dropdown-item btn-link" href="#add-column" onClick={this.closeDropdown} role="button" rel="facebox">
+            <a className="dropdown-item btn-link" href="#add-column" onClick={this.closeDropdown} role="menuitem" rel="facebox">
               Add column
             </a>
           </li>

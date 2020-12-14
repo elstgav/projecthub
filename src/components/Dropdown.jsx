@@ -57,7 +57,6 @@ export default class Dropdown extends React.Component {
           'dropdown',
           this.props.className,
         )}
-        open={this.state.isDropdownOpen}
         ref={this.saveRef}
       >
         <summary
@@ -71,7 +70,7 @@ export default class Dropdown extends React.Component {
           {this.props.buttonText}
         </summary>
 
-        <details-menu className="dropdown-menu-content f5" role="menu" aria-expanded={this.state.isDropdownOpen}>
+        <details-menu className="dropdown-menu-content f5" role="menu">
           <ul className={`dropdown-menu dropdown-menu-${this.props.dropdownDirection}`}>
             {this.props.children}
           </ul>

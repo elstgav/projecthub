@@ -43,7 +43,7 @@ export default class MenuDropdown extends React.PureComponent {
         }}
       >
         <li>
-          <button type="button" className="dropdown-item btn-link js-show-project-menu">
+          <button type="button" className="dropdown-item btn-link js-show-project-menu" role="menuitem">
             Activity
           </button>
         </li>
@@ -53,13 +53,13 @@ export default class MenuDropdown extends React.PureComponent {
         {ProjectBoard.isEditable && (
           <>
             <li>
-              <button type="button" className="dropdown-item btn-link" onClick={this.onToggleNewColumnButton}>
+              <button type="button" className="dropdown-item btn-link" onClick={this.onToggleNewColumnButton} role="menuitem">
                 {this.state.isNewColumnButtonHidden ? 'Show' : 'Hide'} “Add column” button
               </button>
             </li>
 
             <li>
-              <a className="dropdown-item" href={`${window.location.pathname}/edit`}>
+              <a className="dropdown-item" href={`${window.location.pathname}/edit`} role="menuitem">
                 Edit Project
               </a>
             </li>
@@ -67,7 +67,7 @@ export default class MenuDropdown extends React.PureComponent {
         )}
 
         <li>
-          <button type="button" className="dropdown-item btn-link" onClick={this.onSettingsClick} role="link">
+          <button type="button" className="dropdown-item btn-link" onClick={this.onSettingsClick} role="menuitem">
             ProjectHub Settings
           </button>
         </li>
