@@ -57,7 +57,6 @@ export default class Dropdown extends React.Component {
           'dropdown',
           this.props.className,
         )}
-        open={this.state.isDropdownOpen}
         ref={this.saveRef}
       >
         <summary

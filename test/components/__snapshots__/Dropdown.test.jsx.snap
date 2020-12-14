@@ -3,7 +3,6 @@
 exports[`Dropdown displays a <Dropdown> element 1`] = `
 <details
   className="projecthub-dropdown details-reset details-overlay dropdown"
-  open={false}
 >
   <summary
     aria-expanded={false}
