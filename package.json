@@ -35,7 +35,7 @@
   },
 
   "dependencies": {
-    "axios":                                      "^0.20.0",
+    "axios":                                      "^0.21.0",
     "classnames":                                 "^2.2.6",
     "common-tags":                                "^1.8.0",
     "lodash":                                     "^4.17.15",
