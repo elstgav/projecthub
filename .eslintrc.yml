@@ -98,7 +98,7 @@ rules:
 
 overrides:
   - files:
-    - 'test/**/*.js'
+    - '**/*.test.js'
     rules:
       max-classes-per-file: off
 
