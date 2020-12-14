@@ -105,7 +105,7 @@
     "enzyme-adapter-react-16":                    "^1.15.5",
     "enzyme-to-json":                             "^3.6.1",  "//": "for snapshot testing",
 
-    "axios-mock-adapter":                         "^1.18.2",
+    "axios-mock-adapter":                         "^1.19.0",
     "mock-local-storage":                         "^1.1.15",
     "mutationobserver-shim":                      "^0.3.7",
     "simulant":                                   "^0.2.2",  "//": "simulate DOM events",
