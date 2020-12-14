@@ -30,7 +30,7 @@ describe('OptionVal', () => {
     it('displays the label’s color', () => {
       expect(
         test.OptionVal.find('.color').first().props().style.backgroundColor,
-      ).toBe(fooLabel.style.backgroundColor)
+      ).toBe('rgb(255,0,0)')
     })
 
     it('displays the label’s text', () => {

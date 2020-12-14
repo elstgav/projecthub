@@ -2,7 +2,6 @@
 
 import React     from 'react'
 import PropTypes from 'prop-types'
-import { pick }  from 'lodash'
 
 import { Label, User } from 'src/models'
 
@@ -35,10 +34,12 @@ export default class OptionVal extends React.PureComponent {
 class LabelOption extends React.PureComponent {
   static propTypes = { label: PropTypes.instanceOf(Label).isRequired }
 
+  labelColor = () => `rgb(${this.props.label.color.r},${this.props.label.color.g},${this.props.label.color.b})`
+
   render = () => (
     <div className="label-select-menu select-menu-item-text css-truncate">
       <div className="color-label-wrapper css-truncate-target">
-        <span className="color" style={pick(this.props.label.style, ['backgroundColor'])}>
+        <span className="color" style={{ backgroundColor: this.labelColor() }}>
           &nbsp;
         </span>
         &nbsp;
