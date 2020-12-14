@@ -25,6 +25,7 @@ describe('User', () => {
       const avatar = stringToDOM(oneLine`
         <img
           alt="@bobby"
+          class="avatar avatar-user"
           src="https://avatars3.githubusercontent.com/u/123456?s=40&v=4"
           height="20"
           width="20"

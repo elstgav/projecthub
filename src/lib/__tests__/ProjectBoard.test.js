@@ -1,6 +1,7 @@
 import { oneLine } from 'common-tags'
 
 import App             from 'src/lib/App'
+import GitHubSelectors from 'src/lib/GitHubSelectors'
 import ProjectBoard    from 'src/lib/ProjectBoard'
 import Storage         from 'src/lib/Storage'
 
@@ -36,15 +37,18 @@ describe('ProjectBoard', () => {
 
   describe('.afterLoaded', () => {
     it('returns ', () => {
-      expect.assertions(1)
+      expect.assertions(2)
 
       document.body.innerHTML = oneLine`
         <div class="project-columns-container">
-          <div class="js-project-column">
-            <img src="https://github.githubassets.com/images/spinners/octocat-spinner-128.gif" />
+          <div class="js-project-column-cards">
+            <include-fragment src="/orgs/foo/projects/1/columns/123/cards" />
           </div>
         </div>
       `
+      expect(
+        ProjectBoard.container.querySelector(GitHubSelectors.projectLoadingIndicator),
+      ).toBeTruthy()
 
       const promise = ProjectBoard.afterLoaded.then(() => {
         expect(ProjectBoard.container.textContent).toBe('Loaded!')
@@ -102,13 +106,11 @@ describe('ProjectBoard', () => {
     it('returns all assignees found in the project', () => {
       document.body.innerHTML = oneLine`
         <div class="project-columns-container">
-          <div class="avatar"><img alt="@test1" src="foo.com/u/1?s=40&v=4"></div>
-          <div class="avatar"><img alt="@test2" src="foo.com/u/2?s=40&v=4"></div>
-          <div class="avatar"><img alt="@test3" src="foo.com/u/3?s=40&v=4"></div>
+          <img class="avatar avatar-user" alt="@test1" src="foo.com/u/1?s=40&v=4">
+          <img class="avatar avatar-user" alt="@test2" src="foo.com/u/2?s=40&v=4">
+          <img class="avatar avatar-user" alt="@test3" src="foo.com/u/3?s=40&v=4">
         </div>
-        <div class="avatar">
-          <img alt="@test4" src="https://avatars3.githubusercontent.com/u/4?s=40&v=4">
-        </div>
+        <img class="avatar" alt="@org" src="https://avatars3.githubusercontent.com/u/4?s=40&v=4">
       `
       const assignees = ProjectBoard.assignees
       expect(assignees.length).toBe(3)
@@ -129,11 +131,11 @@ describe('ProjectBoard', () => {
     it('returns all labels found in the project', () => {
       document.body.innerHTML = oneLine`
         <div class="project-columns-container">
-          <div class="issue-card-label" style="background-color: #000; color: #fff;">Label 1</div>
-          <div class="issue-card-label" style="background-color: #000; color: #fff;">Label 2</div>
-          <div class="issue-card-label" style="background-color: #000; color: #fff;">Label 3</div>
+          <button class="IssueLabel"><span>Label 1</span></button>
+          <button class="IssueLabel"><span>Label 2</span></button>
+          <button class="IssueLabel"><span>Label 3</span></button>
         </div>
-        <div class="issue-card-label" style="background-color: #000; color: #fff;">Label 4</div>
+        <button class="IssueLabel"><span>Other Label</span></button>
       `
       const labels = ProjectBoard.labels
       expect(labels.length).toBe(3)
@@ -173,7 +175,6 @@ describe('ProjectBoard', () => {
       document.body.innerHTML = oneLine`
         <div class="project-columns-container">
           <div class="js-project-column">
-            <img src="https://github.githubassets.com/images/spinners/octocat-spinner-128.gif" />
           </div>
         </div>
       `

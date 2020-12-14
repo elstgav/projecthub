@@ -6,14 +6,14 @@ ProjectHub is a Chrome extension that adds filters to GitHub project boards.
 
 ## Installation
 
-ProjectHub isn’t hosted on the Chrome web store yet—until then you can manually install it with the directions below:
+ProjectHub isn’t hosted on the Chrome web store yet—until then you can manually install it with the development directions below:
 
 
 ## Development
 
 1. [Install yarn](https://yarnpkg.com/en/docs/install)
 2. `yarn install`
-3. `yarn build:watch`
+3. `yarn build:watch` (or `yarn build` to build once)
 4. Go to `chrome://extensions`
 5. Enable Developer mode
 6. Click <kbd>Load unpacked extension…</kbd> and select the `dist/` folder

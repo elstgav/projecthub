@@ -4,14 +4,14 @@ const GitHubSelectors = {
 
   column:                  '.project-column',
   card:                    '.issue-card',
-  avatar:                  '.avatar img',
-  label:                   '.issue-card-label',
+  avatar:                  '.avatar-user',
+  label:                   '.IssueLabel',
 
   newColumnButton:         '.js-new-project-column-container .js-new-column-button',
   projectColumnsContainer: '.project-columns-container',
   projectHeaderControls:   '.project-header-controls',
   projectHeaderLink:       '.project-header-link',
-  projectLoadingIndicator: '.js-project-column img[src*=octocat-spinner]',
+  projectLoadingIndicator: '.js-project-column-cards > include-fragment',
 
   names: {
     currentUser: 'octolytics-actor-login',

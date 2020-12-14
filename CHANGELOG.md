@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.2.0 (December 14, 2020)
+
+* Fixes outdated GitHub CSS selectors
+
 ### 0.1.1 (June 8, 2020)
 
 * Fixes "missing common.js" error that broke the extension
