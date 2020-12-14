@@ -18,7 +18,7 @@
   "scripts": {
     "build":             "per-env",
     "build:development": "webpack --mode=development",
-    "build:production":  "webpack --mode=production --env=prod --progress --profile --display-error-details",
+    "build:production":  "webpack --mode=production --env=prod --progress",
 
     "build:analyze":     "NODE_ENV=production ANALYZE_WEBPACK_BUNDLE=true yarn build:production -w",
     "build:debug":       "ADD_REACT_DEVTOOLS=true yarn build:watch",
