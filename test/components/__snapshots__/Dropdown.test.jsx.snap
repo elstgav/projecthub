@@ -14,7 +14,6 @@ exports[`Dropdown displays a <Dropdown> element 1`] = `
     Open me
   </summary>
   <details-menu
-    aria-expanded={false}
     className="dropdown-menu-content f5"
     role="menu"
   >
