@@ -79,7 +79,7 @@
     "//": "Developer Tools",
 
     "per-env":                                    "^1.0.2",
-    "react-devtools":                             "^4.8.2",
+    "react-devtools":                             "^4.10.1",
     "webpack-cli":                                "^4.1.0",
     "webpack-bundle-analyzer":                    "^3.9.0",
 
