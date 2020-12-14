@@ -1,7 +1,6 @@
 import React from 'react'
 import simulant from 'simulant'
 
-import Aux from 'src/utils/Aux'
 import Dropdown from 'components/Dropdown'
 import EnzymeTestWrapper from 'test/support/EnzymeTestWrapper'
 
@@ -54,10 +53,10 @@ describe('Dropdown', () => {
       test.props = {
         buttonText: 'Open me',
         children: (
-          <Aux>
+          <>
             <li><span className="test-content">Pick me</span></li>
             <li><button type="button" className="dropdown-item">Pick me</button></li>
-          </Aux>
+          </>
         ),
       }
 

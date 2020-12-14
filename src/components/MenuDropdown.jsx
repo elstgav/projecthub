@@ -1,7 +1,6 @@
 import React from 'react'
 
 import ProjectBoard from 'src/lib/ProjectBoard'
-import { Aux } from 'src/utils'
 
 import Icon from 'components/Icon'
 import Dropdown from 'components/Dropdown'
@@ -52,7 +51,7 @@ export default class MenuDropdown extends React.PureComponent {
         <li className="dropdown-divider" />
 
         {ProjectBoard.isEditable && (
-          <Aux>
+          <>
             <li>
               <button type="button" className="dropdown-item btn-link" onClick={this.onToggleNewColumnButton}>
                 {this.state.isNewColumnButtonHidden ? 'Show' : 'Hide'} “Add column” button
@@ -64,7 +63,7 @@ export default class MenuDropdown extends React.PureComponent {
                 Edit Project
               </a>
             </li>
-          </Aux>
+          </>
         )}
 
         <li>

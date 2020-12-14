@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { pick }  from 'lodash'
 
 import { Label, User } from 'src/models'
-import { Aux } from 'src/utils'
 
 import Avatar from 'components/Avatar'
 
@@ -53,7 +52,7 @@ class UserOption extends React.PureComponent {
   static propTypes = { user: PropTypes.instanceOf(User).isRequired }
 
   render = () => (
-    <Aux>
+    <>
       <div className="select-menu-item-gravatar">
         <Avatar user={this.props.user} size={30} />
       </div>
@@ -63,6 +62,6 @@ class UserOption extends React.PureComponent {
           <span className="description-inline"> {this.props.user.login}</span>
         )}
       </div>
-    </Aux>
+    </>
   )
 }
