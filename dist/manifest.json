@@ -5,6 +5,11 @@
   "author":         "Gavin Elster",
   "description":    "Adds useful filters to your GitHub project board",
   "version":        "0.2.0",
+  "icons":          {
+    "16":  "icons/projecthub-icon-16.png",
+    "48":  "icons/projecthub-icon-48.png",
+    "128": "icons/projecthub-icon-128.png"
+  },
 
   "options_ui": {
     "page":         "options.html",
