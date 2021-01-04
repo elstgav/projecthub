@@ -60,7 +60,7 @@
 
     "babel-plugin-lodash":                        "^3.3.2",
     "babel-plugin-module-resolver":               "^4.0.0",
-    "core-js":                                    "^3.6.5",  "//": "force v3 of core-js",
+    "core-js":                                    "^3.8.2",  "//": "force v3 of core-js",
 
 
     "//": "Webpack",
