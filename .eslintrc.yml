@@ -45,6 +45,13 @@ rules:
   no-multi-spaces:
     - off
 
+  # Allow extra lines for grouping functionality
+  no-multiple-empty-lines:
+    - error
+    - max: 2
+      maxBOF: 0
+      maxEOF: 0
+
   # prevent unused expressions that have no effect on program state
   no-unused-expressions:
     - error
