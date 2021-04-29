@@ -1,0 +1,60 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "13:00"
+    timezone: America/Los_Angeles
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: webpack
+    versions:
+    - 5.28.0
+    - 5.30.0
+    - 5.31.0
+    - 5.31.2
+    - 5.32.0
+    - 5.35.0
+  - dependency-name: "@babel/core"
+    versions:
+    - 7.13.10
+    - 7.13.14
+    - 7.13.15
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+  - dependency-name: eslint-plugin-react
+    versions:
+    - 7.23.0
+    - 7.23.1
+  - dependency-name: webpack-cli
+    versions:
+    - 4.5.0
+  - dependency-name: "@babel/preset-env"
+    versions:
+    - 7.12.11
+    - 7.12.13
+    - 7.12.16
+    - 7.12.17
+    - 7.13.10
+    - 7.13.5
+    - 7.13.9
+  - dependency-name: core-js
+    versions:
+    - 3.8.3
+    - 3.9.0
+  - dependency-name: electron
+    versions:
+    - 9.4.2
+    - 9.4.3
+  - dependency-name: "@babel/plugin-proposal-decorators"
+    versions:
+    - 7.12.12
+    - 7.12.13
+  - dependency-name: node-notifier
+    versions:
+    - 8.0.1
+  - dependency-name: "@babel/preset-react"
+    versions:
+    - 7.12.10
