@@ -65,7 +65,7 @@
 
     "//": "Webpack",
 
-    "webpack":                                    "^4.44.2",
+    "webpack":                                    "^5.44.0",
 
     "babel-loader":                               "^8.2.2",
     "lodash-webpack-plugin":                      "^0.11.6",
