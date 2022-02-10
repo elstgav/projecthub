@@ -69,7 +69,7 @@
 
     "babel-loader":                               "^8.2.2",
     "lodash-webpack-plugin":                      "^0.11.6",
-    "node-sass":                                  "^5.0.0",
+    "node-sass":                                  "^7.0.0",
 
 
     "//": "--- added to avoid JSON’s no-trailing-comma requirement ---"
